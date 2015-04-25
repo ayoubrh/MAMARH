@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+{% block sstitle %}Ajouter une Offre{% endblock %}
+
+{% block corps %}
+
+    <!-- /.row -->
+
+    {% block panel %}
+    {% endblock  %}
+    <h3>Formulaire Offre</h3>
+
+
+<div >
+    <form method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit"  />
+    </form>
+</div>
+{% endblock %}

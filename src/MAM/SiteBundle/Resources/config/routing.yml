@@ -1,0 +1,3 @@
+mam_site:
+    path:     /
+    defaults: { _controller: MAMSiteBundle:Default:index }

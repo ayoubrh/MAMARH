@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+{% block sstitle %}Ajouter un projet{% endblock %}
+
+{% block corps %}
+  <div class="col-lg-8">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+              <i class="fa fa-edit"></i>
+              Formulaire d'ajout d'un nouveau projet
+          </div>
+          <div class="panel-body">
+              <div class="row">
+                        <div class="col-lg-8">
+                            <form  method="post" {{form_enctype(form) }}>
+                                {{ form_errors(form) }}
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Libelle, "Nom du projet ") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.Libelle) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Descriptif, "Description") }}</label>
+                                    <div >
+                                        {{ form_widget(form.Descriptif) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Duree_estime, "Durée du projet estimée") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.Duree_estime) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Date_deb, "Date début ") }}</label>
+                                    {{ form_widget(form.Date_deb) }}
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ form_label(form.help, "Chef du projet") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.help) }}
+                                    </div>
+                                </div>
+
+
+                                <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
+                                <button type="reset" class="btn btn-outline btn-primary">Renitialiser</button>
+                            {{ form_rest(form) }}
+                            </form>
+                        </div>
+
+                    </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}

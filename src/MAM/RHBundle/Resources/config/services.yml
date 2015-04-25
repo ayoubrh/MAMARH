@@ -1,0 +1,11 @@
+parameters:
+#    mamrh.example.class: MAM\RHBundle\Example
+
+services:
+#    mamrh.example:
+#        class: %mamrh.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    mam_rh.mailer:
+        class: MAM\RHBundle\MAMRHMailer\MAMRHMailer
+        arguments: [@mailer,@templating,@service_container]

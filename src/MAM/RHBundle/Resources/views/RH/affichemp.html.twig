@@ -1,0 +1,91 @@
+{% extends "::base.html.twig" %}
+{% block sstitle %}Ajouter un Employe{% endblock %}
+
+{% block corps %}
+
+    {% block panel %}
+    {% endblock  %}
+
+    <div id="wrapper">
+      <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Tables</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            DataTables Advanced Tables
+                        </div>
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                    <tr>
+                                        <th>Matricule</th>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    {% for employe in entities %}
+                                    <tbody>
+
+                                    <tr class="odd gradeX">
+
+                                        <td>{{ employe.matricule }}</td>
+                                        <td>{{ employe.nom }}</td>
+                                        <td>{{ employe.prenom }}</td>
+                                        <td><p class="fa fa-edit"></p> &nbsp;&nbsp;&nbsp;<p class="fa fa-trash-o"></p></td>
+                                    </tr>
+
+                                    </tbody>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /#page-wrapper -->
+
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+    <!-- jQuery -->
+    <script src="{{  asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{  asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{{  asset('bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="{{  asset('bower_components/DataTables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{  asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{  asset('dist/js/sb-admin-2.js') }}"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="{{  asset('bower_components/DataTables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{  asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,188 @@
+<?php
+namespace MAM\RHBundle\Entity;
+
+use Doctrine\ORM\Mapping AS ORM;
+
+use MAM\UserBundle\Entity\User;
+
+/**
+ * @ORM\Entity(repositoryClass="EmployeRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorMap(
+ *     {
+ *     "ChefDepartement"="ChefDepartement",
+ *     "ChefProjet"="ChefProjet",
+ *     "ResponsableRH"="ResponsableRH",
+ *     "Employenormal"="Employenormal"
+ * }
+ * )
+ */
+class Employe
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     */
+    private $matricule;
+
+    /**
+     * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     */
+    private $CIN;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $Nom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $Prenom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Adresse;
+
+    /**
+     * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     */
+    private $Tel;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Num_comptbanq;
+
+    /**
+     * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     */
+    private $Cnss;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Cimr;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $Type_contrat;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $Diplome;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $Formation;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $Fonction;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $Specialite;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $Date_embauche;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=false)
+     */
+    private $Salaire;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $Date_bye;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true, options={"default" = false})
+     */
+    private $Bye;
+
+    /**
+     * @ORM\OneToOne(targetEntity="MAM\RHBundle\Entity\Image",cascade={"persist","remove"})
+     */
+    private $image;
+
+    /**
+     * @ORM\OneToOne(targetEntity="MAM\RHBundle\Entity\CV",cascade={"persist","remove"})
+     */
+    private $cv;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Departement", inversedBy="employes")
+     * @ORM\JoinColumn(name="departement_id", referencedColumnName="id", nullable=false)
+     */
+    private $departement;
+
+    /**
+     * @ORM\OneToOne(targetEntity="MAM\UserBundle\Entity\User", inversedBy="employe",cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Date_embauche = new \DateTime();
+    }
+
+    public function __toString() {
+        return $this->Nom;
+    }
+
+    public function cast($to)
+    {
+        if ($to instanceof Employe) {
+            $to->id = $this->id;
+            $to->matricule = $this->matricule;
+            $to->CIN = $this->CIN;
+            $to->Nom = $this->Nom;
+            $to->Prenom = $this->Prenom;
+            $to->Adresse = $this->Adresse;
+            $to->email = $this->email;
+            $to->Tel = $this->Tel;
+            $to->Num_comptbanq = $this->Num_comptbanq;
+            $to->Cnss = $this->Cnss;
+            $to->Cimr = $this->Cimr;
+            $to->Type_contrat = $this->Type_contrat;
+            $to->Diplome = $this->Diplome;
+            $to->Formation = $this->Formation;
+            $to->Fonction = $this->Fonction;
+            $to->Specialite = $this->Specialite;
+            $to->Date_embauche = $this->Date_embauche;
+            $to->Salaire = $this->Salaire;
+            $to->Date_bye = $this->Date_bye;
+            $to->Bye = $this->Bye;
+            $to->image = $this->image;
+            $to->cv = $this->cv;
+            $to->departement = $this->departement;
+        }
+        else throw(new Exception('cant cast ' . get_class($this) . ' to ' . get_class($to)));
+        return $to;
+    }
+}

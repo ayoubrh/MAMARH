@@ -1,0 +1,43 @@
+mamrh_AjoutProjet:
+    pattern:  /AjoutProjet
+    defaults: { _controller: MAMRHBundle:Projet:AjoutProjet }
+
+mamrh_AjoutSuivi:
+    pattern:  /AjoutSuivi
+    defaults: { _controller: MAMRHBundle:Projet:AjoutSuivi }
+
+mamrh_VoirProfil:
+    pattern:  /VoirProfil/{id}
+    defaults: { _controller: MAMRHBundle:Projet:VoirProfil }
+
+mamrh_ModifiProfil:
+    pattern:  /ModifiProfil/{id}
+    defaults: { _controller: MAMRHBundle:Projet:ModifiProfil }
+
+mamrh_ListeProjet:
+    pattern:  /ListeProjet
+    defaults: { _controller: MAMRHBundle:Projet:ListeProjet }
+
+mamrh_ajoutemploye:
+    path:    /ajoutemploye
+    defaults: {_controller: MAMRHBundle:RH:ajoutemploye}
+
+mamrh_ajoutoffre:
+    path:    /ajoutoffre
+    defaults: {_controller: MAMRHBundle:RH:ajoutoffre}
+
+mamrh_demande:
+     path:    /demande
+     defaults: {_controller: MAMRHBundle:Employe:demande}
+
+mamrh_ajoutstagiaire:
+    path:    /ajoutstagiaire
+    defaults: {_controller: MAMRHBundle:RH:ajoutstagiaire}
+
+mamrh_affichemp:
+    path:    /affichemp
+    defaults: {_controller: MAMRHBundle:RH:getemployenormal}
+
+mamrh_affichstag:
+    path:    /affichestag
+    defaults: {_controller: MAMRHBundle:RH:getstagiaire}

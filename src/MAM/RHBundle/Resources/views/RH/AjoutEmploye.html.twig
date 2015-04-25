@@ -1,0 +1,146 @@
+{% extends "::base.html.twig" %}
+{% block sstitle %}Ajouter un Employe{% endblock %}
+
+{% block corps %}
+<div class="col-lg-8">
+   <form method="post" {{form_enctype(form) }}>
+           <div class="row">
+              <div class="col-lg-6">
+                  <div class="panel panel-primary">
+                      <div class="panel-heading">
+                          <i class="fa fa-unlock"></i>
+                          &nbsp;&nbsp;Informations générales
+                      </div>
+                      <div class="panel-body">
+                          {{ form_errors(form) }}
+                          <div class="form-group">
+
+                                    <label>{{ form_label(form.Nom, "Nom ") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.Nom) }}
+                                    </div>
+                          </div>
+                          <div class="form-group">
+
+                                    <label>{{ form_label(form.Prenom, "Prenom ") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.Prenom) }}
+                                    </div>
+                                </div>
+                          <div class="form-group">
+
+                                    <label>{{ form_label(form.CIN, "CIN ") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.CIN) }}
+                                    </div>
+
+                                </div>
+                          <div class="form-group">
+                                    <label>{{ form_label(form.Adresse, "Adresse ") }}</label>
+
+                                        {{ form_widget(form.Adresse) }}
+                                </div>
+                          <div class="form-group">
+                                    <label>{{ form_label(form.email, "email ") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.email) }}
+                                    </div>
+                                </div>
+                          <div class="form-group">
+                              <label>{{ form_label(form.Tel, "Tel ") }}</label>
+                              <div class="form-control">
+                                  {{ form_widget(form.Tel) }}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label>{{ form_label(form.departement, "Departement") }}</label>
+                              <div class="form-control">
+                                  {{ form_widget(form.departement) }}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label>{{ form_label(form.Diplome, "Dérnier diplome") }}</label>
+                              <div class="form-control">
+                                  {{ form_widget(form.Diplome) }}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              {{ form_widget(form.image) }}
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+              <div class="col-lg-6">
+                  <div class="panel panel-primary">
+                      <div class="panel-heading">
+                          <i class="fa fa-lock"></i>
+                          &nbsp;&nbsp;Informations personnelles
+                      </div>
+                      <div class="panel-body">
+                          <div class="form-group">
+                              <label>{{ form_label(form.Num_comptbanq, "Numéro de compte ") }}</label>
+                          <div class="form-control">
+                              {{ form_widget(form.Num_comptbanq) }}
+                          </div>
+                          </div>
+                          <div class="form-group">
+                              <label>{{ form_label(form.Cnss, "CNSS ") }}</label>
+                          <div class="form-control">
+                              {{ form_widget(form.Cnss) }}
+                          </div>
+                          </div>
+                          <div class="form-group">
+                              <label>{{ form_label(form.Cimr, "CIMR ") }}</label>
+                          <div class="form-control">
+                              {{ form_widget(form.Cimr) }}
+                          </div>
+                          </div>
+                          <div class="form-group">
+                              <label>{{ form_label(form.Type_contrat, "Type de contrat ") }}</label>
+                              <div class="form-control">
+                                  {{ form_widget(form.Type_contrat) }}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label>{{ form_label(form.Formation, "Formation") }}</label>
+                              <div class="form-control">
+                                  {{ form_widget(form.Formation) }}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label>{{ form_label(form.Fonction, "Fonction") }}</label>
+                              <div class="form-control">
+                                  {{ form_widget(form.Fonction) }}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label>{{ form_label(form.Specialite, "Spécialite") }}</label>
+                              <div class="form-control">
+                                  {{ form_widget(form.Specialite) }}
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label>{{ form_label(form.Salaire, "Salaire") }}</label>
+                              <div class="form-control">
+                                  {{ form_widget(form.Salaire) }}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              {{ form_widget(form.cv) }}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+           </div>
+           <div class="row">
+               <div class="col-lg-12">
+               <button type="submit" class="btn btn-outline  btn-primary">Envoyer</button>
+               <button type="reset" class="btn btn-outline  btn-primary">Renitialiser</button>
+               </div>
+           </div>
+       {{ form_rest(form) }}
+       </form>
+</div>
+
+{% endblock %}

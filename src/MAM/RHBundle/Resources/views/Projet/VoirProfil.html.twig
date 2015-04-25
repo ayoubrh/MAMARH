@@ -1,0 +1,85 @@
+{% extends "::base.html.twig" %}
+
+{% block sstitle %} Mon profil{% endblock %}
+
+{% block corps %}
+<div class="col-lg-8">
+    <div class="row">
+    <div class="col-lg-3">
+        <div class="photo">
+        <img src="{{ asset('dist/ll.jpg') }}" />
+        </div>
+    </div>
+    <div class="col-lg-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-unlock"></i>
+                    &nbsp;&nbsp;Informations générales
+                </div>
+                <div class="panel-body">
+                    <table>
+                        <tr><td><i class="fa fa-users"></i>&nbsp;&nbsp;</td><td>Nom:&nbsp; </td><td>EL MARIOULI</td>
+                        </tr>
+                        <tr><td><i class="fa fa-user"></i>&nbsp;&nbsp;</td><td>Prénom: </td><td>MAJDA</td>
+                        </tr>
+                        <tr><td><i class="fa fa-bookmark"></i>&nbsp;&nbsp;</td><td>Matricule:&nbsp;</td><td>6526</td>
+                        </tr>
+                        <tr><td><i class="fa fa-tag"></i>&nbsp;&nbsp;</td><td>CIN:</td><td>GN172658</td>
+                        </tr>
+                        <tr><td><i class="fa fa-home"></i>&nbsp;&nbsp;</td><td>Adresse:</td><td>Block2</td>
+                        </tr>
+                        <tr><td><i class="fa fa-phone">&nbsp;&nbsp;</i></td><td>Télé:</td><td>064567899</td>
+                        </tr>
+                        <tr><td><i class="fa fa-envelope"></i>&nbsp;&nbsp;</td><td>Email:</td><td>Majda@gmail.com</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-gears"></i>
+                &nbsp;&nbsp;Informations fonctionelles
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr><td><i class="fa fa-mortar-board"></i>&nbsp;&nbsp;</td><td>Diplome:&nbsp; </td><td>Ingénieur d'état</td>
+                    </tr>
+                    <tr><td><i class="fa fa-briefcase"></i>&nbsp;&nbsp;</td><td>Formation:&nbsp; </td><td>Oracle DataBase</td>
+                    </tr>
+                    <tr><td><i class="fa fa-wrench"></i>&nbsp;&nbsp;</td><td>Fonction:&nbsp;</td><td>Inegénieur d'informatique </td>
+                    </tr>
+                    <tr><td><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;</td><td>Spécialité:&nbsp;</td><td>systèmes d'information</td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+           <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-credit-card"></i>
+                &nbsp;&nbsp;Informations bancaires
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr><td><i class="fa fa-money"></i>&nbsp;&nbsp;</td><td>Salaire:&nbsp; </td><td>15000 DH</td>
+                    </tr>
+                    <tr><td><i class="fa fa-mortar-board"></i>&nbsp;&nbsp;</td><td>Numéro Compte bancaire: &nbsp;</td><td>76527199</td>
+                    </tr>
+                    <tr><td><i class="fa fa-mortar-board"></i>&nbsp;&nbsp;</td><td>Matricule:&nbsp;</td><td>6526</td>
+                    </tr>
+                    <tr><td><i class="fa fa-tag"></i>&nbsp;&nbsp;</td><td>CIN:&nbsp;</td><td>GN172658</td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

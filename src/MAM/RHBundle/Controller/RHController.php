@@ -60,7 +60,7 @@ class RHController extends Controller
                 $user->setUsername($employe->getEmail());
                 $passhelp=substr($tokenGenerator->generateToken(), 0, 10);
                 $user->setPlainPassword($passhelp);
-                $user->setEnabled(true);
+                //$user->setEnabled(true);
                 $user->setEmploye($employe);
                 $employe->setUser($user);
                 //var_dump($employe);
@@ -125,6 +125,7 @@ class RHController extends Controller
         }
         return $this->render('MAMRHBundle:RH:AjoutStagiaire.html.twig',array('form' => $form->createView(),));
     }
+
     public function getstagiaireAction()
     {
         $entities=$this->getDoctrine()

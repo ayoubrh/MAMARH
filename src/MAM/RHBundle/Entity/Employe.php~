@@ -185,4 +185,543 @@ class Employe
         else throw(new Exception('cant cast ' . get_class($this) . ' to ' . get_class($to)));
         return $to;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set matricule
+     *
+     * @param string $matricule
+     * @return Employe
+     */
+    public function setMatricule($matricule)
+    {
+        $this->matricule = $matricule;
+    
+        return $this;
+    }
+
+    /**
+     * Get matricule
+     *
+     * @return string 
+     */
+    public function getMatricule()
+    {
+        return $this->matricule;
+    }
+
+    /**
+     * Set CIN
+     *
+     * @param string $cIN
+     * @return Employe
+     */
+    public function setCIN($cIN)
+    {
+        $this->CIN = $cIN;
+    
+        return $this;
+    }
+
+    /**
+     * Get CIN
+     *
+     * @return string 
+     */
+    public function getCIN()
+    {
+        return $this->CIN;
+    }
+
+    /**
+     * Set Nom
+     *
+     * @param string $nom
+     * @return Employe
+     */
+    public function setNom($nom)
+    {
+        $this->Nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get Nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->Nom;
+    }
+
+    /**
+     * Set Prenom
+     *
+     * @param string $prenom
+     * @return Employe
+     */
+    public function setPrenom($prenom)
+    {
+        $this->Prenom = $prenom;
+    
+        return $this;
+    }
+
+    /**
+     * Get Prenom
+     *
+     * @return string 
+     */
+    public function getPrenom()
+    {
+        return $this->Prenom;
+    }
+
+    /**
+     * Set Adresse
+     *
+     * @param string $adresse
+     * @return Employe
+     */
+    public function setAdresse($adresse)
+    {
+        $this->Adresse = $adresse;
+    
+        return $this;
+    }
+
+    /**
+     * Get Adresse
+     *
+     * @return string 
+     */
+    public function getAdresse()
+    {
+        return $this->Adresse;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Employe
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set Tel
+     *
+     * @param string $tel
+     * @return Employe
+     */
+    public function setTel($tel)
+    {
+        $this->Tel = $tel;
+    
+        return $this;
+    }
+
+    /**
+     * Get Tel
+     *
+     * @return string 
+     */
+    public function getTel()
+    {
+        return $this->Tel;
+    }
+
+    /**
+     * Set Num_comptbanq
+     *
+     * @param string $numComptbanq
+     * @return Employe
+     */
+    public function setNumComptbanq($numComptbanq)
+    {
+        $this->Num_comptbanq = $numComptbanq;
+    
+        return $this;
+    }
+
+    /**
+     * Get Num_comptbanq
+     *
+     * @return string 
+     */
+    public function getNumComptbanq()
+    {
+        return $this->Num_comptbanq;
+    }
+
+    /**
+     * Set Cnss
+     *
+     * @param string $cnss
+     * @return Employe
+     */
+    public function setCnss($cnss)
+    {
+        $this->Cnss = $cnss;
+    
+        return $this;
+    }
+
+    /**
+     * Get Cnss
+     *
+     * @return string 
+     */
+    public function getCnss()
+    {
+        return $this->Cnss;
+    }
+
+    /**
+     * Set Cimr
+     *
+     * @param string $cimr
+     * @return Employe
+     */
+    public function setCimr($cimr)
+    {
+        $this->Cimr = $cimr;
+    
+        return $this;
+    }
+
+    /**
+     * Get Cimr
+     *
+     * @return string 
+     */
+    public function getCimr()
+    {
+        return $this->Cimr;
+    }
+
+    /**
+     * Set Type_contrat
+     *
+     * @param string $typeContrat
+     * @return Employe
+     */
+    public function setTypeContrat($typeContrat)
+    {
+        $this->Type_contrat = $typeContrat;
+    
+        return $this;
+    }
+
+    /**
+     * Get Type_contrat
+     *
+     * @return string 
+     */
+    public function getTypeContrat()
+    {
+        return $this->Type_contrat;
+    }
+
+    /**
+     * Set Diplome
+     *
+     * @param string $diplome
+     * @return Employe
+     */
+    public function setDiplome($diplome)
+    {
+        $this->Diplome = $diplome;
+    
+        return $this;
+    }
+
+    /**
+     * Get Diplome
+     *
+     * @return string 
+     */
+    public function getDiplome()
+    {
+        return $this->Diplome;
+    }
+
+    /**
+     * Set Formation
+     *
+     * @param string $formation
+     * @return Employe
+     */
+    public function setFormation($formation)
+    {
+        $this->Formation = $formation;
+    
+        return $this;
+    }
+
+    /**
+     * Get Formation
+     *
+     * @return string 
+     */
+    public function getFormation()
+    {
+        return $this->Formation;
+    }
+
+    /**
+     * Set Fonction
+     *
+     * @param string $fonction
+     * @return Employe
+     */
+    public function setFonction($fonction)
+    {
+        $this->Fonction = $fonction;
+    
+        return $this;
+    }
+
+    /**
+     * Get Fonction
+     *
+     * @return string 
+     */
+    public function getFonction()
+    {
+        return $this->Fonction;
+    }
+
+    /**
+     * Set Specialite
+     *
+     * @param string $specialite
+     * @return Employe
+     */
+    public function setSpecialite($specialite)
+    {
+        $this->Specialite = $specialite;
+    
+        return $this;
+    }
+
+    /**
+     * Get Specialite
+     *
+     * @return string 
+     */
+    public function getSpecialite()
+    {
+        return $this->Specialite;
+    }
+
+    /**
+     * Set Date_embauche
+     *
+     * @param \DateTime $dateEmbauche
+     * @return Employe
+     */
+    public function setDateEmbauche($dateEmbauche)
+    {
+        $this->Date_embauche = $dateEmbauche;
+    
+        return $this;
+    }
+
+    /**
+     * Get Date_embauche
+     *
+     * @return \DateTime 
+     */
+    public function getDateEmbauche()
+    {
+        return $this->Date_embauche;
+    }
+
+    /**
+     * Set Salaire
+     *
+     * @param string $salaire
+     * @return Employe
+     */
+    public function setSalaire($salaire)
+    {
+        $this->Salaire = $salaire;
+    
+        return $this;
+    }
+
+    /**
+     * Get Salaire
+     *
+     * @return string 
+     */
+    public function getSalaire()
+    {
+        return $this->Salaire;
+    }
+
+    /**
+     * Set Date_bye
+     *
+     * @param \DateTime $dateBye
+     * @return Employe
+     */
+    public function setDateBye($dateBye)
+    {
+        $this->Date_bye = $dateBye;
+    
+        return $this;
+    }
+
+    /**
+     * Get Date_bye
+     *
+     * @return \DateTime 
+     */
+    public function getDateBye()
+    {
+        return $this->Date_bye;
+    }
+
+    /**
+     * Set Bye
+     *
+     * @param boolean $bye
+     * @return Employe
+     */
+    public function setBye($bye)
+    {
+        $this->Bye = $bye;
+    
+        return $this;
+    }
+
+    /**
+     * Get Bye
+     *
+     * @return boolean 
+     */
+    public function getBye()
+    {
+        return $this->Bye;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \MAM\RHBundle\Entity\Image $image
+     * @return Employe
+     */
+    public function setImage(\MAM\RHBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \MAM\RHBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set cv
+     *
+     * @param \MAM\RHBundle\Entity\CV $cv
+     * @return Employe
+     */
+    public function setCv(\MAM\RHBundle\Entity\CV $cv = null)
+    {
+        $this->cv = $cv;
+    
+        return $this;
+    }
+
+    /**
+     * Get cv
+     *
+     * @return \MAM\RHBundle\Entity\CV 
+     */
+    public function getCv()
+    {
+        return $this->cv;
+    }
+
+    /**
+     * Set departement
+     *
+     * @param \MAM\RHBundle\Entity\Departement $departement
+     * @return Employe
+     */
+    public function setDepartement(\MAM\RHBundle\Entity\Departement $departement)
+    {
+        $this->departement = $departement;
+    
+        return $this;
+    }
+
+    /**
+     * Get departement
+     *
+     * @return \MAM\RHBundle\Entity\Departement 
+     */
+    public function getDepartement()
+    {
+        return $this->departement;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \MAM\UserBundle\Entity\User $user
+     * @return Employe
+     */
+    public function setUser(\MAM\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \MAM\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

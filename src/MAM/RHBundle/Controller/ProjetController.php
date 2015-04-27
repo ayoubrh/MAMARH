@@ -111,10 +111,11 @@ class ProjetController extends Controller
             'form' => $form->createView(),));
     }
 
-    public function VoirProfilAction()
+    public function VoirProfilAction($id)
     {
-
-        return $this->render('MAMRHBundle:Projet:VoirProfil.html.twig');
+        $emp = $this->getDoctrine()->getManager()->getRepository('Employe')->find($id);
+        if($emp->getUser->getEnabled() == false) $emp->getUser->setEnabled(true);
+        return $this->render('MAMRHBundle:Projet:VoirProfil.html.twig',array('profil'=>$emp));
     }
 
     public function ListeProjetAction()
@@ -124,7 +125,7 @@ class ProjetController extends Controller
     }
 
 
-    public function ModifiProfilAction()
+    public function ModifiProfilAction($id)
     {
         $employe = new Employe();
         $form = $this->createForm(new EmployeType(), $employe);

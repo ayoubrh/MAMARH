@@ -69,7 +69,7 @@ class RHController extends Controller
                 $em->persist($user);
 
 
-                if($this->confirmation($user,$passhelp)) $em->flush();
+                if($em->flush()) $this->confirmation($user,$passhelp);
                 else throw new AccessDeniedHttpException('Email non envoyer');
 
 

@@ -40,8 +40,8 @@ class ProjetController extends Controller
                 $user=$help->getUser();
                 $user->setRoles(array('ROLE_CHEF_PROJET'));
                 $chefprojet = new ChefProjet();
-                $user=new User();
-                $user=$help->getUser();
+                //$user=new User();
+                //$user=$help->getUser();
                 $chefprojet = $help->cast($chefprojet);
                 $this->Help($help);
                 $user->setEmploye($chefprojet);
@@ -72,7 +72,7 @@ class ProjetController extends Controller
                     $em->flush();
                 }*/
                 $em->persist($chefprojet);
-                $em->persist($user);
+                //$em->persist($user);
                 $em->persist($projet);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Projet bien ajouté');
@@ -85,8 +85,8 @@ class ProjetController extends Controller
 
     public function Help(Employenormal $emp){
         $em = $this->getDoctrine()->getManager();
-        $user=$emp->getUser();
-        $em->remove($user);
+        //$user=$emp->getUser();
+        //$em->remove($user);
         $em->remove($emp);
         $em->flush();
 

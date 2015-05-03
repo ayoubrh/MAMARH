@@ -17,7 +17,7 @@ class AttestationRepository extends EntityRepository
 
         $demandes = $this->createQueryBuilder('d')
             // On joint sur l'attribut image
-            ->leftJoin('d.employes', 'e')
+            ->leftJoin('d.employe', 'e')
             ->addSelect('e')
             // On joint sur l'attribut categories
             ->leftJoin('e.user', 'u')
@@ -27,7 +27,31 @@ class AttestationRepository extends EntityRepository
             ->getQuery()
             ->getResult();
 
+        return $demandes;
+    }
+
+    public function getrhdemandes(){
+
+        $demandes = $this->createQueryBuilder('d')
+            ->where('d.valide = :v')
+            ->setParameter('v', false)
+            ->getQuery()
+            ->getResult();
 
         return $demandes;
+    }
+
+    public function getnbrdemande(User $user){
+        $nbrdemande = $this->createQueryBuilder('d')
+            ->select('COUNT(DISTINCT d.id)')
+            ->where('d.valide = :v')
+            ->setParameter('v', false)
+            ->leftJoin('d.employe', 'e')
+            ->leftJoin('e.user', 'u')
+            ->where('u.id = :user')
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+        return $nbrdemande;
     }
 }

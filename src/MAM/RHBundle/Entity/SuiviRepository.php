@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class SuiviRepository extends EntityRepository
 {
+    public function getsuivis($id){
+
+        $suivis = $this->createQueryBuilder('s')
+            // On joint sur l'attribut image
+            ->leftJoin('s.projet', 'p')
+            ->addSelect('p')
+            // On joint sur l'attribut categories
+            ->where('p.id = :proj')
+            ->setParameter('proj', $id)
+            ->getQuery()
+            ->getResult();
+
+        return $suivis;
+    }
 }

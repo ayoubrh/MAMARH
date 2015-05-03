@@ -35,7 +35,7 @@ class EmployeController extends Controller
             $form->submit($request);
             if ($form->isValid()) {
                 $employe = $this->getUser()->getEmploye();
-                $demande->addEmploye($employe);
+                $demande->setEmploye($employe);
                 $em->persist($demande);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Employé bien ajouté');

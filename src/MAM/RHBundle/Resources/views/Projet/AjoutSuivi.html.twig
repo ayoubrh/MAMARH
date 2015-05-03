@@ -23,19 +23,25 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ form_label(form.date_tache, "Date de la nouvelle tache") }}</label>
-                                    {{ form_widget(form.date_tache) }}
+                                    <label>{{ form_label(form.Descriptif, "Description") }}</label>
+                                    <div >
+                                        {{ form_widget(form.Descriptif) }}
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ form_label(form.duree_tache, "Durée de la tache") }}</label>
-                                    <div class="form-control">
-                                        {{ form_widget(form.duree_tache) }}
-                                    </div>
+                                    <label>{{ form_label(form.date_D_tache, "Date de début de la nouvelle tache") }}</label>
+                                    {{ form_widget(form.date_D_tache) }}
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ form_label(form.date_F_tache, "Date de fin de la nouvelle tache") }}</label>
+                                        {{ form_widget(form.date_F_tache) }}
                                 </div>
 
                                 <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
                                 <button type="reset" class="btn btn-outline btn-primary">Renitialiser</button>
+                                {{ form_rest(form) }}
                             </form>
                         </div>
 

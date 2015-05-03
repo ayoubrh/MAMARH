@@ -15,6 +15,7 @@ use FOS\UserBundle\Mailer\TwigSwiftMailer;
 
 use MAM\RHBundle\Entity\ResponsableRH;
 use MAM\RHBundle\Entity\Employenormal;
+use MAM\RHBundle\Entity\Attestation;
 use MAM\RHBundle\Entity\Employe;
 use MAM\RHBundle\Entity\ChefDepartement;
 use MAM\RHBundle\Entity\Departement;
@@ -60,7 +61,7 @@ class RHController extends Controller
                 $user->setUsername($employe->getEmail());
                 $passhelp=substr($tokenGenerator->generateToken(), 0, 10);
                 $user->setPlainPassword($passhelp);
-                //$user->setEnabled(true);
+                $user->setEnabled(true);
                 $user->setEmploye($employe);
                 $employe->setUser($user);
                 //var_dump($employe);
@@ -69,14 +70,14 @@ class RHController extends Controller
                 $em->persist($user);
 
 
-                if($em->flush()) $this->confirmation($user,$passhelp);
+                if($this->confirmation($user,$passhelp)) $em->flush();
                 else throw new AccessDeniedHttpException('Email non envoyer');
 
 
                 $this->get('session')->getFlashBag()->add('info', 'Employé bien ajouté');
                 //var_dump($user);
 
-                return $this->render('MAMRHBundle:Default:index.html.twig');
+                return $this->redirect($this->generateUrl('mamrh_ajoutemploye'));
             }
         }
         return $this->render('MAMRHBundle:RH:AjoutEmploye.html.twig',array('form' => $form->createView(),));
@@ -141,7 +142,7 @@ class RHController extends Controller
 
         $message = \Swift_Message::newInstance()
             ->setSubject('Confirmation d\'inscription')
-            ->setFrom('mamarh10@gmail.com')
+            ->setFrom('mamrh100@gmail.com')
             ->setTo($user->getemail())
             ->setBody($this->renderView('MAMRHBundle:Mail:confirmationemail.txt.twig', array(
                 'user' => $user,
@@ -150,4 +151,26 @@ class RHController extends Controller
         return $this->get('mailer')->send($message);
     }
 
+
+    public function demandeAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $demandes=$em->getRepository('MAMRHBundle:Attestation')
+            ->getrhdemandes();
+        return $this->render('MAMRHBundle:RH:demande.html.twig',
+            array('demandes'=> $demandes));
+    }
+
+    public function validdemandeAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $dem  =  $em->getRepository('MAMRHBundle:Attestation')
+            ->find($id);
+        //var_dump($dem);
+        $dem->setValide(true);
+        //var_dump($dem);
+        $em->persist($dem);
+        $em->flush();
+        //return $this->render('MAMRHBundle:Default:index.html.twig');
+        return $this->redirect($this->generateUrl('mamrh_rh_demande'));
+    }
 }

@@ -15,15 +15,28 @@ class Suivi
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $date_tache;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $tache;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Descriptif;
+
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $date_D_tache;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date_F_tache;
 
     /**
      * @ORM\Column(type="integer", nullable=false)
@@ -44,13 +57,17 @@ class Suivi
      */
     private $chefprojet;
 
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->date_tache= new \Datetime();
+        $this->date_D_tache = new \DateTime();
+        $this->date_F_tache = new \DateTime();
     }
+
+
 
     /**
      * Get id
@@ -60,29 +77,6 @@ class Suivi
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set date_tache
-     *
-     * @param \DateTime $dateTache
-     * @return Suivi
-     */
-    public function setDateTache($dateTache)
-    {
-        $this->date_tache = $dateTache;
-    
-        return $this;
-    }
-
-    /**
-     * Get date_tache
-     *
-     * @return \DateTime 
-     */
-    public function getDateTache()
-    {
-        return $this->date_tache;
     }
 
     /**
@@ -106,6 +100,75 @@ class Suivi
     public function getTache()
     {
         return $this->tache;
+    }
+
+    /**
+     * Set Descriptif
+     *
+     * @param string $descriptif
+     * @return Suivi
+     */
+    public function setDescriptif($descriptif)
+    {
+        $this->Descriptif = $descriptif;
+    
+        return $this;
+    }
+
+    /**
+     * Get Descriptif
+     *
+     * @return string 
+     */
+    public function getDescriptif()
+    {
+        return $this->Descriptif;
+    }
+
+    /**
+     * Set date_D_tache
+     *
+     * @param \DateTime $dateDTache
+     * @return Suivi
+     */
+    public function setDateDTache($dateDTache)
+    {
+        $this->date_D_tache = $dateDTache;
+    
+        return $this;
+    }
+
+    /**
+     * Get date_D_tache
+     *
+     * @return \DateTime 
+     */
+    public function getDateDTache()
+    {
+        return $this->date_D_tache;
+    }
+
+    /**
+     * Set date_F_tache
+     *
+     * @param \DateTime $dateFTache
+     * @return Suivi
+     */
+    public function setDateFTache($dateFTache)
+    {
+        $this->date_F_tache = $dateFTache;
+    
+        return $this;
+    }
+
+    /**
+     * Get date_F_tache
+     *
+     * @return \DateTime 
+     */
+    public function getDateFTache()
+    {
+        return $this->date_F_tache;
     }
 
     /**

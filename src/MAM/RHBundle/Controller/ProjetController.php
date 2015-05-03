@@ -34,20 +34,22 @@ class ProjetController extends Controller
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $chefdep=$this->getUser()->getEmploye();
-                $projet->setChefDepartement($chefdep);
+                //$projet->setChefDepartement($chefdep);
                 //$emp=$projet->getEmployeNormals();
                 $help=$projet->getHelp();
+                $projet->setHelp(null);
                 $user=$help->getUser();
                 $user->setRoles(array('ROLE_CHEF_PROJET'));
-                $chefprojet = new ChefProjet();
+                //$chefprojet = new ChefProjet();
                 //$user=new User();
                 //$user=$help->getUser();
-                $chefprojet = $help->cast($chefprojet);
-                $this->Help($help);
-                $user->setEmploye($chefprojet);
-                $projet->setChefProjet($chefprojet);
-                //$query = "UPDATE employe SET dtype = 'ChefProjet' WHERE id=".$help->getId();
-                //$em->getConnection()->exec($query);
+                //$chefprojet = $help->cast($chefprojet);
+                //$this->Help($help);
+                //$user->setEmploye($chefprojet);
+                //$projet->setChefProjet($chefprojet);
+
+                //var_dump($projet);
+
                 /*if($chefprojet instanceof ChefProjet){
                     $projet->setChefProjet($chefprojet);
                     $user=$help->getUser();
@@ -71,28 +73,24 @@ class ProjetController extends Controller
                     $em->remove($help);
                     $em->flush();
                 }*/
-                $em->persist($chefprojet);
-                //$em->persist($user);
+                //$em->persist($chefprojet);
+                $em->persist($user);
                 $em->persist($projet);
                 $em->flush();
+                $query = "UPDATE employe SET dtype = 'ChefProjet' WHERE id=".$help->getId();
+                $em->getConnection()->exec($query);
+                $query1 = "UPDATE projet SET chefprojet_id = ".$help->getId()." WHERE id=".$projet->getId();
+                $em->getConnection()->exec($query1);
                 $this->get('session')->getFlashBag()->add('info', 'Projet bien ajouté');
-                return $this->render('MAMRHBundle:Default:index.html.twig');
+                return $this->redirect($this->generateUrl('mamrh_AjoutProjet'));
             }
         }
         return $this->render('MAMRHBundle:Projet:AjoutProjet.html.twig',array(
             'form' => $form->createView(),));
     }
 
-    public function Help(Employenormal $emp){
-        $em = $this->getDoctrine()->getManager();
-        //$user=$emp->getUser();
-        //$em->remove($user);
-        $em->remove($emp);
-        $em->flush();
 
-    }
-
-    public function AjoutSuiviAction()
+    public function AjoutSuiviAction($id)
     {
         $suivi = new Suivi();
         $form = $this->createForm(new SuiviType(), $suivi);
@@ -101,10 +99,17 @@ class ProjetController extends Controller
             $form->submit($request);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+                $proj = $em->getRepository('MAMRHBundle:Projet')->find($id);
+                $proj->addSuivi($suivi);
+                $suivi->setProjet($proj);
+                $chefp = $this->getUser()->getEmploye();
+                $suivi->setChefprojet($chefp);
+                $suivi->setDureeTache($suivi->getDateFTache()->diff($suivi->getDateDTache())->format("%a"));
+                var_dump($suivi->getDureeTache());
                 $em->persist($suivi);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Nouvelle tache est bien ajoutée');
-                return $this->render('MAMRHBundle:Projet:AjoutSuivi.html.twig');
+                return $this->redirect($this->generateUrl('mamrh_ajoutemploye'));
             }
         }
         return $this->render('MAMRHBundle:Projet:AjoutSuivi.html.twig',array(
@@ -125,7 +130,7 @@ class ProjetController extends Controller
     }
 
 
-    public function ModifiProfilAction($id)
+    public function ModifProfilAction($id)
     {
         $employe = new Employe();
         $form = $this->createForm(new EmployeType(), $employe);
@@ -141,6 +146,18 @@ class ProjetController extends Controller
             }
         }
         return $this->render('MAMRHBundle:Projet:ModifiProfil.html.twig');
+    }
+
+
+    public function ListsuiviAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $suivis=$em->getRepository('MAMRHBundle:Suivi')
+            ->getsuivis($id);
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemande($this->getUser());
+        return $this->render('MAMRHBundle:Projet:Listsuivi.html.twig',
+            array('suivis'=> $suivis,
+                    'demandenonv'=>$demandenonv));
     }
 
 }

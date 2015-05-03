@@ -68,7 +68,7 @@ class Projet
 
     /**
      * @ORM\ManyToOne(targetEntity="ChefProjet", inversedBy="projet",cascade={"persist"})
-     * @ORM\JoinColumn(name="chefprojet_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="chefprojet_id", referencedColumnName="id", nullable=true)
      */
     private $chefProjet;
 
@@ -82,6 +82,8 @@ class Projet
         $this->suivis = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employeNormals = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+
 
     /**
      * Get id
@@ -298,6 +300,29 @@ class Projet
     }
 
     /**
+     * Set help
+     *
+     * @param \MAM\RHBundle\Entity\Employenormal $help
+     * @return Projet
+     */
+    public function setHelp(\MAM\RHBundle\Entity\Employenormal $help = null)
+    {
+        $this->help = $help;
+    
+        return $this;
+    }
+
+    /**
+     * Get help
+     *
+     * @return \MAM\RHBundle\Entity\Employenormal 
+     */
+    public function getHelp()
+    {
+        return $this->help;
+    }
+
+    /**
      * Set chefDepartement
      *
      * @param \MAM\RHBundle\Entity\ChefDepartement $chefDepartement
@@ -326,7 +351,7 @@ class Projet
      * @param \MAM\RHBundle\Entity\ChefProjet $chefProjet
      * @return Projet
      */
-    public function setChefProjet(\MAM\RHBundle\Entity\ChefProjet $chefProjet)
+    public function setChefProjet(\MAM\RHBundle\Entity\ChefProjet $chefProjet = null)
     {
         $this->chefProjet = $chefProjet;
     
@@ -341,28 +366,5 @@ class Projet
     public function getChefProjet()
     {
         return $this->chefProjet;
-    }
-
-    /**
-     * Set help
-     *
-     * @param \MAM\RHBundle\Entity\Employenormal $help
-     * @return Projet
-     */
-    public function setHelp(\MAM\RHBundle\Entity\Employenormal $help = null)
-    {
-        $this->help = $help;
-    
-        return $this;
-    }
-
-    /**
-     * Get help
-     *
-     * @return \MAM\RHBundle\Entity\Employenormal 
-     */
-    public function getHelp()
-    {
-        return $this->help;
     }
 }

@@ -144,6 +144,11 @@ class Employe
     private $user;
 
     /**
+     * @ORM\OneToMany(targetEntity="Attestation", mappedBy="employe")
+     */
+    private $attestations;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -723,5 +728,38 @@ class Employe
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add attestations
+     *
+     * @param \MAM\RHBundle\Entity\Attestation $attestations
+     * @return Employe
+     */
+    public function addAttestation(\MAM\RHBundle\Entity\Attestation $attestations)
+    {
+        $this->attestations[] = $attestations;
+    
+        return $this;
+    }
+
+    /**
+     * Remove attestations
+     *
+     * @param \MAM\RHBundle\Entity\Attestation $attestations
+     */
+    public function removeAttestation(\MAM\RHBundle\Entity\Attestation $attestations)
+    {
+        $this->attestations->removeElement($attestations);
+    }
+
+    /**
+     * Get attestations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAttestations()
+    {
+        return $this->attestations;
     }
 }

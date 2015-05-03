@@ -15,9 +15,10 @@ class SuiviType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date_tache','datetime')
+            ->add('date_D_tache','datetime')
+            ->add('date_F_tache','datetime')
             ->add('tache','text')
-            ->add('duree_tache','integer')
+            ->add('Descriptif','textarea')
         ;
     }
     

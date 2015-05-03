@@ -3,7 +3,7 @@ mamrh_AjoutProjet:
     defaults: { _controller: MAMRHBundle:Projet:AjoutProjet }
 
 mamrh_AjoutSuivi:
-    pattern:  /AjoutSuivi
+    pattern:  /AjoutSuivi/{id}
     defaults: { _controller: MAMRHBundle:Projet:AjoutSuivi }
 
 mamrh_VoirProfil:
@@ -41,3 +41,15 @@ mamrh_affichemp:
 mamrh_affichstag:
     path:    /affichestag
     defaults: {_controller: MAMRHBundle:RH:getstagiaire}
+
+mamrh_rh_demande:
+     path:    /listdemande
+     defaults: {_controller: MAMRHBundle:RH:demande}
+
+mamrh_rh_validdemande:
+     path:    /validdemande/{id}
+     defaults: {_controller: MAMRHBundle:RH:validdemande}
+
+mamrh_ListSuivi:
+    pattern:  /Suivi/{id}
+    defaults: { _controller: MAMRHBundle:Projet:Listsuivi }

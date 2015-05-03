@@ -42,14 +42,11 @@ class Attestation
     private $responsableRH;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Employe", inversedBy="attestations")
-     * @ORM\JoinTable(
-     *     name="Attestation_Employe",
-     *     joinColumns={@ORM\JoinColumn(name="attestation_id", referencedColumnName="id", nullable=true)},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="employe_id", referencedColumnName="id", nullable=true)}
-     * )
+     * @ORM\ManyToOne(targetEntity="Employe", inversedBy="attestations")
+     * @ORM\JoinColumn(name="employe_id", referencedColumnName="id", nullable=true)
+     *
      */
-    private $employes;
+    private $employe;
 
 
     /**
@@ -59,6 +56,7 @@ class Attestation
     {
         $this->Date_DEM = new \DateTime();
         $this->employes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->valide = false;
     }
 
     /**
@@ -187,36 +185,27 @@ class Attestation
         return $this->responsableRH;
     }
 
+
     /**
-     * Add employes
+     * Set employe
      *
-     * @param \MAM\RHBundle\Entity\Employe $employes
+     * @param \MAM\RHBundle\Entity\Employe $employe
      * @return Attestation
      */
-    public function addEmploye(\MAM\RHBundle\Entity\Employe $employes)
+    public function setEmploye(\MAM\RHBundle\Entity\Employe $employe = null)
     {
-        $this->employes[] = $employes;
+        $this->employe = $employe;
     
         return $this;
     }
 
     /**
-     * Remove employes
+     * Get employe
      *
-     * @param \MAM\RHBundle\Entity\Employe $employes
+     * @return \MAM\RHBundle\Entity\Employe 
      */
-    public function removeEmploye(\MAM\RHBundle\Entity\Employe $employes)
+    public function getEmploye()
     {
-        $this->employes->removeElement($employes);
-    }
-
-    /**
-     * Get employes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEmployes()
-    {
-        return $this->employes;
+        return $this->employe;
     }
 }

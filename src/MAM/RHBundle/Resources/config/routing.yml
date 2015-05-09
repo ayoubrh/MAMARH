@@ -1,3 +1,7 @@
+mamrh_Acceuil:
+    pattern:  /Acceuil
+    defaults: { _controller: MAMRHBundle:RH:Acceuil }
+
 mamrh_AjoutProjet:
     pattern:  /AjoutProjet
     defaults: { _controller: MAMRHBundle:Projet:AjoutProjet }

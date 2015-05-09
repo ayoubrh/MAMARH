@@ -3,11 +3,11 @@
 {% block sstitle %} Mon profil{% endblock %}
 
 {% block corps %}
-<div class="col-lg-8">
+    <div class="col-lg-8">
     <div class="row">
     <div class="col-lg-3">
         <div class="photo">
-        <img src="{{ asset('dist/ll.jpg') }}" />
+        <img src="{{ profil.image.webPath }}" />
         </div>
     </div>
     <div class="col-lg-9">
@@ -18,19 +18,19 @@
                 </div>
                 <div class="panel-body">
                     <table>
-                        <tr><td><i class="fa fa-users"></i>&nbsp;&nbsp;</td><td>Nom:&nbsp; </td><td>EL MARIOULI</td>
+                        <tr><td><i class="fa fa-users"></i>&nbsp;&nbsp;</td><td>Nom:&nbsp; </td><td>{{ profil.Nom }}</td>
                         </tr>
-                        <tr><td><i class="fa fa-user"></i>&nbsp;&nbsp;</td><td>Prénom: </td><td>MAJDA</td>
+                        <tr><td><i class="fa fa-user"></i>&nbsp;&nbsp;</td><td>Prénom: </td><td>{{ profil.Prenom }}</td>
                         </tr>
-                        <tr><td><i class="fa fa-bookmark"></i>&nbsp;&nbsp;</td><td>Matricule:&nbsp;</td><td>6526</td>
+                        <tr><td><i class="fa fa-bookmark"></i>&nbsp;&nbsp;</td><td>Matricule:&nbsp;</td><td>{{ profil.matricule }}</td>
                         </tr>
-                        <tr><td><i class="fa fa-tag"></i>&nbsp;&nbsp;</td><td>CIN:</td><td>GN172658</td>
+                        <tr><td><i class="fa fa-tag"></i>&nbsp;&nbsp;</td><td>CIN:</td><td>{{ profil.CIN }}</td>
                         </tr>
-                        <tr><td><i class="fa fa-home"></i>&nbsp;&nbsp;</td><td>Adresse:</td><td>Block2</td>
+                        <tr><td><i class="fa fa-home"></i>&nbsp;&nbsp;</td><td>Adresse:</td><td>{{ profil.Adresse }}</td>
                         </tr>
-                        <tr><td><i class="fa fa-phone">&nbsp;&nbsp;</i></td><td>Télé:</td><td>064567899</td>
+                        <tr><td><i class="fa fa-phone">&nbsp;&nbsp;</i></td><td>Télé:</td><td>{{ profil.Tel }}</td>
                         </tr>
-                        <tr><td><i class="fa fa-envelope"></i>&nbsp;&nbsp;</td><td>Email:</td><td>Majda@gmail.com</td>
+                        <tr><td><i class="fa fa-envelope"></i>&nbsp;&nbsp;</td><td>Email:</td><td>{{ profil.email }}</td>
                         </tr>
                     </table>
                 </div>
@@ -46,13 +46,15 @@
             </div>
             <div class="panel-body">
                 <table>
-                    <tr><td><i class="fa fa-mortar-board"></i>&nbsp;&nbsp;</td><td>Diplome:&nbsp; </td><td>Ingénieur d'état</td>
+                    <tr><td><i class="fa fa-mortar-board"></i>&nbsp;&nbsp;</td><td>Diplome:&nbsp; </td><td>{{ profil.Diplome }}</td>
                     </tr>
-                    <tr><td><i class="fa fa-briefcase"></i>&nbsp;&nbsp;</td><td>Formation:&nbsp; </td><td>Oracle DataBase</td>
+                    <tr><td><i class="fa fa-briefcase"></i>&nbsp;&nbsp;</td><td>Formation:&nbsp; </td><td>{{ profil.Formation }}</td>
                     </tr>
-                    <tr><td><i class="fa fa-wrench"></i>&nbsp;&nbsp;</td><td>Fonction:&nbsp;</td><td>Inegénieur d'informatique </td>
+                    <tr><td><i class="fa fa-wrench"></i>&nbsp;&nbsp;</td><td>Fonction:&nbsp;</td><td>{{ profil.Fonction }}</td>
                     </tr>
-                    <tr><td><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;</td><td>Spécialité:&nbsp;</td><td>systèmes d'information</td>
+                    <tr><td><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;</td><td>Spécialité:&nbsp;</td><td>{{ profil.Specialite }}</td>
+                    </tr>
+                    <tr><td><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;</td><td>Département:&nbsp;</td><td>{{ profil.departement.Libelle }}</td>
                     </tr>
                 </table>
             </div>
@@ -68,13 +70,15 @@
             </div>
             <div class="panel-body">
                 <table>
-                    <tr><td><i class="fa fa-money"></i>&nbsp;&nbsp;</td><td>Salaire:&nbsp; </td><td>15000 DH</td>
+                    <tr><td><i class="fa fa-money"></i>&nbsp;&nbsp;</td><td>Salaire:&nbsp; </td><td>{{ profil.Salaire }} DH</td>
                     </tr>
-                    <tr><td><i class="fa fa-mortar-board"></i>&nbsp;&nbsp;</td><td>Numéro Compte bancaire: &nbsp;</td><td>76527199</td>
+                    <tr><td><i class="fa fa-mortar-board"></i>&nbsp;&nbsp;</td><td>Numéro Compte bancaire: &nbsp;</td><td>{{ profil.NumComptbanq }}</td>
                     </tr>
-                    <tr><td><i class="fa fa-mortar-board"></i>&nbsp;&nbsp;</td><td>Matricule:&nbsp;</td><td>6526</td>
+                    <tr><td><i class="fa fa-mortar-board"></i>&nbsp;&nbsp;</td><td>CNSS:&nbsp;</td><td>{{ profil.Cnss}}</td>
                     </tr>
-                    <tr><td><i class="fa fa-tag"></i>&nbsp;&nbsp;</td><td>CIN:&nbsp;</td><td>GN172658</td>
+                    <tr><td><i class="fa fa-tag"></i>&nbsp;&nbsp;</td><td>CIMR:&nbsp;</td><td>{{ profil.Cimr }}</td>
+                    </tr>
+                    <tr><td><i class="fa fa-tag"></i>&nbsp;&nbsp;</td><td>Type de contrat:&nbsp;</td><td>{{ profil.Typecontrat }}</td>
                     </tr>
                 </table>
             </div>
@@ -82,27 +86,4 @@
         </div>
     </div>
 </div>
-
-
-
-{{ profil.nom }}
-
-
-{{ profil.CIN }}
-{{ profil.Nom }}
-{{ profil.Prenom }}
-{{ profil.Adresse }}
-{{ profil.email }}
-{{ profil.Tel }}
-{{ profil.Num_comptbanq }}
-{{ profil.Cnss }}
-{{ profil.Cimr }}
-{{ profil.Type_contrat }}
-{{ profil.Diplome }}
-{{ profil.Formation }}
-{{ profil.Fonction }}
-{{ profil.Specialite }}
-{{ profil.Salaire }}
-{{ profil.image }}
-{{ profil.departement }}
 {% endblock %}

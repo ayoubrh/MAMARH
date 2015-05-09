@@ -42,8 +42,6 @@
 <body>
 
 <div id="wrapper">
-
-<!-- Navigation -->
 <nav class="navbar navbar-default navbar-static-top"  style="margin-bottom: 0">
 <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -252,7 +250,7 @@
         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
     </a>
     <ul class="dropdown-menu dropdown-user">
-        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+        <li><a href="{{ path('mamrh_VoirProfil', {'id' : id}) }}"><i class="fa fa-user fa-fw"></i> Profil </a>
         </li>
         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
         </li>
@@ -280,16 +278,16 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="{{ path('mamrh_Acceuil') }}"><i class="fa fa-dashboard fa-fw"></i> Tableau de bord</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                <a href="{{ path('mamrh_VoirProfil',{'id': id}) }}"><i class="fa fa-bar-chart-o fa-fw"></i>Profil<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Flot Charts</a>
+                        <a href="">Voir Profil</a>
                     </li>
                     <li>
-                        <a href="#">Morris.js Charts</a>
+                        <a href="">Modifier Profil</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -368,9 +366,7 @@
             </li>
         </ul>
     </div>
-    <!-- /.sidebar-collapse -->
 </div>
-<!-- /.navbar-static-side -->
 </nav>
 
 <div id="page-wrapper">
@@ -378,38 +374,14 @@
     <div class="col-lg-12">
         <h1 class="page-header">{% block sstitle %}Gestion de qlq chose{% endblock %}</h1>
     </div>
-    <!-- /.col-lg-12 -->
 </div>
-<!-- /.row -->
 <div class="row">
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-comments fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">{% block projet %}0{% endblock %}</div>
-                        <div>Projet En Cours</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">Voir Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-green">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-tasks fa-5x"></i>
+                        <i class="fa fa-check fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">{% block demnov %}0{% endblock %}</div>
@@ -427,11 +399,33 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-clock-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{% block demnonv %}0{% endblock %}</div>
+                        <div>Demande En Attente !</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Voir Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
         <div class="panel panel-yellow">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-shopping-cart fa-5x"></i>
+                        <i class="fa fa-graduation-cap fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">{% block stagiaire %}0{% endblock %}</div>
@@ -449,15 +443,15 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="panel panel-red">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-support fa-5x"></i>
+                        <i class="fa fa-spinner fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{% block demnonv %}0{% endblock %}</div>
-                        <div>Demande Non Valide !</div>
+                        <div class="huge">{% block projet %}0{% endblock %}</div>
+                        <div>Projet En Cours</div>
                     </div>
                 </div>
             </div>
@@ -471,15 +465,10 @@
         </div>
     </div>
 </div>
-
-
-
 <div class="row">
     {% block corps %}Le contenue{% endblock %}
-
-    <!-- /.col-lg-8 -->
     {% block panel %}
-    <div class="col-lg-4">
+         <div class="col-lg-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-bell fa-fw"></i> Notifications Panel
@@ -658,16 +647,10 @@
         </div>
         <!-- /.panel .chat-panel -->
     </div>
-
-    <!-- /.col-lg-4 -->
+    {% endblock %}
 </div>
-{% endblock %}
 </div>
-<!-- /#page-wrapper -->
-
 </div>
-<!-- /#wrapper -->
-
 
 
 

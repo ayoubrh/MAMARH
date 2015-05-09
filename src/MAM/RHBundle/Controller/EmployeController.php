@@ -42,9 +42,10 @@ class EmployeController extends Controller
                 return $this->redirect($this->generateUrl('mamrh_demande'));
             }
         }
+        $id = $this->getUser()->getEmploye()->getId();
         return $this->render('MAMRHBundle:Employe:Demande.html.twig',
             array('form' => $form->createView(),
-                  'demandes'=> $demandes));
+                  'demandes'=> $demandes,'id'=>$id));
     }
 
 

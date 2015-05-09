@@ -154,10 +154,23 @@ class ProjetController extends Controller
         $suivis=$em->getRepository('MAMRHBundle:Suivi')
             ->getsuivis($id);
         $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
-            ->getnbrdemande($this->getUser());
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
         return $this->render('MAMRHBundle:Projet:Listsuivi.html.twig',
             array('suivis'=> $suivis,
-                    'demandenonv'=>$demandenonv));
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],));
     }
 
 }

@@ -2,7 +2,9 @@
 
 namespace MAM\RHBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\EntityRepository;
+use MAM\UserBundle\Entity\User;
 
 /**
  * ProjetRepository
@@ -12,4 +14,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProjetRepository extends EntityRepository
 {
+
+    public function getnbrprojet(User $user){
+        $nbrproj = $this->createQueryBuilder('d')
+            ->select('COUNT(DISTINCT d.id)')
+            ->where('d.Date_fin < :d')
+            ->leftJoin('d.employeNormals','e')
+            ->leftJoin('e.user','u')
+            ->andwhere('u.id = :user')
+            ->setParameter('d', new Datetime())
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+        return $nbrproj;
+    }
 }

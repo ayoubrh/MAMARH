@@ -2,7 +2,9 @@
 
 namespace MAM\RHBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\EntityRepository;
+use MAM\UserBundle\Entity\User;
 
 /**
  * StagiaireRepository
@@ -19,5 +21,19 @@ class StagiaireRepository extends EntityRepository
             ->getQuery();
         $s=$query-> getresult();
         return $s;
+    }
+
+    public function getnbrprojet(User $user){
+        $nbrstag = $this->createQueryBuilder('d')
+            ->select('COUNT(DISTINCT d.id)')
+            ->where('d.date_fin < :d')
+            ->leftJoin('d.employeNormal','e')
+            ->leftJoin('e.user','u')
+            ->andwhere('u.id = :user')
+            ->setParameter('d', new Datetime())
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+        return $nbrstag;
     }
 }

@@ -2,9 +2,10 @@
 {% extends "::base.html.twig" %}
 {% block sstitle %}Suivis{% endblock %}
 
-{% block actualite %}
+{% block projet %}{{ nbrprojet }}{% endblock %}
+{% block demnov %}{{ demandev }}{% endblock %}
+{% block stagiaire %}{{ nbrstagiaire }}{% endblock %}
 {% block demnonv %}{{ demandenonv }}{% endblock %}
-{% endblock %}
 
 
 {% block corps %}

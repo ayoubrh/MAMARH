@@ -28,4 +28,16 @@ class ProjetRepository extends EntityRepository
             ->getResult();
         return $nbrproj;
     }
+
+    public function getprojetdep(User $user){
+        $projets = $this->createQueryBuilder('p')
+            ->leftJoin('p.chefDepartement','c')
+            ->addSelect('c')
+            ->where('c.user = :u')
+            ->setParameter('u', $user)
+            ->getQuery()
+            ->getResult();
+
+        return $projets;
+    }
 }

@@ -24,6 +24,11 @@ class ProjetType extends AbstractType
                 'property' => 'Nom',
                 'required'  => false,
                 'multiple' => false,))
+            ->add('employeNormals', 'entity', array(
+                'class'    => 'MAMRHBundle:Employenormal',
+                'property' => 'Nom',
+                'required'  => false,
+                'multiple' => true,))
         ;
     }
     

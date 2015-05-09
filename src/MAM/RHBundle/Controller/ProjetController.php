@@ -118,34 +118,53 @@ class ProjetController extends Controller
 
     public function VoirProfilAction($id)
     {
-        $emp = $this->getDoctrine()->getManager()->getRepository('Employe')->find($id);
+        $emp = $this->getDoctrine()->getManager()->getRepository('MAMRHBundle:Employe')->find($id);
         if($emp->getUser->getEnabled() == false) $emp->getUser->setEnabled(true);
         return $this->render('MAMRHBundle:Projet:VoirProfil.html.twig',array('profil'=>$emp));
     }
 
     public function ListeProjetAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $projets = $em->getRepository('MAMRHBundle:Projet')
+            ->getprojetdep($this->getUser());
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
 
-        return $this->render('MAMRHBundle:Projet:ListeProjet.html.twig');
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:Projet:ListeProjet.html.twig',
+            array('projets'=> $projets,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],));
     }
 
 
     public function ModifProfilAction($id)
     {
-        $employe = new Employe();
+        $em = $this->getDoctrine()->getManager();
+        $employe = $em->getRpository('MAMRHBundle:Employe')->find($id);
         $form = $this->createForm(new EmployeType(), $employe);
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
             $form->submit($request);
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
                 $em->persist($employe);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Profil modifié');
                 return $this->render('MAMRHBundle:Projet:ModifiProfil.html.twig');
             }
         }
-        return $this->render('MAMRHBundle:Projet:ModifiProfil.html.twig');
+        return $this->redirect($this->generateUrl('mamrh_VoirProfil'));
     }
 
 

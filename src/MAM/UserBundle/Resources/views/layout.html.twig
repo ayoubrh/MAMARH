@@ -37,9 +37,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
+            <div class="login-panel panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Connecte toi</h3>
+
+                    <h3 class="panel-title"> <i class="fa fa-sign-in"></i> &nbsp; Se connecter</h3>
                 </div>
                 {% trans_default_domain 'FOSUserBundle' %}
 
@@ -50,10 +51,13 @@
                     <form role="form" action="{{ path("fos_user_security_check") }}" data-ajax="false" method="post">
                         <fieldset>
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                            <div class="form-group">
+
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <input class="form-control" id="username" placeholder="{{ 'security.login.username'|trans }}"  name="_username" value="{{ last_username }}" type="username" required="required" autofocus>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                                 <input class="form-control" id="password" placeholder="{{ 'security.login.password'|trans }}"  name="_password" type="password" required="required">
                             </div>
                             <div class="checkbox">
@@ -62,7 +66,7 @@
                                 </label>
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
-                            <input type="submit" class="btn btn-lg btn-success btn-block" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
                         </fieldset>
                     </form>
                 </div>

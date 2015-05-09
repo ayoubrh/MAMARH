@@ -106,7 +106,7 @@ class RHController extends Controller
                 ->getManager()
                 ->getRepository('MAMRHBundle:Employenormal')
                 ->getemployenormal();
-        return $this->render('MAMRHBundle:RH:affichemp.html.twig', array('entities' => $entities)
+        return $this->render('MAMRHBundle:RH:AffichEmp.html.twig', array('entities' => $entities)
         );
     }
     public function ajoutstagiaireAction()
@@ -133,7 +133,7 @@ class RHController extends Controller
             ->getManager()
             ->getRepository('MAMRHBundle:Stagiaire')
             ->getstagiaire();
-        return $this->render('MAMRHBundle:RH:affichestagiaire.html.twig', array('entities' => $entities)
+        return $this->render('MAMRHBundle:RH:AfficheStagiaire.html.twig', array('entities' => $entities)
         );
     }
 
@@ -144,7 +144,7 @@ class RHController extends Controller
             ->setSubject('Confirmation d\'inscription')
             ->setFrom('mamrh100@gmail.com')
             ->setTo($user->getemail())
-            ->setBody($this->renderView('MAMRHBundle:Mail:confirmationemail.txt.twig', array(
+            ->setBody($this->renderView('MAMRHBundle:Mail:ConfirmationEmail.txt.twig', array(
                 'user' => $user,
                 'password'=> $password)));
 

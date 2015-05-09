@@ -67,7 +67,7 @@ swiftmailer:
     encryption: ssl
     host:       smtp.gmail.com
     port :      465
-    username:   mamarh10@gmail.com
+    username:   mamrh100@gmail.com
     password:   imiae123456789
 
 fos_user:

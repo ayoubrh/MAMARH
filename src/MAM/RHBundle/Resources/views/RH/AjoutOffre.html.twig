@@ -2,18 +2,35 @@
 {% block sstitle %}Ajouter une Offre{% endblock %}
 
 {% block corps %}
+    <div class="col-lg-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Formulaire d'ajout d'un offre
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div >
+                            <form method="post" {{ form_enctype(form) }}>
+                                {{ form_errors(form) }}
+                                <div class="form-group">
+                                    <label>{{ form_label(form.libelle, "Libellé de l'offre ") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.libelle) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.descriptif, "Descriptif ") }}</label>
 
-    <!-- /.row -->
+                                        {{ form_widget(form.descriptif) }}
 
-    {% block panel %}
-    {% endblock  %}
-    <h3>Formulaire Offre</h3>
-
-
-<div >
-    <form method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <input type="submit"  />
-    </form>
-</div>
+                                </div>
+                                <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

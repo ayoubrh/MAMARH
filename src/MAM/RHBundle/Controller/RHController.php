@@ -158,7 +158,6 @@ class RHController extends Controller
         return $this->get('mailer')->send($message);
     }
 
-
     public function demandeAction()
     {
         $id = $this->getUser()->getEmploye()->getId();

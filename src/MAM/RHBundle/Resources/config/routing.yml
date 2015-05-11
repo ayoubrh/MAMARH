@@ -23,7 +23,7 @@ mamrh_ListeProjet:
     defaults: { _controller: MAMRHBundle:Projet:ListeProjet }
 
 mamrh_ajoutemploye:
-    path:    /AjoutEmploye
+    path:    /ajoutemploye
     defaults: {_controller: MAMRHBundle:RH:ajoutemploye}
 
 mamrh_ajoutoffre:

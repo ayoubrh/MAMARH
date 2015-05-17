@@ -14,7 +14,7 @@
     <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-list-alt"></i>
-        DataTables Advanced Tables
+        Tableau de tous les projets
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
@@ -48,4 +48,15 @@
     </div>
     <!-- /.panel -->
     </div>
+    <!-- DataTables JavaScript -->
+    <script src="{{ asset('bower_components/DataTables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js')}}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 {% endblock %}

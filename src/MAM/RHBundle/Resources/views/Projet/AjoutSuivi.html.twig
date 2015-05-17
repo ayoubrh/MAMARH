@@ -2,10 +2,11 @@
 {% block sstitle %}Ajouter un suivi de projet{% endblock %}
 
 {% block corps %}
-<!-- /.row -->
+
       <div class="col-lg-8">
             <div class="panel panel-primary">
                 <div class="panel-heading">
+                    <i class="fa fa-edit"></i>
                     Formulaire d'ajout d'un suivi de projet
                 </div>
                 <div class="panel-body">
@@ -13,8 +14,6 @@
                         <div class="col-lg-8">
                             <form  method="post" {{form_enctype(form) }}>
                                 {{ form_errors(form) }}
-
-
                                 <div class="form-group">
                                     <label>{{ form_label(form.tache, "Libellé de la tache ") }}</label>
                                     <div class="form-control">
@@ -48,11 +47,7 @@
                     </div>
                     <!-- /.row (nested) -->
                 </div>
-                <!-- /.panel-body -->
             </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-
+      </div>
 
 {% endblock %}

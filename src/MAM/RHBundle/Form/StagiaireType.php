@@ -29,7 +29,7 @@ class StagiaireType extends AbstractType
             ->add('duree','choice', array('choices' => array('1' => '1 mois', '2' => '2 mois','3' =>'3 mois','4' =>'4 mois','5' =>'5 mois','6' =>'6 mois','7' =>'7 mois','8' =>'8 mois','9' =>'9 mois','10' =>'10 mois','11' =>'11 mois')))
             ->add('sujet','textarea')
             ->add('employeNormal', 'entity', array(
-                'label'    => 'Encadrantt :',
+                'label'    => 'Encadrant :',
                 'class'    => 'MAMRHBundle:Employenormal',
                 'property' => 'Nom',
                 'multiple' => false,

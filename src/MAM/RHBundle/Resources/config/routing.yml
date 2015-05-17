@@ -1,3 +1,7 @@
+mamrh_Acceuil:
+    pattern:  /Acceuil
+    defaults: { _controller: MAMRHBundle:RH:Acceuil }
+
 mamrh_AjoutProjet:
     pattern:  /AjoutProjet
     defaults: { _controller: MAMRHBundle:Projet:AjoutProjet }
@@ -23,23 +27,23 @@ mamrh_ajoutemploye:
     defaults: {_controller: MAMRHBundle:RH:ajoutemploye}
 
 mamrh_ajoutoffre:
-    path:    /ajoutoffre
+    path:    /AjoutOffre
     defaults: {_controller: MAMRHBundle:RH:ajoutoffre}
 
 mamrh_demande:
-     path:    /demande
+     path:    /Demande
      defaults: {_controller: MAMRHBundle:Employe:demande}
 
 mamrh_ajoutstagiaire:
-    path:    /ajoutstagiaire
+    path:    /AjoutStagiaire
     defaults: {_controller: MAMRHBundle:RH:ajoutstagiaire}
 
 mamrh_affichemp:
-    path:    /affichemp
+    path:    /AffichEmp
     defaults: {_controller: MAMRHBundle:RH:getemployenormal}
 
 mamrh_affichstag:
-    path:    /affichestag
+    path:    /AfficheStag
     defaults: {_controller: MAMRHBundle:RH:getstagiaire}
 
 mamrh_rh_demande:

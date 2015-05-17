@@ -25,7 +25,7 @@ class MAMRHMailer
             ->setSubject('Confirmation d\'inscription')
             ->setFrom('rhnabri.ayoub@gmail.com')
             ->setTo($user->getemail())
-            ->setBody($this->container->get('templating')->render('MAMRHBundle:Mail:confirmationemail.txt.twig', array(
+            ->setBody($this->container->get('templating')->render('MAMRHBundle:Mail:ConfirmationEmail.txt.twig', array(
                 'user' => $user,
                 'password'=> $password)));
 

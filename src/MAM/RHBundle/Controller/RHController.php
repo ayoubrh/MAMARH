@@ -30,9 +30,10 @@ use MAM\RHBundle\Form\StagiaireType;
 
 class RHController extends Controller
 {
-    public function indexAction($name)
+    public function AcceuilAction()
     {
-        return $this->render('MAMRHBundle:Default:index.html.twig', array('name' => $name));
+        $id = $this->getUser()->getEmploye()->getId();
+        return $this->render('MAMRHBundle:RH:Acceuil.html.twig',array( 'id' => $id));
     }
     public function ajoutemployeAction()
     {
@@ -80,11 +81,13 @@ class RHController extends Controller
                 return $this->redirect($this->generateUrl('mamrh_ajoutemploye'));
             }
         }
-        return $this->render('MAMRHBundle:RH:AjoutEmploye.html.twig',array('form' => $form->createView(),));
+        $id = $this->getUser()->getEmploye()->getId();
+        return $this->render('MAMRHBundle:RH:AjoutEmploye.html.twig',array('form' => $form->createView(),'id'=>$id));
     }
 
     public function ajoutoffreAction()
     {
+        $id = $this->getUser()->getEmploye()->getId();
         $offre = new Offre();
         $form = $this->createForm(new OffreType(), $offre);
         $request = $this->get('request');
@@ -95,10 +98,11 @@ class RHController extends Controller
                 $em->persist($offre);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Offre bien ajouté');
-                return $this->render('MAMRHBundle:Default:index.html.twig');
+
+                return $this->render('MAMRHBundle:Default:index.html.twig',array('id'=>$id));
             }
         }
-        return $this->render('MAMRHBundle:RH:AjoutOffre.html.twig',array('form' => $form->createView(),));
+        return $this->render('MAMRHBundle:RH:AjoutOffre.html.twig',array('form' => $form->createView(),'id'=>$id));
     }
     public function getemployenormalAction()
     {
@@ -106,11 +110,13 @@ class RHController extends Controller
                 ->getManager()
                 ->getRepository('MAMRHBundle:Employenormal')
                 ->getemployenormal();
-        return $this->render('MAMRHBundle:RH:affichemp.html.twig', array('entities' => $entities)
+        $id = $this->getUser()->getEmploye()->getId();
+        return $this->render('MAMRHBundle:RH:AffichEmp.html.twig', array('entities' => $entities,'id'=>$id)
         );
     }
     public function ajoutstagiaireAction()
     {
+        $id = $this->getUser()->getEmploye()->getId();
         $stagiaire = new Stagiaire();
         $form = $this->createForm(new StagiaireType(), $stagiaire);
         $request = $this->get('request');
@@ -121,19 +127,20 @@ class RHController extends Controller
                 $em->persist($stagiaire);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Employé bien ajouté');
-                return $this->render('MAMRHBundle:Default:index.html.twig');
+                return $this->render('MAMRHBundle:Default:index.html.twig',array('id'=>$id));
             }
         }
-        return $this->render('MAMRHBundle:RH:AjoutStagiaire.html.twig',array('form' => $form->createView(),));
+        return $this->render('MAMRHBundle:RH:AjoutStagiaire.html.twig',array('form' => $form->createView(),'id'=>$id));
     }
 
     public function getstagiaireAction()
     {
+        $id = $this->getUser()->getEmploye()->getId();
         $entities=$this->getDoctrine()
             ->getManager()
             ->getRepository('MAMRHBundle:Stagiaire')
             ->getstagiaire();
-        return $this->render('MAMRHBundle:RH:affichestagiaire.html.twig', array('entities' => $entities)
+        return $this->render('MAMRHBundle:RH:AfficheStagiaire.html.twig', array('entities' => $entities,'id'=>$id)
         );
     }
 
@@ -144,21 +151,21 @@ class RHController extends Controller
             ->setSubject('Confirmation d\'inscription')
             ->setFrom('mamrh100@gmail.com')
             ->setTo($user->getemail())
-            ->setBody($this->renderView('MAMRHBundle:Mail:confirmationemail.txt.twig', array(
+            ->setBody($this->renderView('MAMRHBundle:Mail:ConfirmationEmail.txt.twig', array(
                 'user' => $user,
                 'password'=> $password)));
 
         return $this->get('mailer')->send($message);
     }
 
-
     public function demandeAction()
     {
+        $id = $this->getUser()->getEmploye()->getId();
         $em = $this->getDoctrine()->getManager();
         $demandes=$em->getRepository('MAMRHBundle:Attestation')
             ->getrhdemandes();
         return $this->render('MAMRHBundle:RH:demande.html.twig',
-            array('demandes'=> $demandes));
+            array('demandes'=> $demandes,'id'=>$id));
     }
 
     public function validdemandeAction($id){

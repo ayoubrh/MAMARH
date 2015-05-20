@@ -127,7 +127,7 @@ class RHController extends Controller
                 $em->persist($stagiaire);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Employé bien ajouté');
-                return $this->render('MAMRHBundle:Default:index.html.twig',array('id'=>$id));
+                return $this->render('MAMRHBundle:RH:Acceuil.html.twig',array('id'=>$id));
             }
         }
         return $this->render('MAMRHBundle:RH:AjoutStagiaire.html.twig',array('form' => $form->createView(),'id'=>$id));

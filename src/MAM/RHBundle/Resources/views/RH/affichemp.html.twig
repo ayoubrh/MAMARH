@@ -8,7 +8,7 @@
            <i class="fa fa-th-list"></i>
            Tableau des émployés
        </div>
-       <div class="panel-body">
+       <div class="panel-body">entities
            <div class="dataTable_wrapper">
                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                      <thead>
@@ -24,8 +24,9 @@
                           <th>Opération</th>
                       </tr>
                      </thead>
-                     {% for employe in entities %}
+
                      <tbody>
+                     {% for employe in entities %}
                        <tr class="odd gradeX">
                            <td>{{ employe.Nom }}</td>
                            <td>{{ employe.Prenom }}</td>
@@ -34,7 +35,7 @@
                            <td>{{ employe.email }}</td>
                            <td>{{ employe.Adresse }}</td>
                            <td>{{ employe.Fonction }}</td>
-                           <td></td>
+                           <td>{{ employe.departement.Libelle }}</td>
                            <td align="center">
                                <a href="#">
                                    <i class="fa fa-edit"></i>
@@ -44,8 +45,9 @@
                                </a>
                            </td>
                        </tr>
-                     </tbody>
                      {% endfor %}
+                     </tbody>
+
                </table>
            </div>
        </div>

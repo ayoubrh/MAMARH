@@ -23,7 +23,8 @@ class EmployenormalRepository extends EntityRepository
     {
 
         $query = $this->createQueryBuilder('e')
-           // ->where('e.Bye = false')
+            ->where('e.Bye = :f')
+            ->setParameter('f',false)
             ->getQuery();
         $e=$query-> getresult();
         return $e;

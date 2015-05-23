@@ -1,0 +1,67 @@
+{% extends "::site.html.twig" %}
+{% block offre %}
+
+<section id="portfolio">
+   <div class="container">
+        <div class="box">
+            <div class="center">
+                <h2>Les offres </h2>
+                <p class="lead">offres emplois et stages<br></p>
+            </div>
+
+            <div class="gap"></div>
+                 {% if offre|length >0 %} {# si nombre d'offre =0 alors le slider ne sera pas construit#}
+            <div id="team-scroller" class="carousel scale">
+                <div class="carousel-inner">
+                    {% set i=0 %}
+                     {% set j=0 %}
+                      {% set s=0 %}
+                      {% set h=0 %}
+                {% for of in offre %}
+                {%if s < 3 %} {%if loop.index ==1%} 
+                   <div class="item active"> 
+                        <div class="row">        
+                                                  {% endif %}
+                            <div class="col-sm-4">
+                                <div class="member">    
+                        <h3>{{of.libelle}}</h3> {% s++ %}
+                                </div>
+                            </div>
+                                             {%if loop.index ==1%}
+                        </div>
+                     </div>       
+                                             {% endif %}
+                {% endif %}
+
+                   {%if (s>=3) and (i < 3) %} 
+                                    {% if h==0 %}
+                   <div class="item">
+                        <div class="row">
+                                     {% endif %}
+                            <div class="col-sm-4">
+                                <div class="member">
+                                    
+                                    <h3>{{of.libelle}}</h3> {% i++ %} 
+                                </div>
+                            </div>
+                                    {% if h==0 %}  {% h++ %}
+                        </div>
+                    </div>
+                                  {% endif %}
+                    {% endif %}
+                     {% endfor %}
+                </div>
+
+                <a class="left-arrow" href="#team-scroller" data-slide="prev">
+                    <i class="icon-angle-left icon-4x"></i>
+                </a>
+                <a class="right-arrow" href="#team-scroller" data-slide="next">
+                    <i class="icon-angle-right icon-4x"></i>
+                </a>
+            </div><!--/.carousel-->
+            {% endif %}
+            
+        </div><!--/.box-->
+    </div><!--/.container-->
+</section><!--/#portfolio-->
+{% endblock %}

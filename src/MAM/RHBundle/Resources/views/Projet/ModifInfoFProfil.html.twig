@@ -1,0 +1,64 @@
+{% extends "::base.html.twig" %}
+
+{% block sstitle %} Mon profil{% endblock %}
+
+{% block corps %}
+    <!-- /.row -->
+    <div class="row">
+    <div class="col-lg-3">
+        <div class="photo">
+        <img src="{{ asset('dist/ll.jpg') }}" />
+        </div>
+    </div>
+    <div class="col-lg-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-unlock"></i>
+                    &nbsp;&nbsp;Informations générales
+                </div>
+                <div class="panel-body">
+                    <form  method="post" {{form_enctype(form) }}>
+                        {{ form_errors(form) }}
+
+                        <div class="form-group">
+                            <label>{{ form_label(form.departement, "Departement") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.departement) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ form_label(form.Formation, "Formation") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.Formation) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.Fonction, "Fonction") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.Fonction) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.Specialite, "Spécialite") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.Specialite) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.Diplome, "Dérnier diplome") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.Diplome) }}
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
+                        <button type="reset" class="btn btn-outline btn-primary">Renitialiser</button>
+                        {{ form_rest(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- /.row -->
+{% endblock %}

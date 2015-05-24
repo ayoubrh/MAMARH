@@ -19,6 +19,9 @@ use FOS\UserBundle\Model\UserInterface;
 
 
 use MAM\RHBundle\Form\EmployeType;
+use MAM\RHBundle\Form\EmployeEditInfoGType;
+use MAM\RHBundle\Form\EmployeEditInfoFType;
+use MAM\RHBundle\Form\EmployeEditInfoBType;
 use MAM\RHBundle\Form\ProjetType;
 use MAM\RHBundle\Form\SuiviType;
 
@@ -155,14 +158,13 @@ class ProjetController extends Controller
     }
 
 
-    public function ModifProfilAction($id)
-    {
+    public function ModifinfogProfilAction($id){
         $em = $this->getDoctrine()->getManager();
-        $employe = $em->getRpository('MAMRHBundle:Employe')->find($id);
+        $employe = $em->getRepository('MAMRHBundle:Employe')->find($id);
 
         $ide = $this->getUser()->getEmploye()->getId();
 
-        $form = $this->createForm(new EmployeType(), $employe);
+        $form = $this->createForm(new EmployeEditInfoGType(), $employe);
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
             $form->submit($request);
@@ -171,11 +173,53 @@ class ProjetController extends Controller
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Profil modifié');
 
-                return $this->render('MAMRHBundle:Projet:ModifiProfil.html.twig',array('id'=>$ide));
+                return $this->redirect($this->generateUrl('mamrh_VoirProfil',array('id'=>$id)));
             }
         }
 
-        return $this->render('MAMRHBundle:Projet:ModifiProfil.html.twig',array('id'=>$ide));
+        return $this->render('MAMRHBundle:Projet:ModifInfoGProfil.html.twig',array('form' => $form->createView(),'id'=>$ide));
+    }
+
+    public function ModifinfofProfilAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $employe = $em->getRepository('MAMRHBundle:Employe')->find($id);
+
+        $ide = $this->getUser()->getEmploye()->getId();
+
+        $form = $this->createForm(new EmployeEditInfoFType(), $employe);
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->submit($request);
+            if ($form->isValid()) {
+                $em->persist($employe);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', 'Profil modifié');
+                return $this->redirect($this->generateUrl('mamrh_VoirProfil',array('id'=>$id)));
+            }
+        }
+
+        return $this->render('MAMRHBundle:Projet:ModifInfoFProfil.html.twig',array('form' => $form->createView(),'id'=>$ide));
+    }
+
+    public function ModifinfobProfilAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $employe = $em->getRepository('MAMRHBundle:Employe')->find($id);
+
+        $ide = $this->getUser()->getEmploye()->getId();
+
+        $form = $this->createForm(new EmployeEditInfoBType(), $employe);
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->submit($request);
+            if ($form->isValid()) {
+                $em->persist($employe);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', 'Profil modifié');
+                return $this->redirect($this->generateUrl('mamrh_VoirProfil',array('id'=>$id)));
+            }
+        }
+
+        return $this->render('MAMRHBundle:Projet:ModifInfoBProfil.html.twig',array('form' => $form->createView(),'id'=>$ide));
     }
 
 

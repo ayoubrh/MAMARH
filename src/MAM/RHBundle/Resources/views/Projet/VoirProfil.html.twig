@@ -14,7 +14,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-unlock"></i>
-                    &nbsp;&nbsp;Informations générales<span class="fa fa-edit"></span>
+                    &nbsp;&nbsp;Informations générales<a href="{{ path('mamrh_ModifInfoGProfil', {'id' : profil.id}) }}"><span  class="fa fa-edit"></span></a>
                 </div>
                 <div class="panel-body">
                     <table>
@@ -42,7 +42,7 @@
             <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-gears"></i>
-                &nbsp;&nbsp;Informations fonctionelles
+                &nbsp;&nbsp;Informations fonctionelles<a href="{{ path('mamrh_ModifInfoFProfil', {'id' : profil.id}) }}"><span  class="fa fa-edit"></span></a>
             </div>
             <div class="panel-body">
                 <table>
@@ -66,7 +66,7 @@
            <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-credit-card"></i>
-                &nbsp;&nbsp;Informations bancaires
+                &nbsp;&nbsp;Informations bancaires <a href="{{ path('mamrh_ModifInfoBProfil', {'id' : profil.id}) }}"><span  class="fa fa-edit"></span></a>
             </div>
             <div class="panel-body">
                 <table>

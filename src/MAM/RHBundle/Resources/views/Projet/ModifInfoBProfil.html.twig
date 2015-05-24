@@ -1,0 +1,62 @@
+{% extends "::base.html.twig" %}
+
+{% block sstitle %} Mon profil{% endblock %}
+
+{% block corps %}
+    <!-- /.row -->
+    <div class="row">
+    <div class="col-lg-3">
+        <div class="photo">
+        <img src="{{ asset('dist/ll.jpg') }}" />
+        </div>
+    </div>
+    <div class="col-lg-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-unlock"></i>
+                    &nbsp;&nbsp;Informations générales
+                </div>
+                <div class="panel-body">
+                    <form  method="post" {{form_enctype(form) }}>
+                        {{ form_errors(form) }}
+                        <div class="form-group">
+                            <label>{{ form_label(form.Salaire, "Salaire") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.Salaire) }}
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>{{ form_label(form.Num_comptbanq, "Numéro de compte ") }}</label>
+                                <div class="form-control">
+                                    {{ form_widget(form.Num_comptbanq) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ form_label(form.Cnss, "CNSS ") }}</label>
+                                <div class="form-control">
+                                    {{ form_widget(form.Cnss) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ form_label(form.Cimr, "CIMR ") }}</label>
+                                <div class="form-control">
+                                    {{ form_widget(form.Cimr) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ form_label(form.Type_contrat, "Type de contrat ") }}</label>
+                                <div class="form-control">
+                                    {{ form_widget(form.Type_contrat) }}
+                                </div>
+                            </div>
+                        <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
+                        <button type="reset" class="btn btn-outline btn-primary">Renitialiser</button>
+                        {{ form_rest(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- /.row -->
+{% endblock %}

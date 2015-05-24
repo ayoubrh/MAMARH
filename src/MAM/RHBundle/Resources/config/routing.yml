@@ -14,6 +14,18 @@ mamrh_VoirProfil:
     pattern:  /VoirProfil/{id}
     defaults: { _controller: MAMRHBundle:Projet:VoirProfil }
 
+mamrh_ModifInfoGProfil:
+    pattern:  /ModifierinoG/{id}
+    defaults: { _controller: MAMRHBundle:Projet:ModifinfogProfil }
+
+mamrh_ModifInfoFProfil:
+    pattern:  /ModifierinoF/{id}
+    defaults: { _controller: MAMRHBundle:Projet:ModifinfofProfil }
+
+mamrh_ModifInfoBProfil:
+    pattern:  /ModifierinoB/{id}
+    defaults: { _controller: MAMRHBundle:Projet:ModifinfobProfil }
+
 mamrh_ModifiProfil:
     pattern:  /ModifiProfil/{id}
     defaults: { _controller: MAMRHBundle:Projet:ModifiProfil }

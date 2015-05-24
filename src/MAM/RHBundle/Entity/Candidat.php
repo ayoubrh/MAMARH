@@ -50,13 +50,16 @@ class Candidat
      */
     private $Tel;
 
+    
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\OneToOne(targetEntity="MAM\RHBundle\Entity\CV",cascade={"persist","remove"})
      */
-    private $Cv;
+    private $cv;
+
+
 
     /**
-     * @ORM\ManyToMany(targetEntity="Offre", mappedBy="candidats")
+     * @ORM\ManyToMany(targetEntity="Offre", mappedBy="Candidats")
      */
     private $offres;
     /**
@@ -246,7 +249,7 @@ class Candidat
      */
     public function setCv($cv)
     {
-        $this->Cv = $cv;
+        $this->cv = $cv;
 
         return $this;
     }
@@ -258,7 +261,7 @@ class Candidat
      */
     public function getCv()
     {
-        return $this->Cv;
+        return $this->cv;
     }
 
     /**

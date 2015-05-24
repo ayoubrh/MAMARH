@@ -1,0 +1,112 @@
+{% extends "::site.html.twig" %} {#  commentaire pour l'emplacement de site... C:\wamp\www\MAMRH\app\Resources\views  #}
+{% block offre %}
+                     {% set i=0 %}
+                     {% set j=0 %}
+                      {% set s=0 %}
+                      {% set h=0 %}
+<section id="portfolio">
+   <div class="container">
+        <div class="box">
+            <div class="center">
+                <h2>Les offres </h2>
+                <p class="lead">offres emplois et stages {{offre|length}}<br></p>
+
+            </div>
+
+            <div class="gap"></div>
+                
+            <div id="team-scroller" class="carousel scale">
+                <div class="carousel-inner">
+                    
+                {% for of in offre  %}
+                 {%if loop.index == 1 %} 
+                   <div class="item active"> 
+                        <div class="row">       <div class="col-sm-1">
+                                    <div class="member">
+                                       
+                                        <h3><small class="designation"></small></h3>
+                                    </div>
+                                </div>  
+                     {% elseif s==3 %} {% set s=0 %}
+                                 <div class="item "> 
+                        <div class="row">       <div class="col-sm-1">
+                                    <div class="member">
+                                       
+                                        <h3><small class="designation"></small></h3>
+                                    </div>
+                                </div>     
+                                                 
+                         {% endif %}
+                                                  
+                           <div class="col-sm-3">
+                                    <div class="member">
+                                       
+                                        <h3>{{of.libelle}}<small class="designation">{{of.descriptif[:255]}}</small> {# [:255] pour limiter #} 
+                                            <p> <a href="{{ path('_lire_plus', { 'id' : of.id }) }}">Lire Plus</a> </p>
+                                        </br>
+
+
+                                            
+
+
+                                        </h3>{% set s=s+1%}
+                                    </div>
+                                </div>                                  
+                                             {%if (s ==3) or (loop.index==offre|length)%} 
+                        </div>
+                     </div>       
+                                             {% endif %}
+                
+
+                     {% endfor %}
+                </div>
+
+                <a class="left-arrow" href="#team-scroller" data-slide="prev">
+                    <i class="icon-angle-left icon-4x"></i>
+                </a>
+                <a class="right-arrow" href="#team-scroller" data-slide="next">
+                    <i class="icon-angle-right icon-4x"></i>
+                </a>
+            </div><!--/.carousel-->
+           
+            
+        </div><!--/.box-->
+    </div><!--/.container-->
+</section><!--/#portfolio-->
+{% endblock %}
+
+
+ 
+
+{% block offre_type %}
+<div class="container">
+    <div class="row">
+        
+        
+<div class="col-lg-offset-3 col-lg-4">
+
+    <table>
+     {% for of in offre  %}
+       {%if of.typeoffre=="stage" %}
+       <tr>
+        <td>{{of.typeoffre}}</td>
+        </tr>
+        {% endif %}
+     {% endfor %}
+   </table>
+</div>
+<div class="col-lg-4">
+    <table>
+     {% for off in offre  %}
+       {%if off.typeoffre == "emploi" %}
+       <tr>
+        <td>{{off.typeoffre}}</td>
+        </tr>
+        {% endif %}
+     {% endfor %}
+   </table>
+</div>
+
+</div>
+</div>
+   {% endblock %}

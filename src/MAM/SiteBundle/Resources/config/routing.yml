@@ -1,3 +1,12 @@
 mam_site:
     path:     /
     defaults: { _controller: MAMSiteBundle:Default:index }
+_lire_plus:
+    path:     /lire_plus/{id}
+    defaults: { _controller: MAMSiteBundle:Default:hello }
+CV:
+    path:     /CV
+    defaults: { _controller: MAMSiteBundle:Default:CV }
+i_contact:
+    path:     /contact
+    defaults: { _controller: MAMSiteBundle:Default:Icontact }

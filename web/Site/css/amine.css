@@ -1,0 +1,50 @@
+.couleur1 {
+    
+    color: black;
+}
+.redgras {
+    
+    color: rgb(139,0,0);
+     font-weight: bold;
+}
+
+.couleur3 {
+    
+    color: rgb(0,0,128);
+}
+.right1 {
+    
+    width: 300px;
+    text-align: justify;
+    font-weight: bold;
+    background-color: #b0e0e6;
+}
+.right {
+    
+    
+    color :black;
+  font-weight: bold;
+}
+.bor
+{border: 3px #b0e0e6  double;}
+.blanc
+{
+
+	color:white;
+}
+.grisgras
+{
+
+	color:rgb(160,192,192);
+	font-weight: bold;
+}
+.blancgras
+{
+
+    color:white;
+    font-weight: bold;
+}
+.encadre
+{
+	font-weight: bold;
+}

@@ -155,8 +155,7 @@ class ProjetController extends Controller
     }
 
 
-    public function ModifProfilAction($id)
-    {
+    public function ModifProfilAction($id){
         $em = $this->getDoctrine()->getManager();
         $employe = $em->getRpository('MAMRHBundle:Employe')->find($id);
 

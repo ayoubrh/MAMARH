@@ -32,6 +32,21 @@ class ProjetController extends Controller
         $projet = new Projet();
         $form = $this->createForm(new ProjetType(), $projet);
         $request = $this->get('request');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
         if ($request->getMethod() == 'POST') {
             $form->submit($request);
             if ($form->isValid()) {
@@ -90,7 +105,11 @@ class ProjetController extends Controller
         }
         $id = $this->getUser()->getEmploye()->getId();
         return $this->render('MAMRHBundle:Projet:AjoutProjet.html.twig',array(
-            'form' => $form->createView(),'id'=>$id));
+            'form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
     }
 
 
@@ -99,10 +118,25 @@ class ProjetController extends Controller
         $suivi = new Suivi();
         $form = $this->createForm(new SuiviType(), $suivi);
         $request = $this->get('request');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
         if ($request->getMethod() == 'POST') {
             $form->submit($request);
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
+
                 $proj = $em->getRepository('MAMRHBundle:Projet')->find($id);
                 $proj->addSuivi($suivi);
                 $suivi->setProjet($proj);
@@ -118,16 +152,36 @@ class ProjetController extends Controller
         }
         $ide = $this->getUser()->getEmploye()->getId();
         return $this->render('MAMRHBundle:Projet:AjoutSuivi.html.twig',array(
-            'form' => $form->createView(),'id'=>$ide));
+            'form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$ide));
     }
 
     public function VoirProfilAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
         $emp = $this->getDoctrine()->getManager()->getRepository('MAMRHBundle:Employe')->find($id);
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
 
         //if($emp->getUser->getEnabled() == false) $emp->getUser->setEnabled(true);
         $ide = $this->getUser()->getEmploye()->getId();
-        return $this->render('MAMRHBundle:Projet:VoirProfil.html.twig',array('profil'=>$emp,'id'=>$ide));
+        return $this->render('MAMRHBundle:Projet:VoirProfil.html.twig',array('profil'=>$emp,'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$ide));
     }
 
     public function ListeProjetAction()
@@ -165,6 +219,18 @@ class ProjetController extends Controller
 
         $ide = $this->getUser()->getEmploye()->getId();
 
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
         $form = $this->createForm(new EmployeEditInfoGType(), $employe);
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
@@ -178,7 +244,11 @@ class ProjetController extends Controller
             }
         }
 
-        return $this->render('MAMRHBundle:Projet:ModifInfoGProfil.html.twig',array('form' => $form->createView(),'id'=>$ide));
+        return $this->render('MAMRHBundle:Projet:ModifInfoGProfil.html.twig',array('form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$ide));
     }
 
     public function ModifinfofProfilAction($id){
@@ -186,6 +256,18 @@ class ProjetController extends Controller
         $employe = $em->getRepository('MAMRHBundle:Employe')->find($id);
 
         $ide = $this->getUser()->getEmploye()->getId();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
 
         $form = $this->createForm(new EmployeEditInfoFType(), $employe);
         $request = $this->get('request');
@@ -199,7 +281,11 @@ class ProjetController extends Controller
             }
         }
 
-        return $this->render('MAMRHBundle:Projet:ModifInfoFProfil.html.twig',array('form' => $form->createView(),'id'=>$ide));
+        return $this->render('MAMRHBundle:Projet:ModifInfoFProfil.html.twig',array('form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$ide));
     }
 
     public function ModifinfobProfilAction($id){
@@ -207,6 +293,18 @@ class ProjetController extends Controller
         $employe = $em->getRepository('MAMRHBundle:Employe')->find($id);
 
         $ide = $this->getUser()->getEmploye()->getId();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
 
         $form = $this->createForm(new EmployeEditInfoBType(), $employe);
         $request = $this->get('request');
@@ -220,7 +318,11 @@ class ProjetController extends Controller
             }
         }
 
-        return $this->render('MAMRHBundle:Projet:ModifInfoBProfil.html.twig',array('form' => $form->createView(),'id'=>$ide));
+        return $this->render('MAMRHBundle:Projet:ModifInfoBProfil.html.twig',array('form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$ide));
     }
 
 

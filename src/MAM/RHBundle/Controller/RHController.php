@@ -33,13 +33,47 @@ class RHController extends Controller
     public function AcceuilAction()
     {
         $id = $this->getUser()->getEmploye()->getId();
-        return $this->render('MAMRHBundle:RH:Acceuil.html.twig',array( 'id' => $id));
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:RH:Acceuil.html.twig',array(
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id' => $id));
     }
     public function ajoutemployeAction()
     {
         $employe = new Employenormal();
         $form = $this->createForm(new EmployeType(),$employe);
         $request = $this->get('request');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
         if ($request->getMethod() == 'POST') {
             $form->submit($request);
             if ($form->isValid()) {
@@ -47,7 +81,6 @@ class RHController extends Controller
                 $userManager = $this->container->get('fos_user.user_manager');
                 $user = $userManager->createUser();
 
-                $em = $this->getDoctrine()->getManager();
                 $dep = $this->getDoctrine()
                     ->getManager()
                     ->getRepository('MAMRHBundle:Departement')
@@ -58,6 +91,7 @@ class RHController extends Controller
                 $user->setRoles(array('ROLE_EMP'));
                 $employe->setMatricule(substr($tokenGenerator->generateToken(), 0, 6));
                 $employe->setDateEmbauche(new \Datetime());
+                $employe->setBye(false);
                 $user->setEmail($employe->getEmail());
                 $user->setUsername($employe->getEmail());
                 $passhelp=substr($tokenGenerator->generateToken(), 0, 10);
@@ -82,7 +116,11 @@ class RHController extends Controller
             }
         }
         $id = $this->getUser()->getEmploye()->getId();
-        return $this->render('MAMRHBundle:RH:AjoutEmploye.html.twig',array('form' => $form->createView(),'id'=>$id));
+        return $this->render('MAMRHBundle:RH:AjoutEmploye.html.twig',array('form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
     }
 
     public function ajoutoffreAction()
@@ -91,10 +129,25 @@ class RHController extends Controller
         $offre = new Offre();
         $form = $this->createForm(new OffreType(), $offre);
         $request = $this->get('request');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
         if ($request->getMethod() == 'POST') {
             $form->submit($request);
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
+
                 $em->persist($offre);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Offre bien ajouté');
@@ -102,16 +155,58 @@ class RHController extends Controller
                 return $this->render('MAMRHBundle:Default:index.html.twig',array('id'=>$id));
             }
         }
-        return $this->render('MAMRHBundle:RH:AjoutOffre.html.twig',array('form' => $form->createView(),'id'=>$id));
+        return $this->render('MAMRHBundle:RH:AjoutOffre.html.twig',array('form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
     }
     public function getemployenormalAction()
     {
+        $em = $this->getDoctrine()->getManager();
         $entities=$this->getDoctrine()
                 ->getManager()
-                ->getRepository('MAMRHBundle:Employenormal')
+                ->getRepository('MAMRHBundle:Employe')
                 ->getemployenormal();
+        $i = 0;
+        //var_dump($entities);
+        $e = array();
+        foreach($entities as $en){
+            //$query = "SELECT dtype FROM employe WHERE id=".$e->getId();
+            //$dtype[$i] = $em->getConnection()->exec($query);
+
+            $connection = $em->getConnection();
+            $statement = $connection->prepare("SELECT dtype FROM employe WHERE id = :id");
+            $statement->bindValue('id', $en->getId());
+            $statement->execute();
+            $dtype[$i] = $statement->fetchAll();
+
+            //array_push($e,$dtype[$i],$en);
+
+            $i++;
+        }
+        //var_dump($e);
+        //var_dump($dtype[0][0]['dtype']);
+
         $id = $this->getUser()->getEmploye()->getId();
-        return $this->render('MAMRHBundle:RH:AffichEmp.html.twig', array('entities' => $entities,'id'=>$id)
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:RH:AffichEmp.html.twig', array('entities' => $entities, 'dtype' => $dtype,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id)
         );
     }
     public function ajoutstagiaireAction()
@@ -120,6 +215,21 @@ class RHController extends Controller
         $stagiaire = new Stagiaire();
         $form = $this->createForm(new StagiaireType(), $stagiaire);
         $request = $this->get('request');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
         if ($request->getMethod() == 'POST') {
             $form->submit($request);
             if ($form->isValid()) {
@@ -127,10 +237,18 @@ class RHController extends Controller
                 $em->persist($stagiaire);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Employé bien ajouté');
-                return $this->render('MAMRHBundle:RH:Acceuil.html.twig',array('id'=>$id));
+                return $this->render('MAMRHBundle:RH:Acceuil.html.twig',array(
+                    'demandenonv'=>$demandenonv[0][1],
+                    'demandev'=>$demandev[0][1],
+                    'nbrprojet'=>$nbrprojet[0][1],
+                    'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
             }
         }
-        return $this->render('MAMRHBundle:RH:AjoutStagiaire.html.twig',array('form' => $form->createView(),'id'=>$id));
+        return $this->render('MAMRHBundle:RH:AjoutStagiaire.html.twig',array('form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
     }
 
     public function getstagiaireAction()
@@ -140,7 +258,26 @@ class RHController extends Controller
             ->getManager()
             ->getRepository('MAMRHBundle:Stagiaire')
             ->getstagiaire();
-        return $this->render('MAMRHBundle:RH:AfficheStagiaire.html.twig', array('entities' => $entities,'id'=>$id)
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:RH:AfficheStagiaire.html.twig', array('entities' => $entities,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id)
         );
     }
 
@@ -164,12 +301,30 @@ class RHController extends Controller
         $em = $this->getDoctrine()->getManager();
         $demandes=$em->getRepository('MAMRHBundle:Attestation')
             ->getrhdemandes();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
         return $this->render('MAMRHBundle:RH:demande.html.twig',
-            array('demandes'=> $demandes,'id'=>$id));
+            array('demandes'=> $demandes,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
     }
 
     public function validdemandeAction($id){
         $em = $this->getDoctrine()->getManager();
+
         $dem  =  $em->getRepository('MAMRHBundle:Attestation')
             ->find($id);
         //var_dump($dem);
@@ -179,5 +334,19 @@ class RHController extends Controller
         $em->flush();
         //return $this->render('MAMRHBundle:Default:index.html.twig');
         return $this->redirect($this->generateUrl('mamrh_rh_demande'));
+    }
+
+    public function dimisionenmployeAction($id){
+        $em = $this->getDoctrine()->getManager();
+
+        $employe = $em->getRepository('MAMRHBundle:Employe')->find($id);
+        //var_dump($employe);
+
+        $employe->setBye(true);
+        //var_dump($employe);
+        $em->persist($employe);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('mamrh_affichemp'));
     }
 }

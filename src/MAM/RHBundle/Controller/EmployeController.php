@@ -30,6 +30,19 @@ class EmployeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $demandes=$em->getRepository('MAMRHBundle:Attestation')
                     ->getdemandes($this->getUser());
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
             $form->submit($request);
@@ -45,7 +58,11 @@ class EmployeController extends Controller
         $id = $this->getUser()->getEmploye()->getId();
         return $this->render('MAMRHBundle:Employe:Demande.html.twig',
             array('form' => $form->createView(),
-                  'demandes'=> $demandes,'id'=>$id));
+                  'demandes'=> $demandes,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
     }
 
 

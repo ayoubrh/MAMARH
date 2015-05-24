@@ -26,6 +26,10 @@ mamrh_ModifInfoBProfil:
     pattern:  /ModifierinoB/{id}
     defaults: { _controller: MAMRHBundle:Projet:ModifinfobProfil }
 
+mamrh_DimisionProfil:
+    pattern:  /DimisionEmp/{id}
+    defaults: { _controller: MAMRHBundle:RH:dimisionenmploye }
+
 mamrh_ModifiProfil:
     pattern:  /ModifiProfil/{id}
     defaults: { _controller: MAMRHBundle:Projet:ModifiProfil }

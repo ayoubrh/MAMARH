@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class EmployeRepository extends EntityRepository
 {
+    public function getemployenormal()
+    {
+
+        $query = $this->createQueryBuilder('e')
+            ->where('e.Bye = :f')
+            ->setParameter('f',false)
+            ->getQuery();
+        $e=$query-> getresult();
+        return $e;
+    }
 }

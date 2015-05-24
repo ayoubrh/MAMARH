@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Page de postulation</title>
+    <link rel="stylesheet" href="{{asset('Site/css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('Site/css/font-awesome.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('Site/css/prettyPhoto.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('Site/css/main.css') }}" type="text/css" />
+     <link rel="stylesheet" href="{{asset('Site/css/amine.css') }}" type="text/css" />
+    
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{{asset('Site/images/ico/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('Site/images/ico/apple-touch-icon-144-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('Site/images/ico/apple-touch-icon-114-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('Site/images/ico/apple-touch-icon-72-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('Site/images/ico/apple-touch-icon-57-precomposed.png') }}">
+</head><!--/head-->
+
+<body>
+
+<div class="container">
+<header class="row">
+<div class="col-lg-offset-3 col-lg-6">
+
+</br>
+
+<p> <a href="{{ path('mam_site') }}"><span class="redgras"><span class="glyphicon glyphicon-hand-left"> </span>
+                               Retour </span></a>
+                                
+</br>
+</div>
+</header>
+
+
+
+
+<div class="col-lg-offset-3 col-lg-6">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+              <i class="fa fa-edit"></i>
+              Formulaire de Postulation
+          </div>
+          <div class="panel-body">
+              <div class="row">
+                        <div class="col-lg-8">
+                            <form  method="post" {{form_enctype(form) }}>
+                                {{ form_errors(form) }}
+                                <div class="form-group">
+                                    <label>{{ form_label(form.CIN, "CIN ") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.CIN) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Nom, "NOM") }}</label>
+                                    <div >
+                                        <div class="form-control">
+                                        {{ form_widget(form.Nom) }}
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Prenom, "Prénom") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.Prenom) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Email, "Email ") }}</label>
+                                    <div class="form-control">
+                                    {{ form_widget(form.Email) }}
+                                </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Specialite, "Specialite") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.Specialite) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Diplome, "Diplome") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.Diplome) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Tel, "Tel") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.Tel) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.cv, "CV") }}</label>
+                            
+                                        {{ form_widget(form.cv) }}
+                                
+                                </div>
+
+
+                                <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
+                                
+                            {{ form_rest(form) }}
+                            </form>
+                        </div>
+
+                    </div>
+          </div>
+      </div>
+  </div>
+
+
+
+<div class="col-lg-2"></div>
+</div>
+</div>
+
+
+
+</body>
+</html>

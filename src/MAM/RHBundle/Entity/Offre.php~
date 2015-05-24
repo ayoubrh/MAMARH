@@ -26,6 +26,13 @@ class Offre
     private $descriptif;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="typeoffre", type="string", length=255)
+     */
+    private $typeoffre;
+
+    /**
      * @ORM\ManyToOne(targetEntity="ResponsableRH", inversedBy="offres")
      * @ORM\JoinColumn(name="responsableRH_id", referencedColumnName="id", nullable=false)
      */
@@ -102,6 +109,29 @@ class Offre
     public function getDescriptif()
     {
         return $this->descriptif;
+    }
+
+    /**
+     * Set typeoffre
+     *
+     * @param string $typeoffre
+     * @return offre
+     */
+    public function setTypeoffre($typeoffre)
+    {
+        $this->typeoffre = $typeoffre;
+    
+        return $this;
+    }
+
+    /**
+     * Get typeoffre
+     *
+     * @return string 
+     */
+    public function getTypeoffre()
+    {
+        return $this->typeoffre;
     }
 
     /**

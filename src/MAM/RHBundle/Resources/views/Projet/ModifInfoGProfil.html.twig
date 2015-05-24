@@ -1,0 +1,80 @@
+{% extends "::base.html.twig" %}
+
+{% block sstitle %} Mon profil{% endblock %}
+
+{% block corps %}
+    <!-- /.row -->
+    <div class="row">
+    <div class="col-lg-3">
+        <div class="photo">
+        <img src="{{ asset('dist/ll.jpg') }}" />
+        </div>
+    </div>
+    <div class="col-lg-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-unlock"></i>
+                    &nbsp;&nbsp;Informations générales
+                </div>
+                <div class="panel-body">
+                    <form  method="post" {{form_enctype(form) }}>
+                        {{ form_errors(form) }}
+                        <div class="form-group">
+                            <label>{{ form_label(form.matricule, "Matricule ") }}</label>
+                            <div class="form-control" id="disabledInput">
+                                {{ form_widget(form.matricule) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.Nom, "Nom ") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.Nom) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.Prenom, "Prénom") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.Prenom) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.CIN, "CIN") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.CIN) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ form_label(form.email, "email ") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.email) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.Tel, "Tel ") }}</label>
+                            <div class="form-control">
+                                {{ form_widget(form.Tel) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.Adresse, "Adresse ") }}</label>
+                            <div class="form-control">
+                            {{ form_widget(form.Adresse) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.image) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.cv) }}
+                        </div>
+                        <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
+                        <button type="reset" class="btn btn-outline btn-primary">Renitialiser</button>
+                        {{ form_rest(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- /.row -->
+{% endblock %}

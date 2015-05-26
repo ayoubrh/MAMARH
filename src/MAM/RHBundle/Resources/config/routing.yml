@@ -73,3 +73,6 @@ mamrh_rh_validdemande:
 mamrh_ListSuivi:
     pattern:  /Suivi/{id}
     defaults: { _controller: MAMRHBundle:Projet:Listsuivi }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

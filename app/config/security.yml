@@ -11,14 +11,24 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+            dev:
+               pattern:  ^/(_(profiler|wdt)|css|images|js)/
+               security: false
+            main_login:
+               pattern:   ^/app/login$
+               anonymous: true
+           
             main:
-                pattern: ^/
+                pattern: ^/app
                 form_login:
                     provider: fos_userbundle
+                    login_path:    fos_user_security_login
+                    check_path:    fos_user_security_check
                     csrf_provider: form.csrf_provider
-                    default_target_path: /app/ajoutemploye
-                logout:       true
-                anonymous:    true
+                    default_target_path: /app/Acceuil
+                logout:
+                    path:     fos_user_security_logout
+                anonymous:    false
                 remember_me:
                      key:     %secret%
 

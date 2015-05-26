@@ -69,4 +69,30 @@ class AttestationRepository extends EntityRepository
             ->getResult();
         return $nbrdemande;
     }
+
+    public function getdemandevalide(User $user){
+        $nbrdemande = $this->createQueryBuilder('d')
+            ->where('d.valide = :v')
+            ->leftJoin('d.employe','e')
+            ->leftJoin('e.user','u')
+            ->andwhere('u.id = :user')
+            ->setParameter('v', true)
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+        return $nbrdemande;
+    }
+
+    public function getdemandenonvalide(User $user){
+        $nbrdemande = $this->createQueryBuilder('d')
+            ->where('d.valide = :v')
+            ->leftJoin('d.employe','e')
+            ->leftJoin('e.user','u')
+            ->andwhere('u.id = :user')
+            ->setParameter('v', false)
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+        return $nbrdemande;
+    }
 }

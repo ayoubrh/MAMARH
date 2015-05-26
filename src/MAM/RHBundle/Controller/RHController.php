@@ -209,6 +209,59 @@ class RHController extends Controller
                 'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id)
         );
     }
+
+
+
+    public function archiveemployeAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities=$this->getDoctrine()
+            ->getManager()
+            ->getRepository('MAMRHBundle:Employe')
+            ->getarchiveemploye();
+        $i = 0;
+        //var_dump($entities);
+        $e = array();
+        foreach($entities as $en){
+            //$query = "SELECT dtype FROM employe WHERE id=".$e->getId();
+            //$dtype[$i] = $em->getConnection()->exec($query);
+
+            $connection = $em->getConnection();
+            $statement = $connection->prepare("SELECT dtype FROM employe WHERE id = :id");
+            $statement->bindValue('id', $en->getId());
+            $statement->execute();
+            $dtype[$i] = $statement->fetchAll();
+
+            //array_push($e,$dtype[$i],$en);
+
+            $i++;
+        }
+        //var_dump($e);
+        //var_dump($dtype[0][0]['dtype']);
+
+        $id = $this->getUser()->getEmploye()->getId();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:RH:ArchiveEmp.html.twig', array('entities' => $entities, 'dtype' => $dtype,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id)
+        );
+    }
+
+
     public function ajoutstagiaireAction()
     {
         $id = $this->getUser()->getEmploye()->getId();
@@ -322,6 +375,60 @@ class RHController extends Controller
                 'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
     }
 
+    public function demandevalideAction()
+    {
+        $id = $this->getUser()->getEmploye()->getId();
+        $em = $this->getDoctrine()->getManager();
+        $demandes=$em->getRepository('MAMRHBundle:Attestation')
+            ->getdemandevalide($this->getUser());
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:RH:demandevalide.html.twig',
+            array('demandes'=> $demandes,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
+    }
+
+    public function demandenonvalideAction()
+    {
+        $id = $this->getUser()->getEmploye()->getId();
+        $em = $this->getDoctrine()->getManager();
+        $demandes=$em->getRepository('MAMRHBundle:Attestation')
+            ->getdemandenonvalide($this->getUser());
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:RH:demandenonvalide.html.twig',
+            array('demandes'=> $demandes,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
+    }
+
     public function validdemandeAction($id){
         $em = $this->getDoctrine()->getManager();
 
@@ -329,6 +436,7 @@ class RHController extends Controller
             ->find($id);
         //var_dump($dem);
         $dem->setValide(true);
+        $dem->setResponsableRH($this->getUser());
         //var_dump($dem);
         $em->persist($dem);
         $em->flush();

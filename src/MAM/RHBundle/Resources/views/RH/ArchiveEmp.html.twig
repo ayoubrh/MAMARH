@@ -1,5 +1,5 @@
 {% extends "::base.html.twig" %}
-{% block sstitle %}Liste des employés{% endblock %}
+{% block sstitle %}Liste des employés démissionnée{% endblock %}
 
 {% block projet %}{{ nbrprojet }}{% endblock %}
 {% block demnov %}{{ demandev }}{% endblock %}
@@ -24,7 +24,6 @@
                           <th>Fonction</th>
                           <th>Département</th>
                           <th>Fonc</th>
-                          <th>Opération</th>
                       </tr>
                      </thead>
                    {% set i = 0 %}
@@ -32,22 +31,13 @@
                      <tbody>
                      {% for employe in entities %}
                        <tr class="odd gradeX">
-                           <td><a href="{{ path('mamrh_VoirProfil', {'id' : employe.id}) }}">
-                                   {{ employe.Matricule }}
-                               </a></td>
+                           <td>{{ employe.Matricule }}</td>
                            <td>{{ employe.Nom }}</td>
                            <td>{{ employe.Prenom }}</td>
                            <td>{{ employe.Fonction }}</td>
                            <td>{{ employe.departement.Libelle }}</td>
                            <td>{{ dtype[i][0]['dtype'] }}</td>
-                           <td align="center">
-                               <a href="{{ path('mamrh_VoirProfil', {'id' : employe.id}) }}">
-                                   <i class="fa fa-edit"></i>
-                               </a>  &nbsp;&nbsp;
-                               <a href="{{ path('mamrh_DimisionProfil', {'id' : employe.id}) }}">
-                                   <i class="fa fa-trash-o"></i>
-                               </a>
-                           </td>
+
                        </tr>
                          {% set i = i+1 %}
 

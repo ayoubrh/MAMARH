@@ -1,3 +1,6 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 mamrh_Acceuil:
     pattern:  /Acceuil
     defaults: { _controller: MAMRHBundle:RH:Acceuil }
@@ -58,6 +61,10 @@ mamrh_affichemp:
     path:    /AffichEmp
     defaults: {_controller: MAMRHBundle:RH:getemployenormal}
 
+mamrh_archiveemp:
+    path:    /ArchiveEmplyee
+    defaults: {_controller: MAMRHBundle:RH:archiveemploye}
+
 mamrh_affichstag:
     path:    /AfficheStag
     defaults: {_controller: MAMRHBundle:RH:getstagiaire}
@@ -70,9 +77,16 @@ mamrh_rh_validdemande:
      path:    /validdemande/{id}
      defaults: {_controller: MAMRHBundle:RH:validdemande}
 
+mamrh_rh_demandevalide:
+     path:    /demandevalide
+     defaults: {_controller: MAMRHBundle:RH:demandevalide}
+
+mamrh_rh_demandenonvalide:
+     path:    /demandenonvalide
+     defaults: {_controller: MAMRHBundle:RH:demandenonvalide}
+
+
 mamrh_ListSuivi:
     pattern:  /Suivi/{id}
     defaults: { _controller: MAMRHBundle:Projet:Listsuivi }
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -22,4 +22,15 @@ class EmployeRepository extends EntityRepository
         $e=$query-> getresult();
         return $e;
     }
+
+    public function getarchiveemploye()
+    {
+
+        $query = $this->createQueryBuilder('e')
+            ->where('e.Bye = :f')
+            ->setParameter('f',true)
+            ->getQuery();
+        $e=$query-> getresult();
+        return $e;
+    }
 }

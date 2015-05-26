@@ -17,7 +17,7 @@ security:
             main_login:
                pattern:   ^/app/login$
                anonymous: true
-           
+
             main:
                 pattern: ^/app
                 form_login:

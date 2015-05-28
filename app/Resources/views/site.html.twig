@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Site des offres de stage|emploi</title>
+    <title>Offre & Emploi</title>
     <link rel="stylesheet" href="{{asset('Site/css/bootstrap.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{asset('Site/css/font-awesome.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{asset('Site/css/prettyPhoto.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{asset('Site/css/main.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{asset('Site/css/amine.css') }}" type="text/css" />
     
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
     <link rel="shortcut icon" href="{{asset('Site/images/ico/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('Site/images/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('Site/images/ico/apple-touch-icon-114-precomposed.png') }}">
@@ -28,22 +24,15 @@
         <div class="container">
             <div id="navbar" class="navbar navbar-default">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html"></a>
+                    <a class="navbar-brand" href="{{ path('mam_site') }}"><img src="{{ asset('images/mamrh_logo.png')}}"/></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#main-slider"><i class="icon-home"></i></a></li>
-                        
-                        <li><a href="#Nouvelle Offre">Nouvelle Offre</a></li>
-                        <li><a href="#Toutes les offres">Toutes les offres</a></li>
-                        <li><a href="#qui sommes-nous">Qui sommes-nous</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Nouvelle Offre</a></li>
+                        <li><a href="#">Toutes les offres</a></li>
+                        <li><a href="#">Qui sommes-nous</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -58,18 +47,13 @@
                         <h1>Bienvenue</h1>
                         <p class="lead">
                             <h4>
-
                                 <span class="grisgras">Pour postuler à un stage & emploi </span>
-                          <span class="redgras">
+                                <span class="redgras">
                                 <span class="glyphicon glyphicon-hand-down">
                                 </span>
-                            </span>
+                                </span>
                             </h4>
-
-                          
-                           </p>
-                        
-
+                        </p>
                     </div>
                 </div>
             </div><!--/.item-->
@@ -79,18 +63,13 @@
                         <h1>Welcome</h1>
                         <p class="lead">
                             <h4>
-
                                 <span class="grisgras">To apply for an internship & a job </span>
-                          <span class="redgras">
+                                <span class="redgras">
                                 <span class="glyphicon glyphicon-hand-down">
                                 </span>
                             </span>
                             </h4>
-
-                          
-                           </p>
-                        
-
+                        </p>
                     </div>
                 </div>
             </div><!--/.item-->
@@ -101,15 +80,15 @@
 
    
 
-   {% block offre %}
-   {% endblock %}
+    {% block offre %}
+    {% endblock %}
     {% block offre_type %}
-   {% endblock %}
+    {% endblock %}
     
-  {% block qui_somme_nous %}
-   {% endblock %}
-     {% block contact %}
-   {% endblock %}
+    {% block qui_somme_nous %}
+    {% endblock %}
+    {% block contact %}
+    {% endblock %}
 
 
    
@@ -120,7 +99,6 @@
                 <div class="col-sm-6">
                     &copy; 2015 <a target="_blank" href="#" title="Free Twitter Bootstrap WordPress Themes and HTML templates">IMIAE</a>. All Rights Reserved.
                 </div>
-               
             </div>
         </div>
     </footer><!--/#footer-->

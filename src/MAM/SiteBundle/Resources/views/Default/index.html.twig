@@ -1,11 +1,11 @@
-{% extends "::site.html.twig" %} {#  commentaire pour l'emplacement de site... C:\wamp\www\MAMRH\app\Resources\views  #}
+{% extends "::site.html.twig" %}
 {% block offre %}
-                     {% set i=0 %}
-                     {% set j=0 %}
+                      {% set i=0 %}
+                      {% set j=0 %}
                       {% set s=0 %}
                       {% set h=0 %}
                       {% set indice =0 %}
-                      {% set sx=offre|length%}
+                      {% set sx=offre|length %}
                       {% set compteur=0 %}
 <section id="Nouvelle Offre">
    <div class="container">
@@ -25,22 +25,19 @@
                 {% if (sx-loop.index) > 5%} 
                 {% set compteur=compteur+1 %}  
                 {% endif %}
-
-
-                {% if (sx-loop.index) < 6  %} 
-                
+                {% if (sx-loop.index) < 6  %}
                 {% set indice=indice+1%}
-                                {%if sx-loop.index == 5 %} 
-                   <div class="item active"> 
-                        <div class="row">       <div class="col-sm-1">
-                                    <div class="member">
-                                       
-                                        <h3><small class="designation"></small></h3>
-                                    </div>
+                {%if sx-loop.index == 5 %}
+            <div class="item active">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="member">
+                            <h3><small class="designation"></small></h3>
+                        </div>
 
-                                </div>  
-                     {% elseif s==3 %} {% set s=0 %}
-                                 <div class="item "> 
+                    </div>
+                    {% elseif s==3 %} {% set s=0 %}
+                    <div class="item ">
                         <div class="row">       <div class="col-sm-1">
                                     <div class="member">
                                        
@@ -101,20 +98,11 @@
 </section><!--/#portfolio-->
 {% endblock %}
 
-
- 
-
-
-
-
-
-
 {% block offre_type %}
 <section id="Toutes les offres">
 
 <div class="container">
     <div class="row">
-    </br>
     <div class="center">
 
 <div class="panel panel-warning">
@@ -145,7 +133,7 @@
      {% endfor %}
 </tbody>
 </table>
-</div></td>
+</div>
 
 </div>
 
@@ -184,7 +172,6 @@
 </section>
    {% endblock %}
 
-
 {%block qui_somme_nous%}
 <section id="qui sommes-nous">
   <div class="container">
@@ -220,6 +207,7 @@ Categornet est une entreprise de presse proposant des services pratiques au agen
 </div>
 </div>
 </section>{%endblock%}
+
 {% block contact%}
  <section id="contact">
         <div class="container">

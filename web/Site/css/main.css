@@ -48,7 +48,7 @@ a:focus {
   z-index: 99999;
 }
 #main-slider {
-  background-image: url({{asset('images/slider-bg.jpg')}});
+  background-image: url(images/slider-bg.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-position: 50% 50%;
@@ -476,8 +476,15 @@ a:focus {
   margin-left: 20px;
   width: 200px;
   height: 78px;
-  background: url(../images/logo.png) no-repeat 0 50%;
 }
+
+.navbar-brand>img{
+  display: block;
+  width: 80px;
+  height: 75px;
+  margin: 5px 5px 5px 20px;
+}
+
 .navbar-default .navbar-nav > li {
   margin-left: 1px;
 }
@@ -508,7 +515,7 @@ a:focus {
   height: 108px;
   width: 108px;
   line-height: 108px;
-  color: #fff;
+  color: #fff
   margin: 10px;
   background-color: rgba(0, 0, 0, 0.4);
   text-align: center;

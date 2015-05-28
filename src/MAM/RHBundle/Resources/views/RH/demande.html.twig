@@ -31,16 +31,15 @@
                         </thead>
                         <tbody>
 
-
                         {% for demande in demandes %}
                             <tr class="odd gradeX">
                                 <td>{{ demande.Employe.Nom }} {{ demande.Employe.Prenom }}</td>
                                 <td>{{ demande.Libelle }}</td>
                                 <td>{{ demande.DateDEM|date('d/m/Y H:i:s') }}</td>
                                 <td>{{ demande.priorite }}</td>
-                                <td class="center">
+                                <td align="center">
                                     <a href="{{ path('mamrh_rh_validdemande', {'id': demande.id}) }}" >
-                                        <button type="button" class="btn btn-success btn-circle"><i class="fa fa-check"></i></button>
+                                        <button type="button" class="btn btn-outline btn-primary btn-circle"><i class="fa fa-check"></i></button>
                                     </a>
                                 </td>
                             </tr>
@@ -56,18 +55,6 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-
-
-
-
-    <script src="{{ asset('dist/js/sb-admin-2.js')}}"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-        $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
-        });
-    </script>
+    {% block panel %}
+    {% endblock  %}
 {% endblock %}

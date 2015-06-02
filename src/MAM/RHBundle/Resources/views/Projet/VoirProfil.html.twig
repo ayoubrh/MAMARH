@@ -9,7 +9,35 @@
 
 {% block corps %}
     <div class="col-lg-8">
-    <div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-8">
+                    <i class="fa fa-star-o "></i>
+                    &nbsp;&nbsp;Profil
+                </div>
+                <div class="col-sm-4">
+                    <form method="post" >
+                        <div class="row">
+                            <div class="col-sm-4">
+                               <label>Affecter</label>
+                            </div>
+                            <div class="col-sm-8">
+                            <select class="form-control">
+                                   <option>1</option>
+                                   <option>2</option>
+                                   <option>3</option>
+                                   <option>4</option>
+                                   <option>5</option>
+                            </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+        <div class="row">
     <div class="col-lg-3">
         <div class="photo">
         <img src="{{ asset(profil.image.webPath) }}" />
@@ -19,7 +47,11 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-unlock"></i>
-                    &nbsp;&nbsp;Informations générales<a href="{{ path('mamrh_ModifInfoGProfil', {'id' : profil.id}) }}"><span  class="fa fa-edit"></span></a>
+                    &nbsp;&nbsp;Informations générales
+
+                    <a href="{{ path('mamrh_ModifInfoGProfil', {'id' : profil.id}) }}" >
+                        <button type="button" class="btn btn-primary btn-circle" align="right"><i class="fa fa-edit"></i></button>
+                    </a>
                 </div>
                 <div class="panel-body">
                     <table>
@@ -91,4 +123,6 @@
         </div>
     </div>
 </div>
+        </div>
+    </div>
 {% endblock %}

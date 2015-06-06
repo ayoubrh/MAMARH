@@ -19,7 +19,6 @@ class EmployeEditInfoBType extends EmployeType
     {
         $builder
             ->add('Num_comptbanq','text')
-            ->add('Salaire','text')
             ->add('Cnss','text')
             ->add('Cimr','text')
             ->add('Type_contrat','choice', array('choices' => array('CDI' => 'CDI', 'CDD' => 'CDD','TC' =>'temps complet','TP' =>'temps partiel')))

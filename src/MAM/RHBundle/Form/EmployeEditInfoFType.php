@@ -18,11 +18,17 @@ class EmployeEditInfoFType extends EmployeType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('Salaire','text')
             ->add('Diplome','text')
             ->add('Formation','text')
             ->add('Fonction','text')
             ->add('Specialite','text')
-            ->add('departement','choice', array('choices' => array('DSI' => 'Systeme d\'information', 'DRH' => ' Ressource Humaine','DF' => 'Financière','DC' =>"Commercial",'DQE' =>"Qualité et environnement")))
+            ->add('departement', 'entity', array(
+                'label'    => 'Departement;',
+                'class'    => 'MAMRHBundle:Departement',
+                'property' => 'libelle',
+                'multiple' => false,
+                'expanded' => false))
             //->add('user',new UserType(),array('label' =>'Ajouter un utilisateur:'))
         ;
 

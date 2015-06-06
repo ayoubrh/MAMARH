@@ -19,15 +19,22 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-unlock"></i>
-                    &nbsp;&nbsp;Informations générales<a href="{{ path('mamrh_ModifInfoGProfil', {'id' : profil.id}) }}"><span  class="fa fa-edit"></span></a>
+                    &nbsp;&nbsp;Informations générales
+                    <span class="pull-right">
+                    <a href="{{ path('mamrh_ModifInfoGProfil', {'id' : profil.id}) }}">
+                        <button type="button" class="btn btn-primary btn-circle">
+                            <i  class="fa fa-edit"></i>
+                        </button>
+                    </a>
+                    </span>
                 </div>
                 <div class="panel-body">
                     <table>
-                        <tr><td><i class="fa fa-users"></i>&nbsp;&nbsp;</td><td>Nom:&nbsp; </td><td>{{ profil.Nom }}</td>
+                        <tr><td><i class="fa fa-bookmark"></i>&nbsp;&nbsp;</td><td>Matricule:&nbsp;</td><td>{{ profil.matricule }}</td>
+                        </tr>
+                        <tr><td><i class="fa fa-user"></i>&nbsp;&nbsp;</td><td>Nom:&nbsp; </td><td>{{ profil.Nom }}</td>
                         </tr>
                         <tr><td><i class="fa fa-user"></i>&nbsp;&nbsp;</td><td>Prénom: </td><td>{{ profil.Prenom }}</td>
-                        </tr>
-                        <tr><td><i class="fa fa-bookmark"></i>&nbsp;&nbsp;</td><td>Matricule:&nbsp;</td><td>{{ profil.matricule }}</td>
                         </tr>
                         <tr><td><i class="fa fa-tag"></i>&nbsp;&nbsp;</td><td>CIN:</td><td>{{ profil.CIN }}</td>
                         </tr>
@@ -47,7 +54,14 @@
             <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-gears"></i>
-                &nbsp;&nbsp;Informations fonctionelles<a href="{{ path('mamrh_ModifInfoFProfil', {'id' : profil.id}) }}"><span  class="fa fa-edit"></span></a>
+                &nbsp;&nbsp;Informations fonctionelles
+            <span class="pull-right">
+                <a href="{{ path('mamrh_ModifInfoFProfil', {'id' : profil.id}) }}">
+                        <button type="button" class="btn btn-primary btn-circle">
+                            <i  class="fa fa-edit"></i>
+                        </button>
+                    </a>
+            </span>
             </div>
             <div class="panel-body">
                 <table>
@@ -71,7 +85,14 @@
            <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-credit-card"></i>
-                &nbsp;&nbsp;Informations bancaires <a href="{{ path('mamrh_ModifInfoBProfil', {'id' : profil.id}) }}"><span  class="fa fa-edit"></span></a>
+                &nbsp;&nbsp;Informations bancaires
+            <span class="pull-right">
+                 <a href="{{ path('mamrh_ModifInfoBProfil', {'id' : profil.id}) }}">
+                    <button type="button" class="btn btn-primary btn-circle">
+                        <i  class="fa fa-edit"></i>
+                    </button>
+                </a>
+            </span>
             </div>
             <div class="panel-body">
                 <table>

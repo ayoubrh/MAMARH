@@ -24,12 +24,7 @@
                 <div class="panel-body">
                     <form  method="post" {{form_enctype(form) }}>
                         {{ form_errors(form) }}
-                        <div class="form-group">
-                            <label>{{ form_label(form.Salaire, "Salaire") }}</label>
-                            <div class="form-control">
-                                {{ form_widget(form.Salaire) }}
-                            </div>
-                        </div>
+                        
                         <div class="panel-body">
                             <div class="form-group">
                                 <label>{{ form_label(form.Num_comptbanq, "Numéro de compte ") }}</label>

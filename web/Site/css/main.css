@@ -472,8 +472,8 @@ a:focus {
   border-radius: 0 0 0 5px;
 }
 .navbar-default .navbar-brand {
-  margin-right: 50px;
-  margin-left: 20px;
+  margin-right: 60px;
+  margin-left: 30px;
   width: 200px;
   height: 78px;
 }
@@ -481,8 +481,8 @@ a:focus {
 .navbar-brand>img{
   display: block;
   width: 80px;
-  height: 75px;
-  margin: 5px 5px 5px 20px;
+  height: 73px;
+  margin: -10px 5px -10px 0px;
 }
 
 .navbar-default .navbar-nav > li {

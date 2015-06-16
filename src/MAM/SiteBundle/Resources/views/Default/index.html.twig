@@ -12,8 +12,8 @@
         <div class="box">
             <div class="center">
                 <p class="lead"> <span class="couleur3"> <span> <span class="bor">
-             les nouvelles offres d'emploi et stages </span></span> <br></p>
-
+                 les nouvelles offres d'emploi et stages </span></span> <br>
+                </p>
             </div>
 
             <div class="gap"></div>
@@ -170,7 +170,7 @@
 </div>
 </div>
 </section>
-   {% endblock %}
+{% endblock %}
 
 {%block qui_somme_nous%}
 <section id="qui sommes-nous">
@@ -210,23 +210,20 @@ Categornet est une entreprise de presse proposant des services pratiques au agen
 
 {% block contact%}
  <section id="contact">
-        <div class="container">
-            <div class="box last">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h1>Formulaire de contact</h1>
-                        <p>n'hésitez pas de nous envoyer un email,quelque soit l'objectif: déclaration,conseil ou une demande.</p>
-                        <div class="status alert alert-success" style="display: none"></div>
-
-
-                      <form action="{{ path('mam_site') }}"  method="post" {{form_enctype(form) }}>
-                                {{ form_errors(form) }}
-                                <div class="form-group">
-                                    <label>{{ form_label(form.name, "name ") }}</label>
-                                    <div class="form-control">
-                                        {{ form_widget(form.name) }}
-                                    </div>
-                                </div>
+     <div class="container">
+         <div class="box last">
+             <div class="row">
+                 <div class="col-sm-6">
+                     <h1>Formulaire de contact</h1>
+                     <p>n'hésitez pas de nous envoyer un email,quelque soit l'objectif: déclaration,conseil ou une demande.</p>
+                     <form action="{{ path('mam_site') }}"  method="post" {{form_enctype(form) }}>
+                         {{ form_errors(form) }}
+                         <div class="form-group">
+                             <label>{{ form_label(form.name, "name ") }}</label>
+                             <div class="form-control">
+                                 {{ form_widget(form.name) }}
+                             </div>
+                         </div>
                                 <div class="form-group">
                                     <label>{{ form_label(form.email, "email") }}</label>
                                     <div >
@@ -249,10 +246,8 @@ Categornet est une entreprise de presse proposant des services pratiques au agen
 
 
                         </form>
-
-
-                    </div><!--/.col-sm-6-->
-                    <div class="col-sm-6">
+                 </div><!--/.col-sm-6-->
+                 <div class="col-sm-6">
                         <h1>nos adresses</h1>
                         <div class="row">
                             <div class="col-md-6">
@@ -289,8 +284,8 @@ Categornet est une entreprise de presse proposant des services pratiques au agen
                             </div>
                         </div>
                     </div><!--/.col-sm-6-->
-                </div><!--/.row-->
-            </div><!--/.box-->
-        </div><!--/.container-->
-    </section><!--/#contact-->
+             </div><!--/.row-->
+         </div><!--/.box-->
+     </div><!--/.container-->
+ </section><!--/#contact-->
 {%endblock%}

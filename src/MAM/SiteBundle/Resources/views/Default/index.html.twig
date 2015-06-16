@@ -9,51 +9,33 @@
                       {% set compteur=0 %}
 <section id="Nouvelle Offre">
    <div class="container">
-        <div class="box">
-            <div class="center">
-                <p class="lead"> <span class="couleur3"> <span> <span class="bor">
-                 les nouvelles offres d'emploi et stages </span></span> <br>
-                </p>
+       <div class="box first">
+            <div class="center grap">
+                <h2>Nouvelles offres </h2>
             </div>
-
-            <div class="gap"></div>
-                
-            <div id="team-scroller" class="carousel scale">
-                <div class="carousel-inner">
-                    
-                {% for of in offre  %}  
+            <p class="lead">
+                {% for of in offre  %}
                 {% if (sx-loop.index) > 5%} 
                 {% set compteur=compteur+1 %}  
                 {% endif %}
                 {% if (sx-loop.index) < 6  %}
                 {% set indice=indice+1%}
                 {%if sx-loop.index == 5 %}
-            <div class="item active">
+                <div class="item active">
                 <div class="row">
                     <div class="col-sm-1">
                         <div class="member">
                             <h3><small class="designation"></small></h3>
                         </div>
-
                     </div>
                     {% elseif s==3 %} {% set s=0 %}
-                    <div class="item ">
-                        <div class="row">       <div class="col-sm-1">
-                                    <div class="member">
-                                       
-                                        <h3><small class="designation"></small></h3>
-                                    </div>
-                                </div>     
-                                                 
-                         {% endif %}
-                                                  
-                           <div class="col-sm-3">
-                                    <div class="member">
-                                      <span class="right1">
-                                         offre de : 
-                                             
-                                            {{of.typeoffre}}
-                                       </span>
+                    {% endif %}
+                    <div class="col-sm-3">
+                        <div class="member">
+                            <span class="right1">
+                                offre de :
+                                {{of.typeoffre}}
+                            </span>
                                       </br>
                                        <span class="right">
                                         {{of.libelle}} </span>
@@ -78,9 +60,8 @@
                                              {%if (s ==3) or (loop.index==offre|length)%} 
                         </div>
                      </div>       
-                                             {% endif %}
-                
-                       {% endif %}
+                    {% endif %}
+                    {% endif %}
                      {% endfor %}
                 </div>
 
@@ -93,81 +74,71 @@
             </div><!--/.carousel-->
            
             
-        </div><!--/.box-->
-    </div><!--/.container-->
-</section><!--/#portfolio-->
+        </div>
+            </div>
+       </div>
+   </div>
+</section>
 {% endblock %}
 
 {% block offre_type %}
 <section id="Toutes les offres">
-
 <div class="container">
-    <div class="row">
-    <div class="center">
-
-<div class="panel panel-warning">
-<table class="table table-striped table-condensed">
-<div class="panel-heading">
-<h3 class="panel-title"><span class="couleur1">Toutes les offres</span></h3>
-</div>
-</div>
-
-<tbody>
-<tr>
-  
-<td><div class="col-lg-6">
-<div class="panel panel-primary">
-<table class="table table-striped table-condensed">
-<div class="panel-heading">
-<h3 class="panel-title"> <span class="blancgras">Emploi</span></h3>
-</div>
-
-<tbody>
- {% for of in offre  %}
-       {%if of.typeoffre=="emploi" %}
-       <tr>
-       <td> <a href="{{ path('_lire_plus', { 'id' : of.id }) }}">{{of.libelle}}</a></td>
-
-        </tr>
-        {% endif %}
-     {% endfor %}
-</tbody>
-</table>
-</div>
-
-</div>
-
-<td><div class="col-lg-6">
-  <div class="panel panel-primary">
-<table class="table table-striped table-condensed">
-<div class="panel-heading">
-<h3 class="panel-title"> <span class="blancgras">Emploi</span></h3>
-</div>
-
-<tbody>
- {% for off in offre  %}
-       {%if off.typeoffre=="stage" %}
-       <tr>
-       <td> <a href="{{ path('_lire_plus', { 'id' : off.id }) }}">{{off.libelle}}</a></td>
-
-        </tr>
-        {% endif %}
-     {% endfor %}
-</tbody>
-</table>
-</div>
-</div></td>
-
-</tr>
-</tbody>
-</table>
-</div>
-
-
-
-
-
-</div>
+    <div class="box">
+        <div class="center">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Toutes les offres</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Emploi</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive table-bordered">
+                                    <table class="table">
+                                        <tbody>
+                                        {% for of in offre  %}
+                                        {%if of.typeoffre=="emploi" %}
+                                        <tr>
+                                            <td> <a href="{{ path('_lire_plus', { 'id' : of.id }) }}">{{of.libelle}}</a></td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Stage</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive table-bordered">
+                                    <table class="table">
+                                        <tbody>
+                                        {% for off in offre  %}
+                                        {%if off.typeoffre=="stage" %}
+                                            <tr>
+                                                <td> <a href="{{ path('_lire_plus', { 'id' : off.id }) }}">{{off.libelle}}</a></td>
+                                            </tr>
+                                        {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </section>
 {% endblock %}

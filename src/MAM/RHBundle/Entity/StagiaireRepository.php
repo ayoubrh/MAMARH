@@ -27,10 +27,10 @@ class StagiaireRepository extends EntityRepository
         $nbrstag = $this->createQueryBuilder('d')
             ->select('COUNT(DISTINCT d.id)')
             ->where('d.date_fin < :d')
+            ->setParameter('d', new Datetime())
             ->leftJoin('d.employeNormal','e')
             ->leftJoin('e.user','u')
             ->andwhere('u.id = :user')
-            ->setParameter('d', new Datetime())
             ->setParameter('user', $user->getId())
             ->getQuery()
             ->getResult();

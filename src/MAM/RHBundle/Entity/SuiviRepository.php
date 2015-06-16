@@ -2,6 +2,7 @@
 
 namespace MAM\RHBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -20,7 +21,9 @@ class SuiviRepository extends EntityRepository
             ->addSelect('p')
             // On joint sur l'attribut categories
             ->where('p.id = :proj')
+            ->andwhere('p.Date_fin < :d')
             ->setParameter('proj', $id)
+            ->setParameter('d', new Datetime())
             ->getQuery()
             ->getResult();
 

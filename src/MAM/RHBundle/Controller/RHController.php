@@ -311,6 +311,7 @@ class RHController extends Controller
             ->getManager()
             ->getRepository('MAMRHBundle:Stagiaire')
             ->getstagiaire();
+        //var_dump($entities);
 
         $em = $this->getDoctrine()->getManager();
 

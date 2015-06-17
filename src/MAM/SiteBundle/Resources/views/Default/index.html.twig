@@ -1,267 +1,261 @@
 {% extends "::site.html.twig" %}
 {% block offre %}
-                      {% set i=0 %}
-                      {% set j=0 %}
-                      {% set s=0 %}
-                      {% set h=0 %}
-                      {% set indice =0 %}
-                      {% set sx=offre|length %}
-                      {% set compteur=0 %}
-<section id="Nouvelle Offre">
-   <div class="container">
-        <div class="box">
-            <div class="center">
-                <p class="lead"> <span class="couleur3"> <span> <span class="bor">
-                 les nouvelles offres d'emploi et stages </span></span> <br>
-                </p>
-            </div>
-
-            <div class="gap"></div>
-                
-            <div id="team-scroller" class="carousel scale">
-                <div class="carousel-inner">
-                    
-                {% for of in offre  %}  
-                {% if (sx-loop.index) > 5%} 
-                {% set compteur=compteur+1 %}  
-                {% endif %}
-                {% if (sx-loop.index) < 6  %}
-                {% set indice=indice+1%}
-                {%if sx-loop.index == 5 %}
-            <div class="item active">
+    {% set i=0 %}
+    {% set j=0 %}
+    {% set s=0 %}
+    {% set h=0 %}
+    {% set indice =0 %}
+    {% set sx=offre|length %}
+    {% set compteur=0 %}
+    <section id="News">
+        <div class="container">
+            <div class="box first">
+                <div class="center grap">
+                    <h2>Nouvelles offres </h2>
+                </div>
                 <div class="row">
-                    <div class="col-sm-1">
-                        <div class="member">
-                            <h3><small class="designation"></small></h3>
-                        </div>
+                <div id="team-scroller" class="carousel scale">
+                    <div class="carousel-inner">
 
-                    </div>
-                    {% elseif s==3 %} {% set s=0 %}
-                    <div class="item ">
-                        <div class="row">       <div class="col-sm-1">
+                        {% for of in offre  %}
+                        {% if (sx-loop.index) > 5%}
+                            {% set compteur=compteur+1 %}
+                        {% endif %}
+                        {% if (sx-loop.index) < 6  %}
+                        {% set indice=indice+1%}
+                        {%if sx-loop.index == 5 %}
+                        <div class="item active">
+                            <div class="row">
+                                <div class="col-md-2">
                                     <div class="member">
-                                       
                                         <h3><small class="designation"></small></h3>
                                     </div>
-                                </div>     
-                                                 
-                         {% endif %}
-                                                  
-                           <div class="col-sm-3">
-                                    <div class="member">
-                                      <span class="right1">
-                                         offre de : 
-                                             
-                                            {{of.typeoffre}}
-                                       </span>
-                                      </br>
-                                       <span class="right">
-                                        {{of.libelle}} </span>
-                                       
-                                           
-                                          
-                                            
-                                                       
-                                      {# [:255] pour limiter #} 
-                                        </br>
-                                            <p> <a href="{{ path('_lire_plus', { 'id' : of.id }) }}">Lire Plus</a> </p>
-                                        </br>
 
+                                </div>
+                                {% elseif s==3 %} {% set s=0 %}
+                                <div class="item ">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <div class="member">
+                                                <h3><small class="designation"></small></h3>
+                                            </div>
+                                        </div>
 
-                                            
+                                        {% endif %}
 
+                                        <div class="col-md-3 col-sm-8">
+                                            <div class="panel panel-warning">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title"> Demande de type: "{{of.typeoffre}}"</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="center">
 
-                                        {% set s=s+1%}
-
-                                    </div>
-                                </div>                                  
-                                             {%if (s ==3) or (loop.index==offre|length)%} 
-                        </div>
-                     </div>       
-                                             {% endif %}
-                
-                       {% endif %}
-                     {% endfor %}
-                </div>
-
-                <a class="left-arrow" href="#team-scroller" data-slide="prev">
-                    <i class="icon-angle-left icon-4x"></i>
-                </a>
-                <a class="right-arrow" href="#team-scroller" data-slide="next">
-                    <i class="icon-angle-right icon-4x"></i>
-                </a>
-            </div><!--/.carousel-->
-           
-            
-        </div><!--/.box-->
-    </div><!--/.container-->
-</section><!--/#portfolio-->
-{% endblock %}
-
-{% block offre_type %}
-<section id="Toutes les offres">
-
-<div class="container">
-    <div class="row">
-    <div class="center">
-
-<div class="panel panel-warning">
-<table class="table table-striped table-condensed">
-<div class="panel-heading">
-<h3 class="panel-title"><span class="couleur1">Toutes les offres</span></h3>
-</div>
-</div>
-
-<tbody>
-<tr>
-  
-<td><div class="col-lg-6">
-<div class="panel panel-primary">
-<table class="table table-striped table-condensed">
-<div class="panel-heading">
-<h3 class="panel-title"> <span class="blancgras">Emploi</span></h3>
-</div>
-
-<tbody>
- {% for of in offre  %}
-       {%if of.typeoffre=="emploi" %}
-       <tr>
-       <td> <a href="{{ path('_lire_plus', { 'id' : of.id }) }}">{{of.libelle}}</a></td>
-
-        </tr>
-        {% endif %}
-     {% endfor %}
-</tbody>
-</table>
-</div>
-
-</div>
-
-<td><div class="col-lg-6">
-  <div class="panel panel-primary">
-<table class="table table-striped table-condensed">
-<div class="panel-heading">
-<h3 class="panel-title"> <span class="blancgras">Emploi</span></h3>
-</div>
-
-<tbody>
- {% for off in offre  %}
-       {%if off.typeoffre=="stage" %}
-       <tr>
-       <td> <a href="{{ path('_lire_plus', { 'id' : off.id }) }}">{{off.libelle}}</a></td>
-
-        </tr>
-        {% endif %}
-     {% endfor %}
-</tbody>
-</table>
-</div>
-</div></td>
-
-</tr>
-</tbody>
-</table>
-</div>
-
-
-
-
-
-</div>
-</div>
-</section>
-{% endblock %}
-
-{%block qui_somme_nous%}
-<section id="qui sommes-nous">
-  <div class="container">
-        <div class="box">
-            <div class="center">
-<div class="panel panel-warning">
-<table class="table table-striped table-condensed">
-<div class="panel-heading">
-<h3 class="panel-title"><span class="couleur1">Qui-sommes nous</span></h3>
-</div>
-<thead>
-<tbody>
-<tr>
-<td><span class="redgras">Historique</span></td>
-<td><span class="grisgras">Créée en 1998 par Gren avait pour but de regrouper des journlalistes freelance sous une méme enseigne. l'équipe de journalistes fournissait des articels et ds reportages à de nombreux médias francophones et anglo-saxons.Avec l'arrivé de l'internet,Categorynet.com a proposé du centenu d'actialités pour des sites intent.... <span></td>
-</tr>
-<tr>
-<td><span class="redgras">Objectis</span></td>
-<td><span class="grisgras">Le réseau Categerynet.com se compose de multiples portails destinés aux professionels de la communcation et de la presse.on y retrouve entre autres... L'objectif est de réunir l'ensemle des professionnels de la presse,des relations presse et de la communication  <span></td>
-</tr><tr>
-<td><span class="redgras">Services</span></td>
-<td><span class="grisgras">Le site Categorynet.com propose une série de services pour les journalistes.pigistes, attachés de presse.l'ambition est que Categorynet.com soit La page de démerrafe des pros de la presse et de la com.les utlisateus peuvent notamment:poster un CV, particper à des débats dans les forums,consulter des revues de presse d'emploi dans l'univers de la presse....<span></td>
-</tr>
-<tr>
-<td><span class="redgras">Philosopie</span></td>
-<td><span class="grisgras">Si Categorynet.com propose de nombreux services logistiques aux professionnels des RP et des médias,Categorynet.com n'esr ni une agence de RP, ni une agence de comuunication.Categorynet.com est une entreprise de prsse proposant des services pratiques au agences de communicatio.
-Categornet est une entreprise de presse proposant des services pratiques au agences de communication en complement de sa mission d'informtique <span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</section>{%endblock%}
-
-{% block contact%}
- <section id="contact">
-     <div class="container">
-         <div class="box last">
-             <div class="row">
-                 <div class="col-sm-6">
-                     <h1>Formulaire de contact</h1>
-                     <p>n'hésitez pas de nous envoyer un email,quelque soit l'objectif: déclaration,conseil ou une demande.</p>
-                     <form action="{{ path('mam_site') }}"  method="post" {{form_enctype(form) }}>
-                         {{ form_errors(form) }}
-                         <div class="form-group">
-                             <label>{{ form_label(form.name, "name ") }}</label>
-                             <div class="form-control">
-                                 {{ form_widget(form.name) }}
-                             </div>
-                         </div>
-                                <div class="form-group">
-                                    <label>{{ form_label(form.email, "email") }}</label>
-                                    <div >
-                                        <div class="form-control">
-                                        {{ form_widget(form.email) }}
-                                    </div>
+                                                    <p>
+                                                    {{of.libelle}}
+                                                     </p>
+                                                     {% set s=s+1%}
+                                                     </div>
+                                                    <div class="center">
+                                                        <a href="{{ path('_lire_plus', { 'id' : of.id }) }}">Lire Plus</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {%if (s ==3) or (loop.index==offre|length)%}
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>{{ form_label(form.body, "body") }}</label>
-                                    <div class="form-control">
-                                        {{ form_widget(form.body) }}
-                                    </div>
-                                  </div>
-                                  <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
-                                
-                                       {{ form_rest(form) }}
+                                {% endif %}
 
-                           
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+
+                            <a class="left-arrow" href="#team-scroller" data-slide="prev">
+                                <i class="icon-angle-left icon-4x"></i>
+                            </a>
+                            <a class="right-arrow" href="#team-scroller" data-slide="next">
+                                <i class="icon-angle-right icon-4x"></i>
+                            </a>
+                        </div><!--/.carousel-->
+
+
+                    </div><!--/.box-->
+                </div><!--/.container-->
+                </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block offre_type %}
+    <section id="Offres">
+        <div class="container">
+            <div class="box">
+                <div class="center">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Toutes les offres</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Emploi</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive table-bordered">
+                                            <table class="table">
+                                                <tbody>
+                                                {% for of in offre  %}
+                                                    {%if of.typeoffre=="emploi" %}
+                                                        <tr>
+                                                            <td> <a href="{{ path('_lire_plus', { 'id' : of.id }) }}">{{of.libelle}}</a></td>
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Stage</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive table-bordered">
+                                            <table class="table">
+                                                <tbody>
+                                                {% for off in offre  %}
+                                                    {%if off.typeoffre=="stage" %}
+                                                        <tr>
+                                                            <td> <a href="{{ path('_lire_plus', { 'id' : off.id }) }}">{{off.libelle}}</a></td>
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{%block qui_somme_nous%}
+    <section id="Us">
+        <div class="container">
+            <div class="box">
+                <div class="center">
+                    <div class="panel panel-warning">
+                        <table class="table table-striped table-condensed">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><span class="couleur1">Qui-sommes nous</span></h3>
+                            </div>
+                            <thead>
+                            <tbody>
+                            <tr>
+                                <td><span class="redgras">Historique</span></td>
+                                <td><span class="grisgras">Créée en 1998 par Gren avait pour but de regrouper des journlalistes freelance sous une méme enseigne. l'équipe de journalistes fournissait des articels et ds reportages à de nombreux médias francophones et anglo-saxons.Avec l'arrivé de l'internet,Categorynet.com a proposé du centenu d'actialités pour des sites intent.... <span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="redgras">Objectis</span></td>
+                                <td><span class="grisgras">Le réseau Categerynet.com se compose de multiples portails destinés aux professionels de la communcation et de la presse.on y retrouve entre autres... L'objectif est de réunir l'ensemle des professionnels de la presse,des relations presse et de la communication  <span></td>
+                            </tr><tr>
+                                <td><span class="redgras">Services</span></td>
+                                <td><span class="grisgras">Le site Categorynet.com propose une série de services pour les journalistes.pigistes, attachés de presse.l'ambition est que Categorynet.com soit La page de démerrafe des pros de la presse et de la com.les utlisateus peuvent notamment:poster un CV, particper à des débats dans les forums,consulter des revues de presse d'emploi dans l'univers de la presse....<span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="redgras">Philosopie</span></td>
+                                <td><span class="grisgras">Si Categorynet.com propose de nombreux services logistiques aux professionnels des RP et des médias,Categorynet.com n'esr ni une agence de RP, ni une agence de comuunication.Categorynet.com est une entreprise de prsse proposant des services pratiques au agences de communicatio.
+                                                           Categornet est une entreprise de presse proposant des services pratiques au agences de communication en complement de sa mission d'informtique <span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}
+
+{% block contact%}
+    <section id="contact">
+        <div class="container">
+            <div class="box last">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1>Formulaire de contact</h1>
+                        <p>n'hésitez pas de nous envoyer un email,quelque soit l'objectif: déclaration,conseil ou une demande.</p>
+                        <div class="status alert alert-success" style="display: none"></div>
+
+
+                        <form action="{{ path('mam_site') }}"  method="post" {{form_enctype(form) }} class="contact-form">
+                            {{ form_errors(form) }}
+                            <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                <label>{{ form_label(form.name, "name ") }}</label>
+                                    <div class="cont">
+                                       {{ form_widget(form.name) }}
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>{{ form_label(form.email, "email") }}</label>
+                                <div class="cont">
+                                       {{ form_widget(form.email) }}
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>{{ form_label(form.body, "body") }}</label>
+                                <div class="cont2">
+                                    {{ form_widget(form.body)}}
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
+
+                            {{ form_rest(form) }}
+
+
 
 
                         </form>
-                 </div><!--/.col-sm-6-->
-                 <div class="col-sm-6">
-                        <h1>nos adresses</h1>
+
+
+                    </div><!--/.col-sm-6-->
+                    <div class="col-sm-6">
+                        <h1>Nos adresses</h1>
                         <div class="row">
                             <div class="col-md-6">
                                 <address>
                                     <strong>29, lot. Attaoufik, rue 1 Sidi Maârouf <br>
-                                   20190 Casablanca<br>
-                                    <abbr title="Phone">Téléphone :</abbr> 0522 43 71 7
+                                        20190 Casablanca<br>
+                                        <abbr title="Phone">Téléphone :</abbr> 0522 43 71 7
                                 </address>
                             </div>
                             <div class="col-md-6">
                                 <address>
                                     <strong>7, avenue du Mali, rés.Alae mag.n°1 Ocean</strong><br>
                                     10000, Rabat.<br>
-                                   
+
                                     <abbr title="Phone">Téléphone :</abbr>  037 20 21 83
                                 </address>
                             </div>
@@ -284,8 +278,8 @@ Categornet est une entreprise de presse proposant des services pratiques au agen
                             </div>
                         </div>
                     </div><!--/.col-sm-6-->
-             </div><!--/.row-->
-         </div><!--/.box-->
-     </div><!--/.container-->
- </section><!--/#contact-->
+                </div><!--/.row-->
+            </div><!--/.box-->
+        </div><!--/.container-->
+    </section><!--/#contact-->
 {%endblock%}

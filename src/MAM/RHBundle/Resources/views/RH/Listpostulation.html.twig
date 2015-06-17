@@ -40,7 +40,7 @@
                                 <td>{{ offre.Nom }} {{ offre.Prenom }}</td>
                                 <td>{{ offre.Diplome }}</td>
                                 <td>{{ offre.Specialite }}</td>
-                                <td class="center"><a href="{{ path('mamrh_Listpost', {'id' : offre.id}) }}"><i class="btn btn-primary btn-circle"></i></a></td>
+                                <td class="center"><a href="{{ path('mamrh_candidat', {'id' : offre.id}) }}"><i class="btn btn-primary btn-circle"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

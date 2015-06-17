@@ -87,6 +87,15 @@ class Stagiaire
     private $employeNormal;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->date_deb = new \DateTime();
+        $this->date_fin = new \DateTime();
+    }
+
+    /**
      * Get id
      *
      * @return integer 

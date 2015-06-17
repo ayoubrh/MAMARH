@@ -101,3 +101,7 @@ mamrh_Listoffre:
 mamrh_Listpost:
     pattern:  /postulation/{id}
     defaults: { _controller: MAMRHBundle:RH:Listpostulation }
+
+mamrh_candidat:
+    pattern:  /Candidat/{id}
+    defaults: { _controller: MAMRHBundle:RH:Candidat }

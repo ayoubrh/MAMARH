@@ -16,7 +16,7 @@ class Candidat
     private $id;
 
     /**
-     * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $CIN;
 
@@ -31,7 +31,7 @@ class Candidat
     private $Prenom;
 
     /**
-     * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $Email;
 
@@ -59,9 +59,10 @@ class Candidat
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Offre", mappedBy="Candidats")
+     * @ORM\ManyToOne(targetEntity="Offre", inversedBy="Candidats")
+     * @ORM\JoinColumn(name="offre_id", referencedColumnName="id", nullable=false)
      */
-    private $offres;
+    private $offre;
     /**
      * Constructor
      */
@@ -69,6 +70,8 @@ class Candidat
     {
         $this->offres = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+
 
     /**
      * Get id
@@ -89,7 +92,7 @@ class Candidat
     public function setCIN($cIN)
     {
         $this->CIN = $cIN;
-
+    
         return $this;
     }
 
@@ -112,7 +115,7 @@ class Candidat
     public function setNom($nom)
     {
         $this->Nom = $nom;
-
+    
         return $this;
     }
 
@@ -135,7 +138,7 @@ class Candidat
     public function setPrenom($prenom)
     {
         $this->Prenom = $prenom;
-
+    
         return $this;
     }
 
@@ -158,7 +161,7 @@ class Candidat
     public function setEmail($email)
     {
         $this->Email = $email;
-
+    
         return $this;
     }
 
@@ -181,7 +184,7 @@ class Candidat
     public function setSpecialite($specialite)
     {
         $this->Specialite = $specialite;
-
+    
         return $this;
     }
 
@@ -204,7 +207,7 @@ class Candidat
     public function setDiplome($diplome)
     {
         $this->Diplome = $diplome;
-
+    
         return $this;
     }
 
@@ -227,7 +230,7 @@ class Candidat
     public function setTel($tel)
     {
         $this->Tel = $tel;
-
+    
         return $this;
     }
 
@@ -242,22 +245,22 @@ class Candidat
     }
 
     /**
-     * Set Cv
+     * Set cv
      *
-     * @param string $cv
+     * @param \MAM\RHBundle\Entity\CV $cv
      * @return Candidat
      */
-    public function setCv($cv)
+    public function setCv(\MAM\RHBundle\Entity\CV $cv = null)
     {
         $this->cv = $cv;
-
+    
         return $this;
     }
 
     /**
-     * Get Cv
+     * Get cv
      *
-     * @return string 
+     * @return \MAM\RHBundle\Entity\CV 
      */
     public function getCv()
     {
@@ -265,35 +268,25 @@ class Candidat
     }
 
     /**
-     * Add offres
+     * Set offre
      *
-     * @param \MAM\RHBundle\Entity\Offre $offres
+     * @param \MAM\RHBundle\Entity\Offre $offre
      * @return Candidat
      */
-    public function addOffre(\MAM\RHBundle\Entity\Offre $offres)
+    public function setOffre(\MAM\RHBundle\Entity\Offre $offre)
     {
-        $this->offres[] = $offres;
-
+        $this->offre = $offre;
+    
         return $this;
     }
 
     /**
-     * Remove offres
+     * Get offre
      *
-     * @param \MAM\RHBundle\Entity\Offre $offres
+     * @return \MAM\RHBundle\Entity\Offre 
      */
-    public function removeOffre(\MAM\RHBundle\Entity\Offre $offres)
+    public function getOffre()
     {
-        $this->offres->removeElement($offres);
-    }
-
-    /**
-     * Get offres
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getOffres()
-    {
-        return $this->offres;
+        return $this->offre;
     }
 }

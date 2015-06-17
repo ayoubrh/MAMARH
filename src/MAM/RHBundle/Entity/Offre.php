@@ -39,12 +39,7 @@ class Offre
     private $responsableRH;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Candidat", inversedBy="offres")
-     * @ORM\JoinTable(
-     *     name="Postuler",
-     *     joinColumns={@ORM\JoinColumn(name="offre_id", referencedColumnName="id", nullable=false)},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="candidat_id", referencedColumnName="id", nullable=false)}
-     * )
+     * @ORM\ManyToMany(targetEntity="Candidat", mappedBy="offre")
      */
     private $candidats;
     /**
@@ -54,6 +49,8 @@ class Offre
     {
         $this->candidats = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+
 
     /**
      * Get id
@@ -74,7 +71,7 @@ class Offre
     public function setLibelle($libelle)
     {
         $this->libelle = $libelle;
-
+    
         return $this;
     }
 
@@ -97,7 +94,7 @@ class Offre
     public function setDescriptif($descriptif)
     {
         $this->descriptif = $descriptif;
-
+    
         return $this;
     }
 
@@ -115,7 +112,7 @@ class Offre
      * Set typeoffre
      *
      * @param string $typeoffre
-     * @return offre
+     * @return Offre
      */
     public function setTypeoffre($typeoffre)
     {
@@ -143,7 +140,7 @@ class Offre
     public function setResponsableRH(\MAM\RHBundle\Entity\ResponsableRH $responsableRH)
     {
         $this->responsableRH = $responsableRH;
-
+    
         return $this;
     }
 
@@ -166,7 +163,7 @@ class Offre
     public function addCandidat(\MAM\RHBundle\Entity\Candidat $candidats)
     {
         $this->candidats[] = $candidats;
-
+    
         return $this;
     }
 

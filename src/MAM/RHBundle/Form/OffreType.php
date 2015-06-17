@@ -17,8 +17,8 @@ class OffreType extends AbstractType
         $builder
             ->add('libelle','text')
             ->add('typeoffre','choice', array(
-                'choices' => array('Stage' => 'Offre de stage',
-                    'employe' => 'Offre d\'employe')))
+                'choices' => array('stage' => 'Offre de stage',
+                    'emploi' => 'Offre d\'emploi')))
             ->add('descriptif','textarea')
 
         ;

@@ -1,6 +1,6 @@
 
 {% extends "::base.html.twig" %}
-{% block sstitle %}Suivis{% endblock %}
+{% block sstitle %}Liste des offres{% endblock %}
 
 {% block projet %}{{ nbrprojet }}{% endblock %}
 {% block demnov %}{{ demandev }}{% endblock %}
@@ -26,7 +26,7 @@
                         <thead>
 
                         <tr>
-                            <th>Lebelle</th>
+                            <th>Libellé</th>
                             <th>Description</th>
                             <th>Type</th>
                             <th>Postulation</th>
@@ -40,7 +40,7 @@
                                 <td>{{ offre.Libelle }}</td>
                                 <td>{{ offre.descriptif }}</td>
                                 <td>{{ offre.typeoffre }}</td>
-                                <td class="center"><a href="#"><i class="btn btn-primary btn-circle"></i></a></td>
+                                <td align="center"><a href="#"><i class="fa fa-arrow-circle-right"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

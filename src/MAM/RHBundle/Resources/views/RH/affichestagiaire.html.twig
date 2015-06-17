@@ -1,5 +1,5 @@
 {% extends "::base.html.twig" %}
-{% block sstitle %}Afficher la liste des stagiaires{% endblock %}
+{% block sstitle %}Liste des stagiaires{% endblock %}
 
 {% block projet %}{{ nbrprojet }}{% endblock %}
 {% block demnov %}{{ demandev }}{% endblock %}
@@ -44,9 +44,6 @@
                             <a href="{{ path('mamrh_editstagiaire', {'ids' : stagiaire.id}) }}">
                                 <i class="fa fa-edit"></i>
                             </a>  &nbsp;&nbsp;
-                            <a href="#">
-                                <i class="fa fa-trash-o"></i>
-                            </a>
                         </td>
 
                     </tr>

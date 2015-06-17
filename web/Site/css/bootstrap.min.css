@@ -22,7 +22,6 @@
     height: 34px;
     font-size: 14px;
     line-height: 1.428571429;
-    color: #555;
     vertical-align: middle;
     background-image: none;
 }
@@ -55,7 +54,7 @@
     background-image: none;
 }
 
-.cont2 input[type="text"]{
+.cont2 textarea{
 
     width:100%;
     height:100%;

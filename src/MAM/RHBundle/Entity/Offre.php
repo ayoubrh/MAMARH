@@ -42,7 +42,7 @@ class Offre
      * @ORM\ManyToMany(targetEntity="Candidat", inversedBy="offres")
      * @ORM\JoinTable(
      *     name="Postuler",
-     *     joinColumns={@ORM\JoinColumn(name="offre_id", referencedColumnName="id", nullable=false)},
+     *     joinColumns={@ORM\JoinColumn(name="offre_id", referencedColumnName="id", nullable=)},
      *     inverseJoinColumns={@ORM\JoinColumn(name="candidat_id", referencedColumnName="id", nullable=false)}
      * )
      */

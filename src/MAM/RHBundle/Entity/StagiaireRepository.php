@@ -14,10 +14,14 @@ use MAM\UserBundle\Entity\User;
  */
 class StagiaireRepository extends EntityRepository
 {
-    public function getstagiaire()
+    public function getstagiaire(User $user)
     {
 
         $query = $this->createQueryBuilder('s')
+            ->leftJoin('s.employeNormal','e')
+            ->leftJoin('e.user','u')
+            ->where('u.id = :user')
+            ->setParameter('user', $user->getId())
             ->getQuery();
         $s=$query-> getresult();
         return $s;
@@ -27,8 +31,8 @@ class StagiaireRepository extends EntityRepository
     {
 
         $query = $this->createQueryBuilder('s')
-            ->where('s.id = :ids')
-            ->setParameter('ids ',$id)
+            ->where('s.id = :id')
+            ->setParameter('id',$id)
             ->getQuery();
         $s=$query-> getresult();
         return $s;

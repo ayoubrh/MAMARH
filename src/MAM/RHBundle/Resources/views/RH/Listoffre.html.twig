@@ -1,0 +1,57 @@
+
+{% extends "::base.html.twig" %}
+{% block sstitle %}Suivis{% endblock %}
+
+{% block projet %}{{ nbrprojet }}{% endblock %}
+{% block demnov %}{{ demandev }}{% endblock %}
+{% block stagiaire %}{{ nbrstagiaire }}{% endblock %}
+{% block demnonv %}{{ demandenonv }}{% endblock %}
+
+
+{% block corps %}
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-list-alt"></i>
+                Liste des Offres
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                        <thead>
+
+                        <tr>
+                            <th>Lebelle</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Postulation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        {% for offre in entities%}
+                            <tr class="odd gradeX">
+                                <td>{{ offre.Libelle }}</td>
+                                <td>{{ offre.descriptif }}</td>
+                                <td>{{ offre.typeoffre }}</td>
+                                <td class="center"><a href="#"><i class="btn btn-primary btn-circle"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    {% block panel %}
+    {% endblock  %}
+{% endblock %}

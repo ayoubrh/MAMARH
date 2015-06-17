@@ -58,7 +58,7 @@ mamrh_ajoutstagiaire:
     defaults: {_controller: MAMRHBundle:RH:ajoutstagiaire}
 
 mamrh_editstagiaire:
-    path:    /ModifStagiaire/{ids}
+    path:    /ModifStagiaire/{id}
     defaults: {_controller: MAMRHBundle:RH:editstagiaire}
 
 mamrh_affichemp:
@@ -94,3 +94,6 @@ mamrh_ListSuivi:
     pattern:  /Suivi/{id}
     defaults: { _controller: MAMRHBundle:Projet:Listsuivi }
 
+mamrh_Listoffre:
+    pattern:  /Offres
+    defaults: { _controller: MAMRHBundle:RH:Listoffre }

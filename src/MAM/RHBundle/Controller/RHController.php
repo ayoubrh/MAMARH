@@ -130,6 +130,7 @@ class RHController extends Controller
         $form = $this->createForm(new OffreType(), $offre);
         $request = $this->get('request');
 
+
         $em = $this->getDoctrine()->getManager();
 
         $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
@@ -148,11 +149,16 @@ class RHController extends Controller
             $form->submit($request);
             if ($form->isValid()) {
 
+                $rh = $em->getRepository('MAMRHBundle:ResponsableRH')->find($this->getUser());
+                //var_dump($rh);
+                $offre->setResponsableRH($rh);
+
                 $em->persist($offre);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Offre bien ajouté');
 
-                return $this->render('MAMRHBundle:Default:index.html.twig',array('id'=>$id));
+
+                return $this->redirect($this->generateUrl('mamrh_Listoffre'));
             }
         }
         return $this->render('MAMRHBundle:RH:AjoutOffre.html.twig',array('form' => $form->createView(),
@@ -307,28 +313,21 @@ class RHController extends Controller
     }
 
 
-    public function editstagiaireAction($ids)
+    public function editstagiaireAction($id)
     {
-        $id = $this->getUser()->getEmploye()->getId();
-        $stagiaire = $em = $this->getDoctrine()->getManager()->getRepository('MAMRHBundle:Stagiaire')
-                        ->getstagiaireid($ids);
+        $idu = $this->getUser()->getEmploye()->getId();
+        $em = $this->getDoctrine()->getManager();
+        $stagiaire = $em->getRepository('MAMRHBundle:Stagiaire')->find($id);
         $form = $this->createForm(new StagiaireType(), $stagiaire);
         $request = $this->get('request');
-
-        $em = $this->getDoctrine()->getManager();
-
         $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
             ->getnbrdemandenonV($this->getUser());
-
         $demandev = $em->getRepository('MAMRHBundle:Attestation')
             ->getnbrdemandeV($this->getUser());
-
         $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
             ->getnbrprojet($this->getUser());
-
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
             ->getnbrprojet($this->getUser());
-
         if ($request->getMethod() == 'POST') {
             $form->submit($request);
             if ($form->isValid()) {
@@ -340,14 +339,14 @@ class RHController extends Controller
                     'demandenonv'=>$demandenonv[0][1],
                     'demandev'=>$demandev[0][1],
                     'nbrprojet'=>$nbrprojet[0][1],
-                    'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
+                    'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$idu));
             }
         }
         return $this->render('MAMRHBundle:RH:AjoutStagiaire.html.twig',array('form' => $form->createView(),
             'demandenonv'=>$demandenonv[0][1],
             'demandev'=>$demandev[0][1],
             'nbrprojet'=>$nbrprojet[0][1],
-            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$idu));
     }
 
     public function getstagiaireAction()
@@ -356,7 +355,7 @@ class RHController extends Controller
         $entities=$this->getDoctrine()
             ->getManager()
             ->getRepository('MAMRHBundle:Stagiaire')
-            ->getstagiaire();
+            ->getstagiaire($this->getUser());
         //var_dump($entities);
 
         $em = $this->getDoctrine()->getManager();
@@ -483,9 +482,9 @@ class RHController extends Controller
 
         $dem  =  $em->getRepository('MAMRHBundle:Attestation')
             ->find($id);
-        //var_dump($dem);
+        var_dump($this->getUser());
         $dem->setValide(true);
-        $dem->setResponsableRH($this->getUser());
+        //$dem->setResponsableRH($this->getUser());
         //var_dump($dem);
         $em->persist($dem);
         $em->flush();
@@ -505,5 +504,35 @@ class RHController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('mamrh_affichemp'));
+    }
+
+    public function ListoffreAction(){
+        $id = $this->getUser()->getEmploye()->getId();
+        $entities=$this->getDoctrine()
+            ->getManager()
+            ->getRepository('MAMRHBundle:Offre')
+            ->findAll();
+        //var_dump($entities);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:RH:Listoffre.html.twig', array('entities' => $entities,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id)
+        );
     }
 }

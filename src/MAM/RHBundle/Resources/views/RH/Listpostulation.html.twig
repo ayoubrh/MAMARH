@@ -1,6 +1,6 @@
 
 {% extends "::base.html.twig" %}
-{% block sstitle %}Liste des offres{% endblock %}
+{% block sstitle %}Suivis{% endblock %}
 
 {% block projet %}{{ nbrprojet }}{% endblock %}
 {% block demnov %}{{ demandev }}{% endblock %}
@@ -26,10 +26,10 @@
                         <thead>
 
                         <tr>
-                            <th>Libellé</th>
-                            <th>Description</th>
-                            <th>Type</th>
-                            <th>Postulation</th>
+                            <th>Nom & Prenom</th>
+                            <th>Diplome</th>
+                            <th>Spécialité</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,9 +37,9 @@
 
                         {% for offre in entities%}
                             <tr class="odd gradeX">
-                                <td>{{ offre.Libelle }}</td>
-                                <td>{{ offre.descriptif }}</td>
-                                <td>{{ offre.typeoffre }}</td>
+                                <td>{{ offre.Nom }} {{ offre.Prenom }}</td>
+                                <td>{{ offre.Diplome }}</td>
+                                <td>{{ offre.Specialite }}</td>
                                 <td class="center"><a href="{{ path('mamrh_Listpost', {'id' : offre.id}) }}"><i class="btn btn-primary btn-circle"></i></a></td>
                             </tr>
                         {% endfor %}

@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class CandidatRepository extends EntityRepository
 {
+    public function condidatoffre($id){
+        $nbrdemande = $this->createQueryBuilder('c')
+            ->leftJoin('c.offres','o')
+            ->where('o.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+        return $nbrdemande;
+    }
 }

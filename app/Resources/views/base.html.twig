@@ -100,6 +100,7 @@
     <!-- /.dropdown-messages -->
 </li>
 <!-- /.dropdown -->
+
 <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -205,6 +206,7 @@
                     <li>
                         <a href="{{ path('mamrh_affichemp',{'id': id}) }}">Lister les employés</a>
                     </li>
+
                     <li>
                         <a href="{{ path('mamrh_archiveemp',{'id': id}) }}">Archive des Employés</a>
                     </li>
@@ -232,15 +234,6 @@
                     <li>
                         <a href="{{ path('mamrh_ListeProjet',{'id': id}) }}">Liste des projets</a>
                     </li>
-                    <li>
-                        <a href="{{ path('mamrh_AjoutSuivi',{'id': id}) }}">Avancement d'un projet</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('mamrh_ListSuivi',{'id': id}) }}">List d'avancement des projets</a>
-                    </li>
-                    <li>
-                        <a href="#">Archive des projets</a>
-                    </li>
                 </ul>
             </li>
             <li>
@@ -262,7 +255,7 @@
                 <a href="#"><i class="fa fa-external-link fa-fw"></i> Gestion des offres<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ path('mamrh_ajoutoffre',{'id': id}) }}">Ajouter un offre</a>
+                        <a href="{{ path('mamrh_ajoutoffre',{'id': id}) }}">Ajouter une offre</a>
                     </li>
                     <li>
                         <a href="#">Voir les postulations</a>

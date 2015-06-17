@@ -15,7 +15,10 @@ class OffreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
+            ->add('libelle','text')
+            ->add('typeoffre','choice', array(
+                'choices' => array('Stage' => 'Offre de stage',
+                    'employe' => 'Offre d\'employe')))
             ->add('descriptif','textarea')
 
         ;

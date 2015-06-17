@@ -219,7 +219,9 @@ class RHController extends Controller
             ->getManager()
             ->getRepository('MAMRHBundle:Employe')
             ->getarchiveemploye();
+        //var_dump($entities);
         $i = 0;
+        $dtype[] = array();
         //var_dump($entities);
         $e = array();
         foreach($entities as $en){
@@ -304,6 +306,50 @@ class RHController extends Controller
             'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
     }
 
+
+    public function editstagiaireAction($ids)
+    {
+        $id = $this->getUser()->getEmploye()->getId();
+        $stagiaire = $em = $this->getDoctrine()->getManager()->getRepository('MAMRHBundle:Stagiaire')
+                        ->getstagiaireid($ids);
+        $form = $this->createForm(new StagiaireType(), $stagiaire);
+        $request = $this->get('request');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        if ($request->getMethod() == 'POST') {
+            $form->submit($request);
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($stagiaire);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', 'Employé bien ajouté');
+                return $this->render('MAMRHBundle:RH:Acceuil.html.twig',array(
+                    'demandenonv'=>$demandenonv[0][1],
+                    'demandev'=>$demandev[0][1],
+                    'nbrprojet'=>$nbrprojet[0][1],
+                    'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
+            }
+        }
+        return $this->render('MAMRHBundle:RH:AjoutStagiaire.html.twig',array('form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
+    }
+
     public function getstagiaireAction()
     {
         $id = $this->getUser()->getEmploye()->getId();
@@ -334,6 +380,8 @@ class RHController extends Controller
                 'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id)
         );
     }
+
+
 
     private function confirmation(User $user, $password)
     {

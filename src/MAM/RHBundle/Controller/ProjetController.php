@@ -147,7 +147,7 @@ class ProjetController extends Controller
                 $em->persist($suivi);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'Nouvelle tache est bien ajoutée');
-                return $this->redirect($this->generateUrl('mamrh_ajoutemploye'));
+                return $this->redirect($this->generateUrl('mamrh_ListSuivi',array('id'=>$id)));
             }
         }
         $ide = $this->getUser()->getEmploye()->getId();
@@ -188,7 +188,8 @@ class ProjetController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $projets = $em->getRepository('MAMRHBundle:Projet')
-            ->getprojetdep($this->getUser());
+            ->getprojetchefp($this->getUser());
+
         $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
             ->getnbrdemandenonV($this->getUser());
 
@@ -347,7 +348,7 @@ class ProjetController extends Controller
                 'demandenonv'=>$demandenonv[0][1],
                 'demandev'=>$demandev[0][1],
                 'nbrprojet'=>$nbrprojet[0][1],
-                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$ide));
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$ide, 'projet'=>$id));
     }
 
 }

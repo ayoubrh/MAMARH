@@ -41,7 +41,7 @@
                         <td>{{ stagiaire.datefin|date('d/m/Y') }}</td>
                         <td align="center"><a href="{{ asset(stagiaire.cv.webPath) }}"><i class="fa fa-download"></i></a></td>
                         <td align="center">
-                            <a href="#">
+                            <a href="{{ path('mamrh_editstagiaire', {'ids' : stagiaire.id}) }}">
                                 <i class="fa fa-edit"></i>
                             </a>  &nbsp;&nbsp;
                             <a href="#">

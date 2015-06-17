@@ -57,6 +57,10 @@ mamrh_ajoutstagiaire:
     path:    /AjoutStagiaire
     defaults: {_controller: MAMRHBundle:RH:ajoutstagiaire}
 
+mamrh_editstagiaire:
+    path:    /ModifStagiaire/{ids}
+    defaults: {_controller: MAMRHBundle:RH:editstagiaire}
+
 mamrh_affichemp:
     path:    /AffichEmp
     defaults: {_controller: MAMRHBundle:RH:getemployenormal}

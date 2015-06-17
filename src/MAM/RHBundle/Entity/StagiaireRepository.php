@@ -23,6 +23,17 @@ class StagiaireRepository extends EntityRepository
         return $s;
     }
 
+    public function getstagiaireid($id)
+    {
+
+        $query = $this->createQueryBuilder('s')
+            ->where('s.id = :ids')
+            ->setParameter('ids ',$id)
+            ->getQuery();
+        $s=$query-> getresult();
+        return $s;
+    }
+
     public function getnbrprojet(User $user){
         $nbrstag = $this->createQueryBuilder('d')
             ->select('COUNT(DISTINCT d.id)')

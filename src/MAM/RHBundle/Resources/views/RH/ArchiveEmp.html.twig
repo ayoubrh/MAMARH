@@ -36,7 +36,12 @@
                            <td>{{ employe.Prenom }}</td>
                            <td>{{ employe.Fonction }}</td>
                            <td>{{ employe.departement.Libelle }}</td>
-                           <td>{{ dtype[i][0]['dtype'] }}</td>
+
+                           {% if(dtype[i][0]['dtype'] == 'Employenormal') %}
+                               <td>Employe</td>
+                           {% else %}
+                               <td>{{ dtype[i][0]['dtype'] }}</td>
+                           {% endif %}
 
                        </tr>
                          {% set i = i+1 %}

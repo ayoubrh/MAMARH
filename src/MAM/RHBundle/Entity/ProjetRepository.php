@@ -29,12 +29,54 @@ class ProjetRepository extends EntityRepository
         return $nbrproj;
     }
 
+    public function getnbrprojetchef(User $user){
+        $nbrproj = $this->createQueryBuilder('d')
+            ->select('COUNT(DISTINCT d.id)')
+            ->where('d.Date_fin < :d')
+            ->leftJoin('d.chefProjet','e')
+            ->leftJoin('e.user','u')
+            ->andwhere('u.id = :user')
+            ->setParameter('d', new Datetime())
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+        return $nbrproj;
+    }
+
+    public function getnbrprojetdep(User $user){
+        $nbrproj = $this->createQueryBuilder('d')
+            ->select('COUNT(DISTINCT d.id)')
+            ->where('d.Date_fin < :d')
+            ->leftJoin('d.chefDepartement','e')
+            ->leftJoin('e.user','u')
+            ->andwhere('u.id = :user')
+            ->setParameter('d', new Datetime())
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+        return $nbrproj;
+    }
+
     public function getprojetdep(User $user){
         $projets = $this->createQueryBuilder('p')
             ->leftJoin('p.chefDepartement','c')
             ->addSelect('c')
-            ->where('c.user = :u')
-            ->setParameter('u', $user)
+            ->leftJoin('c.user','u')
+            ->where('u.id = :i')
+            ->setParameter('i', $user->getId())
+            ->getQuery()
+            ->getResult();
+
+        return $projets;
+    }
+
+    public function getprojetchefp(User $user){
+        $projets = $this->createQueryBuilder('p')
+            ->leftJoin('p.chefProjet','c')
+            ->addSelect('c')
+            ->leftJoin('c.user','u')
+            ->where('u.id = :i')
+            ->setParameter('i', $user->getId())
             ->getQuery()
             ->getResult();
 

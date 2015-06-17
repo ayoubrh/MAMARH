@@ -1,0 +1,22 @@
+
+{% extends "::base.html.twig" %}
+{% block sstitle %}Suivis{% endblock %}
+
+{% block projet %}{{ nbrprojet }}{% endblock %}
+{% block demnov %}{{ demandev }}{% endblock %}
+{% block stagiaire %}{{ nbrstagiaire }}{% endblock %}
+{% block demnonv %}{{ demandenonv }}{% endblock %}
+
+
+{% block corps %}
+    {{ entities.CIN }}
+    {{ entities.Nom }}
+    {{ entities.Prenom }}
+    {{ entities.Email }}
+    {{ entities.Specialite }}
+    {{ entities.Diplome }}
+    {{ entities.Tel }}
+    {{ asset(entities.cv.webPath) }}
+    {% block panel %}
+    {% endblock  %}
+{% endblock %}

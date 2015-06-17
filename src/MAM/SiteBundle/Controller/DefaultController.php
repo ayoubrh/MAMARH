@@ -87,7 +87,7 @@ if ($form->isValid()) {// On vérifie que les valeurs entrées sont correctes
 //2
   //$em->getRepository('MAMRHBundle:Testoffre'); pour get
 //pour bien comprendre ce fonctionnement voir la page 124 de cours symfony2
-var_dump($CV);
+//var_dump($CV);
 $em->persist($CV);//c'est à dire mémoriser ce traitement dans la mémoire, car on peut faire plusieurs persist et une seule flush
 
 
@@ -169,8 +169,8 @@ if ($form->isValid()) {// On vérifie que les valeurs entrées sont correctes
 $em->persist($candidat);//c'est à dire mémoriser ce traitement dans la mémoire, car on peut faire plusieurs persist et une seule flush
 
 $offre->addcandidat($candidat);//c'est l'injection, i.e: enregistrer dans la table de jointure les id de l'offre et candidat
-                                   //addTestcandidat: c'est la méthode qui ce travail, celle-ci est définie dans l'entité proprietaire
-                                   //dans ce cas c'est Testoffre
+    $candidat->setOffre($offre);                                   //addTestcandidat: c'est la méthode qui ce travail, celle-ci est définie dans l'entité proprietaire
+                      //dans ce cas c'est Testoffre
 
 $em->flush();//on exécute tt les traitements
 

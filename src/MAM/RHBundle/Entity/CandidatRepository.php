@@ -14,7 +14,7 @@ class CandidatRepository extends EntityRepository
 {
     public function condidatoffre($id){
         $nbrdemande = $this->createQueryBuilder('c')
-            ->leftJoin('c.offres','o')
+            ->leftJoin('c.offre','o')
             ->where('o.id = :id')
             ->setParameter('id', $id)
             ->getQuery()

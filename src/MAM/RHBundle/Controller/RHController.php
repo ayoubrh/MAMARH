@@ -565,4 +565,34 @@ class RHController extends Controller
                 'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$idu)
         );
     }
+
+    public function CandidatAction($id){
+        $idu = $this->getUser()->getEmploye()->getId();
+        $entities=$this->getDoctrine()
+            ->getManager()
+            ->getRepository('MAMRHBundle:Candidat')
+            ->find($id);
+        //var_dump($entities);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+            ->getnbrprojet($this->getUser());
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:RH:Candidat.html.twig', array('entities' => $entities,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$idu)
+        );
+    }
 }

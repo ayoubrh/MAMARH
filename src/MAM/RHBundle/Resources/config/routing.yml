@@ -97,3 +97,7 @@ mamrh_ListSuivi:
 mamrh_Listoffre:
     pattern:  /Offres
     defaults: { _controller: MAMRHBundle:RH:Listoffre }
+
+mamrh_Listpost:
+    pattern:  /postulation/{id}
+    defaults: { _controller: MAMRHBundle:RH:Listpostulation }

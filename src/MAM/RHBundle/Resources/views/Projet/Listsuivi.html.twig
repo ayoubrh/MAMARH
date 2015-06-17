@@ -16,12 +16,16 @@
             <div class="panel-heading">
                 <i class="fa fa-list-alt"></i>
                 Liste des taches réaliser
-            </div>
+                <span class="pull-right"><a href="{{ path('mamrh_AjoutSuivi', {'id' : projet}) }}" align="right"><button class="btn btn-success" type="button" align="right">Ajouter une tâche</button></a>
+            </span></div>
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="dataTable_wrapper">
+
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+
                         <thead>
+
                         <tr>
                             <th>Tache</th>
                             <th>Description</th>
@@ -39,7 +43,7 @@
                                 <td>{{ suivi.Descriptif }}</td>
                                 <td>{{ suivi.DateDTache|date('d/m/Y H:i:s') }}</td>
                                 <td>{{ suivi.DateFTache|date('d/m/Y H:i:s') }}</td>
-                                <td class="center">{{ suivi.DureeTache }}</td>
+                                <td class="center">{{ suivi.DureeTache }} jour</td>
                             </tr>
                         {% endfor %}
                         </tbody>

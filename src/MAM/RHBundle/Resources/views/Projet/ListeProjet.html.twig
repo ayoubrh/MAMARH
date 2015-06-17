@@ -36,7 +36,7 @@
                 <td>{{ projet.chefProjet.Nom }} {{ projet.chefProjet.Prenom }}</td>
                 <td>{{ projet.DateDeb|date('d/m/Y') }}</td>
                 <td>{{ projet.DureeEstime }}</td>
-                <td>{{ suivi.DureeTache }}</td>
+                <td><a href="{{ path('mamrh_ListSuivi', {'id' : projet.id}) }}"><i class="btn btn-primary btn-circle"></i></a></td>
             </tr>
         {% endfor %}
     </tbody>

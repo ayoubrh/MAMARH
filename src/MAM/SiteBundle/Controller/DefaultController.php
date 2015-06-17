@@ -24,6 +24,11 @@ class DefaultController extends Controller
     {
 
      //formulaire
+        $em = $this->getDoctrine()->getManager();
+        //$em: c'est la variable qui nous permet de faire la liasion avec la base de données, soit persist and flush,getRepository...
+
+
+        $offre = $em->getRepository('MAMRHBundle:Offre')->findAll();
 
      $enquiry = new Enquiry();
         $form = $this->createForm(new EnquiryType(), $enquiry);
@@ -34,12 +39,12 @@ class DefaultController extends Controller
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Test')
                     ->setFrom($enquiry->getEmail())
-                    ->setTo('amine.ogri@gmail.com')
+                    ->setTo('mamrh100@gmail.com')
                     ->setBody($enquiry->getBody());
                 $this->get('mailer')->send($message);
                 // Redirect - This is important to prevent users re-posting
                 // the form if they refresh the page
-                return $this->redirect($this->generateUrl('mam_site'));
+                return $this->render('MAMSiteBundle:Default:index.html.twig',array('offre' => $offre,'form' => $form->createView()));
             }
         }
         
@@ -49,11 +54,7 @@ class DefaultController extends Controller
 else
    {
 
-    	$em = $this->getDoctrine()->getManager();
-        //$em: c'est la variable qui nous permet de faire la liasion avec la base de données, soit persist and flush,getRepository...
-
-
-$offre = $em->getRepository('MAMRHBundle:Offre')->findAll();// Pour récupérer un article unique : on utilise find()
+    	// Pour récupérer un article unique : on utilise find()
 return $this->render('MAMSiteBundle:Default:index.html.twig',array('offre' => $offre,'form' => $form->createView()));
 }
     }

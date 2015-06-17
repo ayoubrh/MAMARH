@@ -1,5 +1,5 @@
 {% extends "::base.html.twig" %}
-{% block sstitle %}Liste des employés démissionnée{% endblock %}
+{% block sstitle %}Archive des employés{% endblock %}
 
 {% block projet %}{{ nbrprojet }}{% endblock %}
 {% block demnov %}{{ demandev }}{% endblock %}
@@ -11,7 +11,7 @@
     <div class="panel panel-primary">
        <div class="panel-heading">
            <i class="fa fa-th-list"></i>
-           Tableau des émployés
+           Tableau d'historique
        </div>
        <div class="panel-body">
            <div class="dataTable_wrapper">
@@ -23,7 +23,7 @@
                           <th>Prénom</th>
                           <th>Fonction</th>
                           <th>Département</th>
-                          <th>Fonc</th>
+                          <th>Résponsabilité</th>
                       </tr>
                      </thead>
                    {% set i = 0 %}

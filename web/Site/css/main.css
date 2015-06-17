@@ -174,66 +174,66 @@ a:focus {
   margin-bottom: 30px;
   font-size: 48px;
 }
-#portfolio .box {
+#Offres .box {
   background: #f3f3f3;
 }
-.portfolio-items,
-.portfolio-filter {
+.Offres-items,
+.Offres-filter {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.portfolio-items {
+.Offres-items {
   margin-right: -20px;
 }
-.portfolio-filter {
+.Offres-filter {
   margin-bottom: 50px;
   text-align: center;
 }
-.portfolio-filter > li {
+.Offres-filter > li {
   display: inline-block;
 }
-.portfolio-items > li {
+.Offres-items > li {
   float: left;
   padding: 0;
   margin: 0;
 }
-.portfolio-items.col-2 > li {
+.Offres-items.col-2 > li {
   width: 50%;
 }
-.portfolio-items.col-3 > li {
+.Offres-items.col-3 > li {
   width: 33%;
 }
-.portfolio-items.col-4 > li {
+.Offres-items.col-4 > li {
   width: 25%;
 }
-.portfolio-items.col-5 > li {
+.Offres-items.col-5 > li {
   width: 20%;
 }
-.portfolio-items.col-6 > li {
+.Offres-items.col-6 > li {
   width: 16%;
 }
-.portfolio-item .item-inner {
+.Offres-item .item-inner {
   margin: 0 20px 20px 0;
   text-align: center;
   background: #fff;
   padding: 10px;
   border-bottom: 1px solid #e1e1e1;
 }
-.portfolio-item img {
+.Offres-item img {
   width: 100%;
 }
-.portfolio-item .portfolio-image {
+.Offres-item .Offres-image {
   position: relative;
 }
-.portfolio-item h5 {
+.Offres-item h5 {
   margin: 0;
   padding: 10px 0 0 0;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.portfolio-item .overlay {
+.Offres-item .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -248,13 +248,13 @@ a:focus {
   -o-transition: opacity 300ms;
   transition: opacity 300ms;
 }
-.portfolio-item .overlay .preview {
+.Offres-item .overlay .preview {
   position: relative;
   top: 50%;
   display: inline-block;
   margin-top: -20px;
 }
-.portfolio-item:hover .overlay {
+.Offres-item:hover .overlay {
   opacity: 1;
 }
 /* Start: Recommended Isotope styles */
@@ -308,10 +308,10 @@ a:focus {
   -o-transition: none;
   transition: none;
 }
-#pricing .box {
+#Us .box {
   background-color: #f9f9f9;
 }
-#pricing .plan {
+#Us .plan {
   background: #fff;
   list-style: none;
   margin: 0 0 20px;
@@ -319,43 +319,43 @@ a:focus {
   padding: 0;
   border-bottom: 1px solid #e1e1e1;
 }
-#pricing .plan li {
+#Us .plan li {
   padding: 10px 0;
   margin: 0 15px;
   border-bottom: 1px dashed #eee;
 }
-#pricing .plan li.plan-name {
+#Us .plan li.plan-name {
   padding: 15px 0;
   font-size: 18px;
   font-weight: 700;
 }
-#pricing .plan li.plan-price {
+#Us .plan li.plan-price {
   color: #666;
   padding: 15px 0;
   font-size: 48px;
 }
-#pricing .plan li.plan-action {
+#Us .plan li.plan-action {
   margin-top: 20px;
   margin-bottom: 20px;
   border-bottom: 0;
 }
-#pricing .plan.featured {
+#Us .plan.featured {
   -webkit-transform: scale(1.05);
   -moz-transform: scale(1.05);
   -ms-transform: scale(1.05);
   -o-transform: scale(1.05);
   transform: scale(1.05);
 }
-#pricing .plan.featured .plan-price {
+#Us .plan.featured .plan-price {
   color: #fff;
   background-color: #52b6ec;
   border-bottom-color: #52b6ec;
   margin: 0;
 }
-#services .box {
+#News .box {
   padding-bottom: 0;
 }
-#services .row > div {
+#News .row > div {
   margin-bottom: 50px;
 }
 .center {

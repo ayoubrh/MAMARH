@@ -474,14 +474,14 @@ a:focus {
 }
 .navbar-default .navbar-brand {
   margin-right: 60px;
-  margin-left: 30px;
-  width: 200px;
+  margin-left: 5px;
+  width: 210px;
   height: 78px;
 }
 
 .navbar-brand>img{
   display: block;
-  width: 80px;
+  width: 240px;
   height: 73px;
   margin: -10px 5px -10px 0px;
 }

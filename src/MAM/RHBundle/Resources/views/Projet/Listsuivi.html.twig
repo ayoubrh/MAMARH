@@ -10,16 +10,17 @@
 
 {% block corps %}
 <div class="row">
-
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-list-alt"></i>
                 Liste des taches réaliser
-    {% if is_granted('ROLE_RH') %}
-                <span class="pull-right"><a href="{{ path('mamrh_AjoutSuivi', {'id' : projet}) }}" align="right"><button class="btn btn-success" type="button" align="right">Ajouter une tâche</button></a>
-            </span>
-    {% endif %}
+
+                <span class="pull-right">
+                    <a href="{{ path('mamrh_AjoutSuivi', {'id' : projet}) }}" >
+                        <button class="btn btn-default btn-xs" type="button" >Ajouter une tâche</button>
+                    </a>
+                </span>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

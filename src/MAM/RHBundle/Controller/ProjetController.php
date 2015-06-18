@@ -54,7 +54,7 @@ class ProjetController extends Controller
                 ->getnbrprojetdep($this->getUser());
         }
         if ($this->get('security.context')->isGranted('ROLE_RH')){
-            $nbrprojet = 0;
+            $nbrprojet[0][1] = 0;
         }
 
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
@@ -153,7 +153,7 @@ class ProjetController extends Controller
                 ->getnbrprojetdep($this->getUser());
         }
         if ($this->get('security.context')->isGranted('ROLE_RH')){
-            $nbrprojet = 0;
+            $nbrprojet[0][1] = 0;
         }
 
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
@@ -193,6 +193,19 @@ class ProjetController extends Controller
         $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
             ->getnbrdemandenonV($this->getUser());
 
+            //$query = "SELECT dtype FROM employe WHERE id=".$e->getId();
+            //$dtype[$i] = $em->getConnection()->exec($query);
+
+            $connection = $em->getConnection();
+            $statement = $connection->prepare("SELECT dtype FROM employe WHERE id = :id");
+            $statement->bindValue('id', $id);
+            $statement->execute();
+            $dtype = $statement->fetchAll();
+        //var_dump($dtype);
+
+            //array_push($e,$dtype[$i],$en);
+
+
         $demandev = $em->getRepository('MAMRHBundle:Attestation')
             ->getnbrdemandeV($this->getUser());
 
@@ -209,7 +222,7 @@ class ProjetController extends Controller
                 ->getnbrprojetdep($this->getUser());
         }
         if ($this->get('security.context')->isGranted('ROLE_RH')){
-            $nbrprojet = 0;
+            $nbrprojet[0][1] = 0;
         }
 
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
@@ -218,7 +231,7 @@ class ProjetController extends Controller
         //if($emp->getUser->getEnabled() == false) $emp->getUser->setEnabled(true);
         $ide = $this->getUser()->getEmploye()->getId();
         return $this->render('MAMRHBundle:Projet:VoirProfil.html.twig',array('profil'=>$emp,'demandenonv'=>$demandenonv[0][1],
-            'demandev'=>$demandev[0][1],
+            'demandev'=>$demandev[0][1],'dtype' => $dtype,
             'nbrprojet'=>$nbrprojet[0][1],
             'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$ide));
     }
@@ -248,7 +261,7 @@ class ProjetController extends Controller
                 ->getnbrprojetdep($this->getUser());
         }
         if ($this->get('security.context')->isGranted('ROLE_RH')){
-            $nbrprojet = 0;
+            $nbrprojet[0][1] = 0;
         }
 
         //var_dump($nbrprojet);
@@ -267,6 +280,49 @@ class ProjetController extends Controller
                 'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
     }
 
+    public function ArchiveProjetAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projets = $em->getRepository('MAMRHBundle:Projet')
+            ->getprojetchefpA($this->getUser());
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        if ($this->get('security.context')->isGranted('ROLE_EMP')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojet($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_PROJET')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetchef($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_DEP')){
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetdep($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_RH')){
+            $nbrprojet[0][1] = 0;
+        }
+
+        //var_dump($nbrprojet);
+
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        $id = $this->getUser()->getEmploye()->getId();
+
+        return $this->render('MAMRHBundle:Projet:ArchiveProjet.html.twig',
+            array('projets'=> $projets,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
+    }
 
 
     public function ModifinfogProfilAction($id){
@@ -294,7 +350,7 @@ class ProjetController extends Controller
                 ->getnbrprojetdep($this->getUser());
         }
         if ($this->get('security.context')->isGranted('ROLE_RH')){
-            $nbrprojet = 0;
+            $nbrprojet[0][1] = 0;
         }
 
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
@@ -345,7 +401,7 @@ class ProjetController extends Controller
                 ->getnbrprojetdep($this->getUser());
         }
         if ($this->get('security.context')->isGranted('ROLE_RH')){
-            $nbrprojet = 0;
+            $nbrprojet[0][1] = 0;
         }
 
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
@@ -395,7 +451,7 @@ class ProjetController extends Controller
                 ->getnbrprojetdep($this->getUser());
         }
         if ($this->get('security.context')->isGranted('ROLE_RH')){
-            $nbrprojet = 0;
+            $nbrprojet[0][1] = 0;
         }
 
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
@@ -444,7 +500,7 @@ class ProjetController extends Controller
                 ->getnbrprojetdep($this->getUser());
         }
         if ($this->get('security.context')->isGranted('ROLE_RH')){
-            $nbrprojet = 0;
+            $nbrprojet[0][1] = 0;
         }
 
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')

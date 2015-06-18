@@ -228,6 +228,7 @@
 
                 </ul>
             </li>
+            {% if (is_granted('ROLE_CHEF_DEP') or is_granted('ROLE_EMP') or is_granted('ROLE_CHEF_PROJET')) %}
             <li>
                 <a href="#"><i class="fa fa-edit fa-fw"></i>Gestion des projets<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -236,6 +237,7 @@
                         <a href="{{ path('mamrh_AjoutProjet',{'id': id}) }}">Ajouter un projet</a>
                     </li>
                     {% endif %}
+
                     <li>
                         <a href="{{ path('mamrh_ListeProjet',{'id': id}) }}">Liste des projets</a>
                     </li>
@@ -244,6 +246,7 @@
                     </li>
                 </ul>
             </li>
+            {% endif %}
             <li>
                 <a href="#"><i class="fa fa-mortar-board fa-fw"></i> Gestion des stagiaires<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

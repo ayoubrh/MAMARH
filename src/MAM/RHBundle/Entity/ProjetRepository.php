@@ -84,4 +84,20 @@ class ProjetRepository extends EntityRepository
 
         return $projets;
     }
+
+    public function getprojetchefpA(User $user){
+
+        $projets = $this->createQueryBuilder('p')
+            ->Where('p.Date_fin > :d')
+            ->leftJoin('p.chefProjet','c')
+            ->addSelect('c')
+            ->leftJoin('c.user','u')
+            ->andWhere('u.id = :i')
+            ->setParameter('d', new Datetime())
+            ->setParameter('i', $user->getId())
+            ->getQuery()
+            ->getResult();
+
+        return $projets;
+    }
 }

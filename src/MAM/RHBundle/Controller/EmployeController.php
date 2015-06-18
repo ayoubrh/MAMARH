@@ -50,7 +50,7 @@ class EmployeController extends Controller
                 ->getnbrprojetdep($this->getUser());
         }
         if ($this->get('security.context')->isGranted('ROLE_RH')){
-            $nbrprojet = 0;
+            $nbrprojet[0][1] = 0;
         }
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
             ->getnbrprojet($this->getUser());

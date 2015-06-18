@@ -12,24 +12,25 @@
     <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-user"></i>
-        &nbsp;&nbsp;{{ profil.Nom }} {{ profil.Prenom }}
+        &nbsp;&nbsp;{{ profil.Nom }} {{ profil.Prenom }} {{ dtype[0]['dtype'] }}
+        {% if(dtype[0]['dtype'] == 'Employenormal') %}
     {% if is_granted('ROLE_RH') %}
                     <span class="pull-right">
                         {% if( profil.departement.Libelle == 'Ressource Humaines') %}
-                    <a href="{{ path('mamrh_ModifInfoGProfil', {'id' : profil.id}) }}">
+                    <a href="{{ path('mamrh_responsablrh', {'id' : profil.id}) }}">
                         <button type="button" class="btn btn-default btn-xs">
                             Nommé comme Responsable RH
                         </button>
                     </a>
                         {% else %}
-                        <a href="{{ path('mamrh_ModifInfoGProfil', {'id' : profil.id}) }}">
+                        <a href="{{ path('mamrh_chefdep', {'id' : profil.id}) }}">
                             <button type="button" class="btn btn-default btn-xs">
                                 Nommé comme chef de département
                             </button>
                         </a>
                         {% endif %}
                     </span>
-        {% endif %}
+        {% endif %}{% endif %}
     </div>
     <div class="panel-body">
     <div class="row">

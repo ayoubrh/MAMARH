@@ -113,3 +113,11 @@ mamrh_candidat:
 mamrh_archstag:
     path:    /ArchiveStag
     defaults: {_controller: MAMRHBundle:RH:archivestagiaire}
+
+mamrh_responsablrh:
+    pattern:  /responsablerh/{id}
+    defaults: { _controller: MAMRHBundle:RH:Responsable }
+
+mamrh_chefdep:
+    pattern:  /chefdep/{id}
+    defaults: { _controller: MAMRHBundle:RH:Chefdep }

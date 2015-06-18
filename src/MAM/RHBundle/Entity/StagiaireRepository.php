@@ -18,11 +18,25 @@ class StagiaireRepository extends EntityRepository
     {
 
         $query = $this->createQueryBuilder('s')
+            ->where('s.date_fin >= :df')
             ->leftJoin('s.employeNormal','e')
             ->leftJoin('e.user','u')
-            ->where('u.id = :user')
+            ->andwhere('u.id = :user')
+            ->setParameter('df', new Datetime)
             ->setParameter('user', $user->getId())
             ->getQuery();
+        $s=$query-> getresult();
+        return $s;
+    }
+
+    public function archivestagiaire()
+    {
+
+        $query = $this->createQueryBuilder('s')
+            ->where('s.date_fin < :df')
+            ->setParameter('df', new Datetime())
+            ->getQuery();
+//var_dump(new Datetime());
         $s=$query-> getresult();
         return $s;
     }

@@ -43,6 +43,8 @@ class ProjetRepository extends EntityRepository
         return $nbrproj;
     }
 
+
+
     public function getnbrprojetdep(User $user){
         $nbrproj = $this->createQueryBuilder('d')
             ->select('COUNT(DISTINCT d.id)')

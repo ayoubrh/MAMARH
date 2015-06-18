@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block sstitle %} Mon profil{% endblock %}
+{% block sstitle %} Profil{% endblock %}
 
 {% block projet %}{{ nbrprojet }}{% endblock %}
 {% block demnov %}{{ demandev }}{% endblock %}
@@ -13,11 +13,23 @@
     <div class="panel-heading">
         <i class="fa fa-user"></i>
         &nbsp;&nbsp;{{ profil.Nom }} {{ profil.Prenom }}
+    {% if is_granted('ROLE_RH') %}
                     <span class="pull-right">
+                        {% if( profil.departement.Libelle == 'Ressource Humaines') %}
                     <a href="{{ path('mamrh_ModifInfoGProfil', {'id' : profil.id}) }}">
-                        <button type="button" class="btn btn-default btn-xs">Nommé comme chef de projet</button>
+                        <button type="button" class="btn btn-default btn-xs">
+                            Nommé comme Responsable RH
+                        </button>
                     </a>
+                        {% else %}
+                        <a href="{{ path('mamrh_ModifInfoGProfil', {'id' : profil.id}) }}">
+                            <button type="button" class="btn btn-default btn-xs">
+                                Nommé comme chef de département
+                            </button>
+                        </a>
+                        {% endif %}
                     </span>
+        {% endif %}
     </div>
     <div class="panel-body">
     <div class="row">

@@ -37,9 +37,21 @@ class EmployeController extends Controller
         $demandev = $em->getRepository('MAMRHBundle:Attestation')
             ->getnbrdemandeV($this->getUser());
 
-        $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
-            ->getnbrprojet($this->getUser());
-
+        if ($this->get('security.context')->isGranted('ROLE_EMP')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojet($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_PROJET')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetchef($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_DEP')){
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetdep($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_RH')){
+            $nbrprojet = 0;
+        }
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
             ->getnbrprojet($this->getUser());
 

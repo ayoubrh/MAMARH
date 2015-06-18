@@ -41,6 +41,10 @@ mamrh_ListeProjet:
     pattern:  /ListeProjet
     defaults: { _controller: MAMRHBundle:Projet:ListeProjet }
 
+mamrh_archiveProjet:
+    pattern:  /Archiveprojet
+    defaults: { _controller: MAMRHBundle:Projet:ArchiveProjet }
+
 mamrh_ajoutemploye:
     path:    /ajoutemploye
     defaults: {_controller: MAMRHBundle:RH:ajoutemploye}
@@ -105,3 +109,7 @@ mamrh_Listpost:
 mamrh_candidat:
     pattern:  /Candidat/{id}
     defaults: { _controller: MAMRHBundle:RH:Candidat }
+
+mamrh_archstag:
+    path:    /ArchiveStag
+    defaults: {_controller: MAMRHBundle:RH:archivestagiaire}

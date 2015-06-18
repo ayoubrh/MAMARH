@@ -197,6 +197,7 @@
             <li>
                 <a href="{{ path('mamrh_Acceuil') }}"><i class="fa fa-dashboard fa-fw"></i> Tableau de bord</a>
             </li>
+            {% if is_granted('ROLE_RH') %}
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i>Gestion des employés<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -213,47 +214,59 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            {% endif %}
             <li>
                 <a href="#"><i class="fa fa-envelope fa-fw"></i> Gestion des demandes<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{ path('mamrh_demande',{'id': id}) }}">Ajouter une demande</a>
                     </li>
+                    {% if is_granted('ROLE_RH') %}
                     <li>
                         <a href="{{ path('mamrh_rh_demande',{'id': id}) }}">Traitement des demandes</a>
                     </li>
+                    {% endif %}
 
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-edit fa-fw"></i> Gestion des projets<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-edit fa-fw"></i>Gestion des projets<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
+                    {% if is_granted('ROLE_CHEF_DEP') %}
                     <li>
                         <a href="{{ path('mamrh_AjoutProjet',{'id': id}) }}">Ajouter un projet</a>
                     </li>
+                    {% endif %}
                     <li>
                         <a href="{{ path('mamrh_ListeProjet',{'id': id}) }}">Liste des projets</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('mamrh_archiveProjet',{'id': id}) }}">Archive des projets</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#"><i class="fa fa-mortar-board fa-fw"></i> Gestion des stagiaires<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
+                    {% if is_granted('ROLE_RH') %}
                     <li>
                         <a href="{{ path('mamrh_ajoutstagiaire',{'id': id}) }}">Ajouter stagiaire</a>
                     </li>
+                    {% endif %}
                     <li>
                         <a href="{{ path('mamrh_affichstag',{'id': id}) }}">Liste des stagiaires</a>
                     </li>
                     <li>
-                        <a href="#">Archive des stagiaires</a>
+                        <a href="{{ path('mamrh_archstag',{'id': id}) }}">Archive des stagiaires</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            {% if is_granted('ROLE_RH') %}
             <li>
                 <a href="#"><i class="fa fa-external-link fa-fw"></i> Gestion des offres<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
+
                     <li>
                         <a href="{{ path('mamrh_ajoutoffre',{'id': id}) }}">Ajouter une offre</a>
                     </li>
@@ -261,9 +274,11 @@
                         <a href="{{ path('mamrh_Listoffre',{'id': id}) }}">Voir les postulations</a>
                     </li>
 
+
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            {% endif %}
         </ul>
     </div>
 </div>
@@ -333,7 +348,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="{{ path('mamrh_affichstag',{'id': id}) }}">
                 <div class="panel-footer">
                     <span class="pull-left">Voir Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -355,7 +370,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="{{ path('mamrh_ListeProjet',{'id': id}) }}">
                 <div class="panel-footer">
                     <span class="pull-left">Voir Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

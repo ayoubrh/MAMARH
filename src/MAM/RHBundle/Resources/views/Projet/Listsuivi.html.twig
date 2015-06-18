@@ -16,8 +16,11 @@
             <div class="panel-heading">
                 <i class="fa fa-list-alt"></i>
                 Liste des taches réaliser
+    {% if is_granted('ROLE_RH') %}
                 <span class="pull-right"><a href="{{ path('mamrh_AjoutSuivi', {'id' : projet}) }}" align="right"><button class="btn btn-success" type="button" align="right">Ajouter une tâche</button></a>
-            </span></div>
+            </span>
+    {% endif %}
+            </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="dataTable_wrapper">

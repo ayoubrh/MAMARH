@@ -1,0 +1,44 @@
+{% extends "::base.html.twig" %}
+{% block sstitle %}Ajouter une Offre{% endblock %}
+
+{% block projet %}{{ nbrprojet }}{% endblock %}
+{% block demnov %}{{ demandev }}{% endblock %}
+{% block stagiaire %}{{ nbrstagiaire }}{% endblock %}
+{% block demnonv %}{{ demandenonv }}{% endblock %}
+
+{% block corps %}
+    <div class="col-lg-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-edit"></i>
+                &nbsp;Formulaire d'ajout d'un offre
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div >
+                            <form method="post" {{ form_enctype(form) }}>
+                                {{ form_errors(form) }}
+
+                                <div class="form-group">
+                                    <label>{{ form_label(form.Libelle, "Titre") }}</label>
+                                    <div class="form-control">
+                                        {{ form_widget(form.Libelle) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form_label(form.discription, "Description ") }}</label>
+
+                                        {{ form_widget(form.discription) }}
+
+                                </div>
+                                <button type="submit" class="btn btn-outline btn-primary">Envoyer</button>
+                                {{ form_rest(form) }}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

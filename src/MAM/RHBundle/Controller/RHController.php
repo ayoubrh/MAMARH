@@ -2,6 +2,8 @@
 
 namespace MAM\RHBundle\Controller;
 
+use MAM\RHBundle\Entity\News;
+use MAM\RHBundle\Form\NewsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,6 +35,11 @@ class RHController extends Controller
     public function AcceuilAction()
     {
         $id = $this->getUser()->getEmploye()->getId();
+        $entities=$this->getDoctrine()
+            ->getManager()
+            ->getRepository('MAMRHBundle:News')
+            ->findAll();
+        //var_dump($entities);
 
         $em = $this->getDoctrine()->getManager();
 
@@ -61,7 +68,7 @@ class RHController extends Controller
         $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
             ->getnbrprojet($this->getUser());
 
-        return $this->render('MAMRHBundle:RH:Acceuil.html.twig',array(
+        return $this->render('MAMRHBundle:RH:Acceuil.html.twig',array('entities' => $entities,
             'demandenonv'=>$demandenonv[0][1],
             'demandev'=>$demandev[0][1],
             'nbrprojet'=>$nbrprojet[0][1],
@@ -863,5 +870,187 @@ class RHController extends Controller
 
         //return $this->render('MAMRHBundle:Default:index.html.twig');
         return $this->redirect($this->generateUrl('mamrh_affichemp'));
+    }
+
+    public function AddnewAction()
+    {
+        $id = $this->getUser()->getEmploye()->getId();
+        $offre = new News();
+        $form = $this->createForm(new NewsType(), $offre);
+        $request = $this->get('request');
+
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        if ($this->get('security.context')->isGranted('ROLE_EMP')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojet($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_PROJET')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetchef($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_DEP')){
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetdep($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_RH')){
+            $nbrprojet[0][1] = 0;
+        }
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        if ($request->getMethod() == 'POST') {
+            $form->submit($request);
+            if ($form->isValid()) {
+
+                //$rh = $em->getRepository('MAMRHBundle:ResponsableRH')->find($this->getUser());
+                //var_dump($rh);
+                //$offre->setResponsableRH($rh);
+
+                $em->persist($offre);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', 'Offre bien ajouté');
+
+
+                return $this->redirect($this->generateUrl('mamrh_listnew'));
+            }
+        }
+        return $this->render('MAMRHBundle:RH:Ajoutnews.html.twig',array('form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id));
+    }
+
+    public function ListnewsAction(){
+        $id = $this->getUser()->getEmploye()->getId();
+        $entities=$this->getDoctrine()
+            ->getManager()
+            ->getRepository('MAMRHBundle:News')
+            ->findAll();
+        //var_dump($entities);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        if ($this->get('security.context')->isGranted('ROLE_EMP')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojet($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_PROJET')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetchef($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_DEP')){
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetdep($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_RH')){
+            $nbrprojet[0][1] = 0;
+        }
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        return $this->render('MAMRHBundle:RH:Listnews.html.twig', array('entities' => $entities,
+                'demandenonv'=>$demandenonv[0][1],
+                'demandev'=>$demandev[0][1],
+                'nbrprojet'=>$nbrprojet[0][1],
+                'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$id)
+        );
+    }
+
+    public function EditnewAction($id)
+    {
+        $idu = $this->getUser()->getEmploye()->getId();
+        $offre = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('MAMRHBundle:News')
+            ->find($id);
+        $form = $this->createForm(new NewsType(), $offre);
+        $request = $this->get('request');
+
+
+        $em = $this->getDoctrine()->getManager();
+
+        $demandenonv = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandenonV($this->getUser());
+
+        $demandev = $em->getRepository('MAMRHBundle:Attestation')
+            ->getnbrdemandeV($this->getUser());
+
+        if ($this->get('security.context')->isGranted('ROLE_EMP')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojet($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_PROJET')) {
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetchef($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_CHEF_DEP')){
+            $nbrprojet = $em->getRepository('MAMRHBundle:Projet')
+                ->getnbrprojetdep($this->getUser());
+        }
+        if ($this->get('security.context')->isGranted('ROLE_RH')){
+            $nbrprojet[0][1] = 0;
+        }
+
+        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+            ->getnbrprojet($this->getUser());
+
+        if ($request->getMethod() == 'POST') {
+            $form->submit($request);
+            if ($form->isValid()) {
+
+                //$rh = $em->getRepository('MAMRHBundle:ResponsableRH')->find($this->getUser());
+                //var_dump($rh);
+                //$offre->setResponsableRH($rh);
+
+                $em->persist($offre);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', 'Offre bien ajouté');
+
+
+                return $this->redirect($this->generateUrl('mamrh_listnew'));
+            }
+        }
+        return $this->render('MAMRHBundle:RH:Ajoutnews.html.twig',array('form' => $form->createView(),
+            'demandenonv'=>$demandenonv[0][1],
+            'demandev'=>$demandev[0][1],
+            'nbrprojet'=>$nbrprojet[0][1],
+            'nbrstagiaire'=>$nbrstagiaire[0][1],'id'=>$idu));
+    }
+
+    public function deletenewAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $offre = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('MAMRHBundle:News')
+            ->find($id);
+                //$rh = $em->getRepository('MAMRHBundle:ResponsableRH')->find($this->getUser());
+                //var_dump($rh);
+                //$offre->setResponsableRH($rh);
+
+                $em->remove($offre);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', 'Offre bien ajouté');
+
+
+                return $this->redirect($this->generateUrl('mamrh_listnew'));
+
     }
 }

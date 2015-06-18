@@ -121,3 +121,19 @@ mamrh_responsablrh:
 mamrh_chefdep:
     pattern:  /chefdep/{id}
     defaults: { _controller: MAMRHBundle:RH:Chefdep }
+
+mamrh_addnews:
+    pattern:  /Addnew
+    defaults: { _controller: MAMRHBundle:RH:Addnew }
+
+mamrh_listnew:
+    pattern:  /News
+    defaults: { _controller: MAMRHBundle:RH:Listnews }
+
+mamrh_editnews:
+    pattern:  /editnew/{id}
+    defaults: { _controller: MAMRHBundle:RH:Editnew }
+
+mamrh_deletenews:
+    pattern:  /deletenew/{id}
+    defaults: { _controller: MAMRHBundle:RH:deletenew }

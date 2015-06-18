@@ -197,6 +197,20 @@
                 <a href="{{ path('mamrh_Acceuil') }}"><i class="fa fa-dashboard fa-fw"></i> Tableau de bord</a>
             </li>
             {% if is_granted('ROLE_RH') %}
+                <li>
+                    <a href="#"><i class="fa fa-list-alt fa-fw"></i>Gestion des nouveautés<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ path('mamrh_addnews',{'id': id}) }}">Ajouter nouveauté</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('mamrh_listnew',{'id': id}) }}">Lister ds nouveautés</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_RH') %}
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i>Gestion des employés<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

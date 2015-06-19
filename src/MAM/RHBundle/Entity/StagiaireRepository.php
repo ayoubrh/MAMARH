@@ -29,6 +29,17 @@ class StagiaireRepository extends EntityRepository
         return $s;
     }
 
+    public function getstagiairerh()
+    {
+
+        $query = $this->createQueryBuilder('s')
+            ->where('s.date_fin >= :df')
+            ->setParameter('df', new Datetime)
+            ->getQuery();
+        $s=$query-> getresult();
+        return $s;
+    }
+
     public function archivestagiaire()
     {
 
@@ -55,12 +66,22 @@ class StagiaireRepository extends EntityRepository
     public function getnbrprojet(User $user){
         $nbrstag = $this->createQueryBuilder('d')
             ->select('COUNT(DISTINCT d.id)')
-            ->where('d.date_fin < :d')
+            ->where('d.date_fin >= :d')
             ->setParameter('d', new Datetime())
             ->leftJoin('d.employeNormal','e')
             ->leftJoin('e.user','u')
             ->andwhere('u.id = :user')
             ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+        return $nbrstag;
+    }
+
+    public function getnbrprojetrh(){
+        $nbrstag = $this->createQueryBuilder('d')
+            ->select('COUNT(DISTINCT d.id)')
+            ->where('d.date_fin >= :d')
+            ->setParameter('d', new Datetime())
             ->getQuery()
             ->getResult();
         return $nbrstag;

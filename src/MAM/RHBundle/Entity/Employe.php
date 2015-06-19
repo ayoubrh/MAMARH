@@ -2,6 +2,7 @@
 namespace MAM\RHBundle\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use MAM\UserBundle\Entity\User;
 
@@ -33,16 +34,53 @@ class Employe
 
     /**
      * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     *
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "12",
+     *      minMessage = "Ce champ doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Ce champ ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     *
      */
     private $CIN;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "30",
+     *      minMessage = "Ce champ doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Ce champ ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     *
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Le nom ne peut pas contenir de nombre"
+     * )
      */
     private $Nom;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "30",
+     *      minMessage = "Ce champ doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Ce champ ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     *
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Le nom ne peut pas contenir de nombre"
+     * )
      */
     private $Prenom;
 
@@ -53,6 +91,13 @@ class Employe
 
     /**
      * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     *
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     *
+     * @Assert\Email(
+     *     message = "'{{ value }}' n'est pas un email valide.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -68,11 +113,30 @@ class Employe
 
     /**
      * @ORM\Column(type="string", unique=true, length=255, nullable=false)
+     *
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "12",
+     *      minMessage = "Ce champ doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Ce champ ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     *
      */
     private $Cnss;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "12",
+     *      minMessage = "Ce champ doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Ce champ ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     *
+     *
      */
     private $Cimr;
 
@@ -83,11 +147,31 @@ class Employe
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "40",
+     *      minMessage = "Ce champ doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Ce champ ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     *
+     *
      */
     private $Diplome;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "40",
+     *      minMessage = "Ce champ doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Ce champ ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     *
+     *
      */
     private $Formation;
 

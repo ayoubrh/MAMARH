@@ -2,6 +2,8 @@
 namespace MAM\RHBundle\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="AttestationRepository")
@@ -17,6 +19,16 @@ class News
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "50",
+     *      minMessage = "Ce champ doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Ce champ ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     *
+     *
      */
     private $Libelle;
 

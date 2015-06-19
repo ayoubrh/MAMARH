@@ -175,7 +175,8 @@ $offre->addcandidat($candidat);//c'est l'injection, i.e: enregistrer dans la tab
 $em->flush();//on exécute tt les traitements
 
 // On redirige vers la page de visualisation de l'article nouvellement créé
-return $this->redirect($this->generateUrl('mam_site'));}
+return $this->redirect($this->generateUrl('mam_site'));
+}
 }
 
 
@@ -185,8 +186,6 @@ return $this->redirect($this->generateUrl('mam_site'));}
 // - Soit la requête est de type POST, mais le formulaire n'estpas valide, donc on l'affiche de nouveau
 
 //cette else pour traiter le 2 émé cas, i.e lorsque l'utilisateur vient de la premiere fois à la page où le formulaire se trouve
-else
-   {
 
 
 //$em = $this->getDoctrine()->getManager();
@@ -196,8 +195,6 @@ else
 
  return $this->render('MAMSiteBundle:Default:index2.html.twig',array('offre' => $offre,'form' => $form->createView()));
  //j'envois l'offre pour l'afficher c'est juste pr s'assurer et aussi form (formulaire à créer)
-    
-   }
 
   }
 

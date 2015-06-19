@@ -52,8 +52,14 @@ class EmployeController extends Controller
         if ($this->get('security.context')->isGranted('ROLE_RH')){
             $nbrprojet[0][1] = 0;
         }
-        $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
-            ->getnbrprojet($this->getUser());
+        if ($this->get('security.context')->isGranted('ROLE_RH') or $this->get('security.context')->isGranted('ROLE_CHEF_DEP')){
+            $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+                ->getnbrprojetrh();
+        }
+        else{
+            $nbrstagiaire = $em->getRepository('MAMRHBundle:Stagiaire')
+                ->getnbrprojet($this->getUser());
+        }
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
